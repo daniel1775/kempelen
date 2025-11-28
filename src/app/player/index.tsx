@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function Tournament() {
+export default function Player() {
 	return (
 		<View className='flex-1 justify-center items-center bg-red-200'>
-			<Text>Tournament screen</Text>
+			<Text>Player screen</Text>
 		</View>
 	);
 }

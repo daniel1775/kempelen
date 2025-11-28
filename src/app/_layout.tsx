@@ -1,18 +1,35 @@
 import '@/src/global.css';
-import { Stack } from 'expo-router';
 import 'react-native-reanimated';
 
-export const unstable_settings = {
-	anchor: '(tabs)',
-};
+import { Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 export default function RootLayout() {
 	return (
-		<Stack>
-			<Stack.Screen
-				name='index'
-				options={{ headerShown: false }}
-			/>
-		</Stack>
+		<>
+			<StatusBar style='auto' />
+			<Tabs>
+				<Tabs.Screen
+					name='index'
+					options={{
+						headerShown: false,
+						tabBarLabel: 'tournament',
+					}}
+				/>
+				<Tabs.Screen
+					name='player/index'
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Tabs.Screen
+					name='tournament'
+					options={{
+						href: null,
+						headerShown: false,
+					}}
+				/>
+			</Tabs>
+		</>
 	);
 }
