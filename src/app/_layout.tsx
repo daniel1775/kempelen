@@ -15,6 +15,11 @@ const { height: screenHeight } = Dimensions.get('window');
 const BASE_RATIO = 0.05;
 const MIN_HEIGHT = 46;
 
+const iconsMeasures = {
+	width: 29,
+	height: 29,
+};
+
 export default function Layout() {
 	const insets = useSafeAreaInsets();
 	const calculated = Math.max(
@@ -29,35 +34,50 @@ export default function Layout() {
 		<Tabs>
 			<TabSlot />
 			<TabList
-				className='h-[8%] flex-row justify-between'
-				style={{ height: tabHeight }}
+				className='flex flex-row items-center bg-neutral-gray px-4 border-t-2 border-t-light-orange'
+				style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
 			>
 				<TabTrigger
 					name='index'
 					href='/'
 				>
-					<TournamentIcon />
+					<TournamentIcon
+						height={iconsMeasures.height}
+						width={iconsMeasures.width}
+					/>
 				</TabTrigger>
 				<TabTrigger
 					name='player'
 					href='/player'
 				>
-					<PlayerIcon />
+					<PlayerIcon
+						height={iconsMeasures.height}
+						width={iconsMeasures.width}
+					/>
 				</TabTrigger>
-				<Pressable>
-					<KempelenIcon />
+				<Pressable className='border-2 rounded-full bg-gray border-light-orange p-5 -top-3'>
+					<KempelenIcon
+						height={41}
+						width={41}
+					/>
 				</Pressable>
 				<TabTrigger
 					name='statistics'
 					href='/statistics'
 				>
-					<StatisticsIcon />
+					<StatisticsIcon
+						height={iconsMeasures.height}
+						width={iconsMeasures.width}
+					/>
 				</TabTrigger>
 				<TabTrigger
 					name='settings'
 					href='/settings'
 				>
-					<SettingsIcon />
+					<SettingsIcon
+						height={iconsMeasures.height}
+						width={iconsMeasures.width}
+					/>
 				</TabTrigger>
 			</TabList>
 		</Tabs>
