@@ -3,7 +3,11 @@
 	"compilerOptions": {
 		"strict": true,
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./*"],
+			"@/UI/*": ["./src/UI/*"],
+			"@/hooks/*": ["./src/hooks/*"],
+			"@/svg/*": ["./assets/svg/*"],
+			"@/images/*": ["./assets/images/*"],
 		}
 	},
 	"include": [

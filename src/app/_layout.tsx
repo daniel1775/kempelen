@@ -2,8 +2,14 @@ import '@/src/global.css';
 import 'react-native-reanimated';
 
 import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import KempelenIcon from '@/assets/svg/Kempelen';
+import PlayerIcon from '@/assets/svg/Player';
+import SettingsIcon from '@/assets/svg/Settings';
+import StatisticsIcon from '@/assets/svg/Statistics';
+import TournamentIcon from '@/assets/svg/Tournament';
 
 const { height: screenHeight } = Dimensions.get('window');
 const BASE_RATIO = 0.05;
@@ -23,21 +29,35 @@ export default function Layout() {
 		<Tabs>
 			<TabSlot />
 			<TabList
-				className='h-[8%]'
+				className='h-[8%] flex-row justify-between'
 				style={{ height: tabHeight }}
 			>
 				<TabTrigger
-					name='player/index'
-					href='/player'
+					name='index'
+					href='/'
 				>
-					<Text>Home</Text>
+					<TournamentIcon />
 				</TabTrigger>
 				<TabTrigger
-					name='statistics/index'
-					href='/statistics'
-					className='bg-red-500'
+					name='player'
+					href='/player'
 				>
-					<Text>Statistics</Text>
+					<PlayerIcon />
+				</TabTrigger>
+				<Pressable>
+					<KempelenIcon />
+				</Pressable>
+				<TabTrigger
+					name='statistics'
+					href='/statistics'
+				>
+					<StatisticsIcon />
+				</TabTrigger>
+				<TabTrigger
+					name='settings'
+					href='/settings'
+				>
+					<SettingsIcon />
 				</TabTrigger>
 			</TabList>
 		</Tabs>
