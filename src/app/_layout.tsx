@@ -6,18 +6,15 @@ import { Dimensions, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import KempelenIcon from '@/assets/svg/Kempelen';
-import PlayerIcon from '@/assets/svg/Player';
-import SettingsIcon from '@/assets/svg/Settings';
-import StatisticsIcon from '@/assets/svg/Statistics';
-import TournamentIcon from '@/assets/svg/Tournament';
+import TabButton from '@/UI/atoms/tab/TabButton';
 
 const { height: screenHeight } = Dimensions.get('window');
 const BASE_RATIO = 0.05;
-const MIN_HEIGHT = 46;
+const MIN_HEIGHT = 50;
 
 const iconsMeasures = {
-	width: 29,
-	height: 29,
+	width: 25,
+	height: 25,
 };
 
 export default function Layout() {
@@ -29,55 +26,55 @@ export default function Layout() {
 	const tabHeight = calculated + insets.bottom;
 
 	const tabItemStyles = '';
+	const activeTabItemStyles =
+		'absolute top-[-10] bottom-[-10] left-[-10] right-[-10] rounded-full bg-orange opacity-20';
 
 	return (
 		<Tabs>
+			{/* TabSlot is where the nested tab screens will be rendered */}
 			<TabSlot />
 			<TabList
-				className='flex flex-row items-center bg-neutral-gray px-4 border-t-2 border-t-light-orange'
+				className='flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange'
 				style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
 			>
 				<TabTrigger
 					name='index'
 					href='/'
+					asChild
 				>
-					<TournamentIcon
-						height={iconsMeasures.height}
-						width={iconsMeasures.width}
-					/>
+					<TabButton iconType='tournament' />
 				</TabTrigger>
 				<TabTrigger
 					name='player'
 					href='/player'
+					asChild
 				>
-					<PlayerIcon
-						height={iconsMeasures.height}
-						width={iconsMeasures.width}
-					/>
+					<TabButton iconType='player' />
 				</TabTrigger>
-				<Pressable className='border-2 rounded-full bg-gray border-light-orange p-5 -top-3'>
+				<Pressable
+					className='border-2 rounded-full bg-gray border-light-orange p-5 -top-3'
+					onPress={() => {
+						// Navigate to the home page or perform any action
+					}}
+				>
 					<KempelenIcon
-						height={41}
-						width={41}
+						height={iconsMeasures.height + 11}
+						width={iconsMeasures.width + 11}
 					/>
 				</Pressable>
 				<TabTrigger
 					name='statistics'
 					href='/statistics'
+					asChild
 				>
-					<StatisticsIcon
-						height={iconsMeasures.height}
-						width={iconsMeasures.width}
-					/>
+					<TabButton iconType='statistics' />
 				</TabTrigger>
 				<TabTrigger
 					name='settings'
 					href='/settings'
+					asChild
 				>
-					<SettingsIcon
-						height={iconsMeasures.height}
-						width={iconsMeasures.width}
-					/>
+					<TabButton iconType='settings' />
 				</TabTrigger>
 			</TabList>
 		</Tabs>
