@@ -8,6 +8,7 @@
 			"@/hooks/*": ["./src/hooks/*"],
 			"@/svg/*": ["./assets/svg/*"],
 			"@/images/*": ["./assets/images/*"],
+			"@/translations/*": ["./src/translations/*"]
 		}
 	},
 	"include": [
