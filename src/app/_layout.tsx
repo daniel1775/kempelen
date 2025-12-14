@@ -25,10 +25,6 @@ export default function Layout() {
 	);
 	const tabHeight = calculated + insets.bottom;
 
-	const tabItemStyles = '';
-	const activeTabItemStyles =
-		'absolute top-[-10] bottom-[-10] left-[-10] right-[-10] rounded-full bg-orange opacity-20';
-
 	return (
 		<Tabs>
 			{/* TabSlot is where the nested tab screens will be rendered */}

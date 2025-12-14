@@ -62,7 +62,10 @@ const TabButton = ({ isFocused, iconType, ...props }: TypeTabButtonProps) => {
 	};
 
 	return (
-		<Pressable {...props}>
+		<Pressable
+			{...props}
+			hitSlop={8}
+		>
 			{isFocused && <View className={activeTabItemStyles} />}
 			{renderIcon()}
 		</Pressable>
