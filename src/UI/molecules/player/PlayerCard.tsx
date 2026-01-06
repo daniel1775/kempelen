@@ -4,7 +4,7 @@ type TypePlayerCardProps = {
 	imageUrl?: string;
 };
 
-const PlayerCard = () => {
+const PlayerCard = ({ imageUrl }: TypePlayerCardProps) => {
 	return (
 		<View>
 			<Image />
