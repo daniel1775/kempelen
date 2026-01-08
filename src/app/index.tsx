@@ -16,7 +16,7 @@ export default function Tournament() {
 			console.log('Tournaments: ', tournaments);
 		};
 
-		fetchTournaments();
+		// fetchTournaments();
 	});
 
 	return (
