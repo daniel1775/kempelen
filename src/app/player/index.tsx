@@ -4,6 +4,7 @@ import { FlatList, View } from 'react-native';
 
 import PlayerOneImage from '@/images/tests-images/player-1.png';
 import PlayerTwoImage from '@/images/tests-images/player-2.png';
+import CustomButton from '@/src/UI/atoms/buttons/CustomButton';
 import SearchInput from '@/src/UI/atoms/input/SearchInput';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import PlayerCard from '@/src/UI/molecules/player/PlayerCard';
@@ -46,6 +47,9 @@ export default function Player() {
 					)}
 					ItemSeparatorComponent={() => <View className='h-6' />}
 				/>
+			</View>
+			<View className='absolute z-20 bottom-6 right-6'>
+				<CustomButton text='Create Player' />
 			</View>
 		</ScreenLayout>
 	);

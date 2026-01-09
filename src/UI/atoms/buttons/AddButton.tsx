@@ -4,12 +4,12 @@ import { Pressable, Text } from 'react-native';
 import CheckIcon from '@/assets/svg/CheckIcon';
 import PlusIcon from '@/assets/svg/PlusIcon';
 
-type AddButtonState = 'add' | 'remove';
+type TypeAddButtonState = 'add' | 'remove';
 
 type TypeSmallButtonProps = {
 	onPressAdd: () => void;
 	onPressRemove: () => void;
-	initialState?: AddButtonState;
+	initialState?: TypeAddButtonState;
 };
 
 const AddButton = ({
@@ -17,7 +17,8 @@ const AddButton = ({
 	onPressRemove,
 	initialState = 'add',
 }: TypeSmallButtonProps) => {
-	const [buttonState, setButtonState] = useState<AddButtonState>(initialState);
+	const [buttonState, setButtonState] =
+		useState<TypeAddButtonState>(initialState);
 
 	return (
 		<Pressable
