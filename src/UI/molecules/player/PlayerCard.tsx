@@ -1,7 +1,7 @@
 import { Image, ImageSourcePropType, Text, View } from 'react-native';
 
-import DotsIcon from '@/assets/svg/Dots';
-import SmallButton from '../../atoms/buttons/AddButton';
+import AddButton from '../../atoms/buttons/AddButton';
+import DotsButton from '../../atoms/buttons/DotsButton';
 
 type TypePlayerCardProps = {
 	playerName: string;
@@ -19,11 +19,11 @@ const PlayerCard = ({
 	const onPressRemove = () => {};
 
 	return (
-		<View className='flex flex-row bg-neutral-gray p-4 w-full rounded-lg'>
+		<View className='flex flex-row bg-neutral-gray p-4 w-full rounded-lg h-[120px]'>
 			<View className='flex flex-row'>
 				{imageUrl ? (
 					<Image
-						className='w-[76px] h-[76px]'
+						className='w-[80px] h-[80px]'
 						source={imageUrl}
 					/>
 				) : null}
@@ -34,9 +34,8 @@ const PlayerCard = ({
 			</View>
 			<View className='flex-1' />
 			<View className='flex justify-between items-end'>
-				<DotsIcon />
-				<View className='flex-1' />
-				<SmallButton
+				<DotsButton />
+				<AddButton
 					onPressAdd={onPressAdd}
 					onPressRemove={onPressRemove}
 				/>
