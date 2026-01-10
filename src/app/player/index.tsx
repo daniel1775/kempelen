@@ -49,7 +49,7 @@ export default function Player() {
 				/>
 			</View>
 			<View className='absolute z-20 bottom-6 right-6'>
-				<CustomButton text='Create Player' />
+				<CustomButton variant='add' />
 			</View>
 		</ScreenLayout>
 	);

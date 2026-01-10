@@ -1,8 +1,10 @@
 import { Pressable, PressableProps, Text } from 'react-native';
 
+import PlusIcon from '@/assets/svg/PlusIcon';
+
 type TypeCustomButtonProps = PressableProps & {
-	text: string;
-	variant?: 'primary' | 'secondary';
+	text?: string;
+	variant?: 'primary' | 'add';
 };
 
 const CustomButton = ({
@@ -13,13 +15,21 @@ const CustomButton = ({
 	return (
 		<Pressable
 			{...props}
-			className='bg-neutral-gray self-center px-5 py-3 rounded-full'
+			className='bg-neutral-gray self-center p-4 rounded-full'
 		>
-			<Text
-				className={`${variant === 'primary' ? 'text-orange' : 'text-black'} text-lg`}
-			>
-				{text}
-			</Text>
+			{variant === 'primary' && (
+				<Text
+					className={`${variant === 'primary' ? 'text-orange' : 'text-black'} text-lg`}
+				>
+					{text}
+				</Text>
+			)}
+			{variant === 'add' && (
+				<PlusIcon
+					width={19}
+					height={19}
+				/>
+			)}
 		</Pressable>
 	);
 };
