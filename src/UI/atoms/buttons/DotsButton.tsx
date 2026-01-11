@@ -1,5 +1,11 @@
 import { useRef, useState } from 'react';
-import { Modal, Pressable, Text, View } from 'react-native';
+import {
+	Modal,
+	Pressable,
+	Text,
+	useWindowDimensions,
+	View,
+} from 'react-native';
 
 import DotsIcon from '@/assets/svg/DotsIcon';
 
@@ -8,6 +14,7 @@ const DotsButton = () => {
 	const [modalPosition, setModalPosition] = useState({ pageX: 0, pageY: 0 });
 
 	const buttonRef = useRef<View>(null);
+	const { width: screenWidth } = useWindowDimensions();
 
 	const onPressDots = () => {
 		setIsVisible(true);
@@ -28,22 +35,37 @@ const DotsButton = () => {
 				visible={isVisible}
 				animationType='fade'
 				backdropColor={'rgba(0, 0, 0, 0.7)'}
+				presentationStyle='overFullScreen'
+				onRequestClose={() => {
+					setIsVisible(false);
+				}}
 			>
-				<View
-					className='absolute bg-red-400 p-4 rounded shadow'
-					style={{
-						top: modalPosition.pageY,
-						left: modalPosition.pageX,
+				<Pressable
+					onPress={() => {
+						setIsVisible(false);
 					}}
+					style={{ flex: 1 }}
 				>
-					<Pressable onPress={onPressEdit}>
-						<Text>Edit</Text>
-					</Pressable>
-				</View>
+					<View
+						className='bg-light px-4 py-2 rounded-lg absolute w-[100px]'
+						style={{
+							top: modalPosition.pageY,
+							right: screenWidth - modalPosition.pageX,
+						}}
+					>
+						<Pressable
+							onPress={onPressEdit}
+							hitSlop={14}
+						>
+							<Text className='text-lg text-gray'>Edit</Text>
+						</Pressable>
+					</View>
+				</Pressable>
 			</Modal>
 			<Pressable
 				ref={buttonRef}
 				onPress={onPressDots}
+				hitSlop={14}
 			>
 				<DotsIcon />
 			</Pressable>

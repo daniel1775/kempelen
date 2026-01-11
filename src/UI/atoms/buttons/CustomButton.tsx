@@ -26,8 +26,8 @@ const CustomButton = ({
 			)}
 			{variant === 'add' && (
 				<PlusIcon
-					width={19}
-					height={19}
+					width={25}
+					height={25}
 				/>
 			)}
 		</Pressable>
