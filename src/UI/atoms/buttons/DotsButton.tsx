@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import { useRef, useState } from 'react';
 import {
 	Modal,
@@ -53,12 +54,17 @@ const DotsButton = () => {
 							right: screenWidth - modalPosition.pageX,
 						}}
 					>
-						<Pressable
-							onPress={onPressEdit}
-							hitSlop={14}
+						<Link
+							href='/player/create-player'
+							asChild
 						>
-							<Text className='text-lg text-gray'>Edit</Text>
-						</Pressable>
+							<Pressable
+								onPress={onPressEdit}
+								hitSlop={14}
+							>
+								<Text className='text-lg text-gray'>Edit</Text>
+							</Pressable>
+						</Link>
 					</View>
 				</Pressable>
 			</Modal>
