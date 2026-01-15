@@ -29,25 +29,23 @@ export default function Player() {
 
 	return (
 		<ScreenLayout title={t('players')}>
-			<View className='px-6'>
-				<SearchInput
-					value={searchText}
-					setValue={setSearchText}
-					containerStyle='mt-16 mb-12'
-				/>
-				<FlatList
-					data={dummyPlayers}
-					keyExtractor={(_, index) => index.toString()}
-					renderItem={({ item }) => (
-						<PlayerCard
-							playerName={item.playerName}
-							playerElo={item.playerElo}
-							imageUrl={item.imageUrl}
-						/>
-					)}
-					ItemSeparatorComponent={() => <View className='h-6' />}
-				/>
-			</View>
+			<SearchInput
+				value={searchText}
+				setValue={setSearchText}
+				containerStyle='mt-16 mb-12'
+			/>
+			<FlatList
+				data={dummyPlayers}
+				keyExtractor={(_, index) => index.toString()}
+				renderItem={({ item }) => (
+					<PlayerCard
+						playerName={item.playerName}
+						playerElo={item.playerElo}
+						imageUrl={item.imageUrl}
+					/>
+				)}
+				ItemSeparatorComponent={() => <View className='h-6' />}
+			/>
 			<View className='absolute z-20 bottom-6 right-6'>
 				<CustomButton variant='add' />
 			</View>

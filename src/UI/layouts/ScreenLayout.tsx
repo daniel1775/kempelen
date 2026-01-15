@@ -11,12 +11,10 @@ const ScreenLayout = ({ children, title }: TypeScreenLayoutProps) => {
 
 	return (
 		<View
-			className='bg-gray flex-1'
+			className='bg-gray flex-1 px-6'
 			style={{ paddingTop: insets.top }}
 		>
-			<Text className='text-orange text-4xl text-center mt-6'>
-				{title}
-			</Text>
+			<Text className='text-orange text-4xl text-center mt-6'>{title}</Text>
 			{children}
 		</View>
 	);
