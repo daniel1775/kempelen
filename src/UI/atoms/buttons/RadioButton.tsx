@@ -1,4 +1,6 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import TextBase from '@/UI/atoms/text/TextBase';
 
 type TypeRadioButtonProps = {
 	label: string;
@@ -20,7 +22,7 @@ const RadioButton = ({ label, onPress, isActive }: TypeRadioButtonProps) => {
 					className={`${isActive ? 'bg-gray' : 'bg-orange'} w-[6px] h-[6px] rounded-full`}
 				/>
 			</Pressable>
-			<Text className='text-light text-[17px]'>{label}</Text>
+			<TextBase>{label}</TextBase>
 		</View>
 	);
 };

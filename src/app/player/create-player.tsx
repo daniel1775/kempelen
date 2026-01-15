@@ -2,6 +2,7 @@ import { ScrollView, View } from 'react-native';
 
 import RadioButton from '@/src/UI/atoms/buttons/RadioButton';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
+import CreatePlayerForm from '@/src/UI/organisms/player/CreatePlayerForm';
 import { useState } from 'react';
 
 export default function CreatePlayer() {
@@ -12,7 +13,7 @@ export default function CreatePlayer() {
 	return (
 		<ScreenLayout title='Create Player'>
 			<ScrollView>
-				<View className='flex-1 mt-16 gap-4'>
+				<View className='flex-1 mt-16 gap-4 mb-12'>
 					<RadioButton
 						label='Manually'
 						onPress={() => {
@@ -28,6 +29,7 @@ export default function CreatePlayer() {
 						isActive={creationType === 'online'}
 					/>
 				</View>
+				<CreatePlayerForm />
 			</ScrollView>
 		</ScreenLayout>
 	);
