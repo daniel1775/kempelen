@@ -1,5 +1,5 @@
 import { useForm } from '@tanstack/react-form';
-import { TextInput, View } from 'react-native';
+import { Pressable, TextInput, View } from 'react-native';
 
 import TextBase from '../../atoms/text/TextBase';
 
@@ -38,6 +38,18 @@ const CreatePlayerForm = () => {
 							onChangeText={field.handleChange}
 							className={inputStyles}
 						/>
+					</View>
+				)}
+			</form.Field>
+			<form.Field name='imageUri'>
+				{(field) => (
+					<View className='flex-row gap-4 items-end'>
+						<TextBase>Avatar: </TextBase>
+						<Pressable className=''>
+							<TextBase customStyles='text-orange underline'>
+								Upload Image
+							</TextBase>
+						</Pressable>
 					</View>
 				)}
 			</form.Field>

@@ -13,7 +13,7 @@ export default function CreatePlayer() {
 	return (
 		<ScreenLayout title='Create Player'>
 			<ScrollView>
-				<View className='flex-1 mt-16 gap-4 mb-12'>
+				<View className='flex-1 mt-16 gap-4 mb-12 px-4'>
 					<RadioButton
 						label='Manually'
 						onPress={() => {
