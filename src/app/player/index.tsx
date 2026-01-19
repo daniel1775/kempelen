@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, View } from 'react-native';
@@ -10,6 +11,7 @@ import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import PlayerCard from '@/src/UI/molecules/player/PlayerCard';
 
 export default function Player() {
+	const router = useRouter();
 	const { t } = useTranslation();
 
 	const [searchText, setSearchText] = useState('');
@@ -47,7 +49,12 @@ export default function Player() {
 				ItemSeparatorComponent={() => <View className='h-6' />}
 			/>
 			<View className='absolute z-20 bottom-6 right-6'>
-				<CustomButton variant='add' />
+				<CustomButton
+					variant='add'
+					onPress={() => {
+						router.navigate('/player/create-player');
+					}}
+				/>
 			</View>
 		</ScreenLayout>
 	);
