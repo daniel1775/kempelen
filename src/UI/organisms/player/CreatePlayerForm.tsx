@@ -1,8 +1,8 @@
 import { useForm } from '@tanstack/react-form';
 import * as ImagePicker from 'expo-image-picker';
-import { Alert, Pressable, TextInput, View } from 'react-native';
+import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
-import TextBase from '../../atoms/text/TextBase';
+import TextBase from '@/UI/atoms/text/TextBase';
 
 const CreatePlayerForm = () => {
 	const form = useForm({
@@ -70,14 +70,23 @@ const CreatePlayerForm = () => {
 				{(field) => (
 					<View className='flex-row gap-4 items-start flex-1'>
 						<TextBase>Avatar: </TextBase>
-						<Pressable
-							onPress={pickImage}
-							className='border border-light-gray w-[240px] h-[240px] items-center justify-center'
-						>
-							<TextBase customStyles='text-orange underline'>
-								Upload Image
-							</TextBase>
-						</Pressable>
+						{field.state.value ? (
+							<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
+								<Image
+									source={{ uri: field.state.value }}
+									className='w-full h-full'
+								/>
+							</View>
+						) : (
+							<Pressable
+								onPress={pickImage}
+								className='border border-light-gray w-[240px] h-[240px] items-center justify-center'
+							>
+								<TextBase customStyles='text-orange underline'>
+									Upload Image
+								</TextBase>
+							</Pressable>
+						)}
 					</View>
 				)}
 			</form.Field>
