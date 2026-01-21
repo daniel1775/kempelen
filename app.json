@@ -52,6 +52,12 @@
             "forceStaticLinking": ["RNFBApp", "RNFBAuth", "RNFBFirestore"]
           }
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Let kempelen access your photos to upload player avatars"
+        }
       ]
     ],
     "experiments": {
