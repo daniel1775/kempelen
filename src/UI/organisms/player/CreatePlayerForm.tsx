@@ -4,7 +4,11 @@ import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
 import TextBase from '@/UI/atoms/text/TextBase';
 
-const CreatePlayerForm = () => {
+type TypeCreatePlayerFormValues = {
+	typePlayer: 'manual' | 'online';
+};
+
+const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 	const form = useForm({
 		defaultValues: {
 			name: '',
@@ -13,8 +17,8 @@ const CreatePlayerForm = () => {
 			imageUri: '',
 		},
 	});
-	const inputStyles =
-		'flex-1 text-[18px] border-b border-light-gray text-light-gray';
+	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
+	const labelStyles = 'text-light-gray text-[16px] mb-2';
 
 	const pickImage = async () => {
 		const permissionResult =
@@ -42,10 +46,26 @@ const CreatePlayerForm = () => {
 
 	return (
 		<View className='gap-10 px-4 items-start'>
+			{typePlayer === 'online' && (
+				<form.Field name='chessProfileUrl'>
+					{(field) => (
+						<View className='w-full'>
+							<TextBase customStyles={labelStyles}>
+								Chess.com username:
+							</TextBase>
+							<TextInput
+								value={field.state.value}
+								onChangeText={field.handleChange}
+								className={inputStyles}
+							/>
+						</View>
+					)}
+				</form.Field>
+			)}
 			<form.Field name='name'>
 				{(field) => (
-					<View className='flex-row gap-4 items-end'>
-						<TextBase>Name: </TextBase>
+					<View className='w-full'>
+						<TextBase customStyles={labelStyles}>Name: </TextBase>
 						<TextInput
 							value={field.state.value}
 							onChangeText={field.handleChange}
@@ -56,8 +76,8 @@ const CreatePlayerForm = () => {
 			</form.Field>
 			<form.Field name='elo'>
 				{(field) => (
-					<View className='flex-row gap-4 items-end'>
-						<TextBase>ELO: </TextBase>
+					<View className='w-full'>
+						<TextBase customStyles={labelStyles}>ELO: </TextBase>
 						<TextInput
 							value={field.state.value}
 							onChangeText={field.handleChange}
@@ -68,8 +88,8 @@ const CreatePlayerForm = () => {
 			</form.Field>
 			<form.Field name='imageUri'>
 				{(field) => (
-					<View className='flex-row gap-4 items-start flex-1'>
-						<TextBase>Avatar: </TextBase>
+					<View className=''>
+						<TextBase customStyles={labelStyles}>Avatar: </TextBase>
 						{field.state.value ? (
 							<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
 								<Image

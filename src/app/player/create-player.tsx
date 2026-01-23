@@ -29,7 +29,7 @@ export default function CreatePlayer() {
 						isActive={creationType === 'online'}
 					/>
 				</View>
-				<CreatePlayerForm />
+				<CreatePlayerForm typePlayer={creationType} />
 			</ScrollView>
 		</ScreenLayout>
 	);
