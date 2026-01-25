@@ -3,6 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
 import TextBase from '@/UI/atoms/text/TextBase';
+import GarbageIcon from '@/assets/svg/GarbageIcon';
 
 type TypeCreatePlayerFormValues = {
 	typePlayer: 'manual' | 'online';
@@ -27,7 +28,7 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 		if (!permissionResult.granted) {
 			Alert.alert(
 				'Permission required',
-				'Permission to access the media library is required.'
+				'Permission to access the media library is required.',
 			);
 			return;
 		}
@@ -42,6 +43,10 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 		if (result.assets && result.assets.length > 0) {
 			form.setFieldValue('imageUri', result.assets[0].uri);
 		}
+	};
+
+	const removeImage = () => {
+		form.setFieldValue('imageUri', '');
 	};
 
 	return (
@@ -91,11 +96,22 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 					<View className=''>
 						<TextBase customStyles={labelStyles}>Avatar: </TextBase>
 						{field.state.value ? (
-							<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
-								<Image
-									source={{ uri: field.state.value }}
-									className='w-full h-full'
-								/>
+							<View className='flex-row'>
+								<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
+									<Image
+										source={{ uri: field.state.value }}
+										className='w-full h-full'
+									/>
+								</View>
+								<Pressable
+									className='ml-4'
+									onPress={removeImage}
+								>
+									<GarbageIcon
+										width={18}
+										height={22}
+									/>
+								</Pressable>
 							</View>
 						) : (
 							<Pressable
