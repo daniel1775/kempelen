@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default function CreatePlayer() {
 	const [creationType, setCreationType] = useState<'manual' | 'online'>(
-		'manual'
+		'manual',
 	);
 
 	return (

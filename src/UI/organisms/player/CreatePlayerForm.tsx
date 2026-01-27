@@ -2,8 +2,9 @@ import { useForm } from '@tanstack/react-form';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
-import TextBase from '@/UI/atoms/text/TextBase';
 import GarbageIcon from '@/assets/svg/GarbageIcon';
+import CustomButton from '@/UI/atoms/buttons/CustomButton';
+import TextBase from '@/UI/atoms/text/TextBase';
 
 type TypeCreatePlayerFormValues = {
 	typePlayer: 'manual' | 'online';
@@ -126,6 +127,10 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 					</View>
 				)}
 			</form.Field>
+			<View className='flex-row w-full justify-center gap-8'>
+				<CustomButton text='Save' />
+				<CustomButton text='Clean' />
+			</View>
 		</View>
 	);
 };
