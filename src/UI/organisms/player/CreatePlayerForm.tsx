@@ -50,6 +50,12 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 		form.setFieldValue('imageUri', '');
 	};
 
+	const handleSubmit = () => {};
+
+	const handleCleanAllFields = () => {
+		form.reset();
+	};
+
 	return (
 		<View className='gap-10 px-4 items-start'>
 			{typePlayer === 'online' && (
@@ -68,7 +74,13 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 					)}
 				</form.Field>
 			)}
-			<form.Field name='name'>
+			<form.Field
+				name='name'
+				validators={{
+					onChange: ({ value }) =>
+						value === '' ? 'Player needs a name' : undefined,
+				}}
+			>
 				{(field) => (
 					<View className='w-full'>
 						<TextBase customStyles={labelStyles}>Name: </TextBase>
@@ -77,10 +89,21 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 							onChangeText={field.handleChange}
 							className={inputStyles}
 						/>
+						{!field.state.meta.isValid && (
+							<TextBase customStyles='!text-red-500 mt-2'>
+								{field.state.meta.errors.join(', ')}
+							</TextBase>
+						)}
 					</View>
 				)}
 			</form.Field>
-			<form.Field name='elo'>
+			<form.Field
+				name='elo'
+				validators={{
+					onChange: ({ value }) =>
+						!Number.isFinite(Number(value)) ? 'ELO must be numeric' : undefined,
+				}}
+			>
 				{(field) => (
 					<View className='w-full'>
 						<TextBase customStyles={labelStyles}>ELO: </TextBase>
@@ -88,7 +111,13 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 							value={field.state.value}
 							onChangeText={field.handleChange}
 							className={inputStyles}
+							keyboardType='numeric'
 						/>
+						{!field.state.meta.isValid && (
+							<TextBase customStyles='!text-red-500 mt-2'>
+								{field.state.meta.errors.join(', ')}
+							</TextBase>
+						)}
 					</View>
 				)}
 			</form.Field>
@@ -129,7 +158,10 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 			</form.Field>
 			<View className='flex-row w-full justify-center gap-8'>
 				<CustomButton text='Save' />
-				<CustomButton text='Clean' />
+				<CustomButton
+					text='Clean'
+					onPress={handleCleanAllFields}
+				/>
 			</View>
 		</View>
 	);
