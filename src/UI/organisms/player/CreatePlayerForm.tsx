@@ -1,6 +1,7 @@
 import { useForm } from '@tanstack/react-form';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
@@ -17,6 +18,9 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 			chessProfileUrl: '',
 			elo: '',
 			imageUri: '',
+		},
+		onSubmit: async ({ value, meta }) => {
+			const deviceId = await DeviceInfo.getUniqueId();
 		},
 	});
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
@@ -49,8 +53,6 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 	const removeImage = () => {
 		form.setFieldValue('imageUri', '');
 	};
-
-	const handleSubmit = () => {};
 
 	const handleCleanAllFields = () => {
 		form.reset();
@@ -157,7 +159,12 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 				)}
 			</form.Field>
 			<View className='flex-row w-full justify-center gap-8'>
-				<CustomButton text='Save' />
+				<CustomButton
+					text='Save'
+					onPress={() => {
+						form.handleSubmit();
+					}}
+				/>
 				<CustomButton
 					text='Clean'
 					onPress={handleCleanAllFields}
