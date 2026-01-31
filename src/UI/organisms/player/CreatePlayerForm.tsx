@@ -1,17 +1,17 @@
 import { useForm } from '@tanstack/react-form';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
+import { postCreatePlayer } from '@/src/api/postCreatePlayer';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
 type TypeCreatePlayerFormValues = {
-	typePlayer: 'manual' | 'online';
+	kindPlayer: 'manual' | 'online';
 };
 
-const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
+const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 	const form = useForm({
 		defaultValues: {
 			name: '',
@@ -20,7 +20,12 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 			imageUri: '',
 		},
 		onSubmit: async ({ value, meta }) => {
-			const deviceId = await DeviceInfo.getUniqueId();
+			const playerToCreate = {
+				...value,
+				elo: Number(value.elo),
+			};
+
+			await postCreatePlayer(playerToCreate);
 		},
 	});
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
@@ -60,7 +65,7 @@ const CreatePlayerForm = ({ typePlayer }: TypeCreatePlayerFormValues) => {
 
 	return (
 		<View className='gap-10 px-4 items-start'>
-			{typePlayer === 'online' && (
+			{kindPlayer === 'online' && (
 				<form.Field name='chessProfileUrl'>
 					{(field) => (
 						<View className='w-full'>

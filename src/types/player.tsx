@@ -1,6 +1,6 @@
-import * as z from 'zod';
-
-export const PlayerSchema = z.object({
-	username: z.string(),
-	xp: z.number(),
-});
+export type TypePlayerToCreate = {
+	name: string;
+	chessProfileUrl?: string;
+	elo: number;
+	imageUri?: string;
+};
