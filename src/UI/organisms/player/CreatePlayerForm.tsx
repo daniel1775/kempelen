@@ -1,9 +1,9 @@
 import { useForm } from '@tanstack/react-form';
+import { File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
-import { postCreatePlayer } from '@/src/api/postCreatePlayer';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
@@ -20,12 +20,17 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 			imageUri: '',
 		},
 		onSubmit: async ({ value, meta }) => {
+			// const imageFile = new File(Paths.document, 'players', value.imageUri);
+			const imageFile = new File(Paths.document, 'players', value.imageUri);
+
+			console.log('ImageFile: ', imageFile);
+
 			const playerToCreate = {
 				...value,
 				elo: Number(value.elo),
 			};
 
-			await postCreatePlayer(playerToCreate);
+			// await postCreatePlayer(playerToCreate);
 		},
 	});
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
@@ -62,6 +67,8 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 	const handleCleanAllFields = () => {
 		form.reset();
 	};
+
+	console.log('IMAGE-URL: ', form.getFieldValue('imageUri'));
 
 	return (
 		<View className='gap-10 px-4 items-start'>
