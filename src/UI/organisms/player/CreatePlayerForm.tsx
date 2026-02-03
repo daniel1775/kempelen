@@ -7,6 +7,8 @@ import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
+import type { TypePlayerToCreate } from '@/src/types/player';
+
 type TypeCreatePlayerFormValues = {
 	kindPlayer: 'manual' | 'online';
 };
@@ -21,26 +23,19 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 		},
 		onSubmit: async ({ value, meta }) => {
 			try {
-				// const imageFile = new File(Paths.document, 'players', value.imageUri);
-
-				const dir = new Directory(Paths.document, 'player');
+				const dir = new Directory(Paths.document, 'players');
 				dir.create({
 					overwrite: true,
 					idempotent: true,
 				});
 
-				console.log('dir: ', dir);
-
 				const imageFile = new File(value.imageUri);
-				imageFile.create({
-					overwrite: true,
-				});
+				imageFile.move(dir);
 
-				console.log('ImageFile: ', imageFile);
-
-				const playerToCreate = {
+				const playerToCreate: TypePlayerToCreate = {
 					...value,
 					elo: Number(value.elo),
+					imageUri: imageFile.name,
 				};
 
 				// await postCreatePlayer(playerToCreate);
