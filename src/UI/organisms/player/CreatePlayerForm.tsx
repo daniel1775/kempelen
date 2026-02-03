@@ -1,5 +1,5 @@
 import { useForm } from '@tanstack/react-form';
-import { File, Paths } from 'expo-file-system';
+import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
@@ -20,17 +20,33 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 			imageUri: '',
 		},
 		onSubmit: async ({ value, meta }) => {
-			// const imageFile = new File(Paths.document, 'players', value.imageUri);
-			const imageFile = new File(Paths.document, 'players', value.imageUri);
+			try {
+				// const imageFile = new File(Paths.document, 'players', value.imageUri);
 
-			console.log('ImageFile: ', imageFile);
+				const dir = new Directory(Paths.document, 'player');
+				dir.create({
+					overwrite: true,
+					idempotent: true,
+				});
 
-			const playerToCreate = {
-				...value,
-				elo: Number(value.elo),
-			};
+				console.log('dir: ', dir);
 
-			// await postCreatePlayer(playerToCreate);
+				const imageFile = new File(value.imageUri);
+				imageFile.create({
+					overwrite: true,
+				});
+
+				console.log('ImageFile: ', imageFile);
+
+				const playerToCreate = {
+					...value,
+					elo: Number(value.elo),
+				};
+
+				// await postCreatePlayer(playerToCreate);
+			} catch (err) {
+				console.error('[submitCreatePlayerForm] error: ', err);
+			}
 		},
 	});
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
@@ -67,8 +83,6 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 	const handleCleanAllFields = () => {
 		form.reset();
 	};
-
-	console.log('IMAGE-URL: ', form.getFieldValue('imageUri'));
 
 	return (
 		<View className='gap-10 px-4 items-start'>

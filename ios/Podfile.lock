@@ -1226,7 +1226,7 @@ PODS:
     - Yoga
   - ExpoAsset (12.0.10):
     - ExpoModulesCore
-  - ExpoFileSystem (19.0.19):
+  - ExpoFileSystem (19.0.21):
     - ExpoModulesCore
   - ExpoFont (14.0.9):
     - ExpoModulesCore
@@ -3738,7 +3738,7 @@ SPEC CHECKSUMS:
   EXImageLoader: e501c001bc40b8326605e82e6e80363c80fe06b5
   Expo: e8cf1adbe75933bd8b0f78a1c69bfefb1ff55566
   ExpoAsset: ee515c16290e521de1870dcdee66d78173fbc533
-  ExpoFileSystem: 73a9f3f2e0affc61eba5b9326153f64870438af1
+  ExpoFileSystem: aefcd337b94b874f88752ebefc52813b84992fad
   ExpoFont: b881d43057dceb7b31ff767b24f612609e80f60f
   ExpoHaptics: b48d913e7e5f23816c6f130e525c9a6501b160b5
   ExpoHead: 16bab3395d4328e88e4282a4f6ef4f44b1225c8d
