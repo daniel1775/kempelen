@@ -4,3 +4,10 @@ export type TypePlayerToCreate = {
 	elo: number;
 	imageUri?: string;
 };
+
+export type TypePlayer = {
+	name: string;
+	chessProfile?: string;
+	elo: number;
+	imageUri?: string;
+};

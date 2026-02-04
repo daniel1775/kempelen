@@ -1,4 +1,4 @@
-import { Image, ImageSourcePropType, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 import AddButton from '../../atoms/buttons/AddButton';
 import DotsButton from '../../atoms/buttons/DotsButton';
@@ -6,7 +6,7 @@ import DotsButton from '../../atoms/buttons/DotsButton';
 type TypePlayerCardProps = {
 	playerName: string;
 	playerElo: number;
-	imageUrl?: ImageSourcePropType;
+	imageUrl?: string;
 };
 
 const PlayerCard = ({
@@ -24,7 +24,7 @@ const PlayerCard = ({
 				{imageUrl ? (
 					<Image
 						className='w-[80px] h-[80px]'
-						source={imageUrl}
+						source={{ uri: imageUrl }}
 					/>
 				) : null}
 				<View className='ml-4'>

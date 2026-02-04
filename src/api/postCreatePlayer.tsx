@@ -15,9 +15,6 @@ export const postCreatePlayer = async (playerToCreate: TypePlayerToCreate) => {
 				image_url: playerToCreate.imageUri ?? '',
 				chess_profile: playerToCreate.chessProfileUrl ?? '',
 				device_id: deviceId,
-			})
-			.then(() => {
-				console.log('User added!');
 			});
 	} catch (err) {
 		console.error('[postCreatePlayer] error: ', err);
