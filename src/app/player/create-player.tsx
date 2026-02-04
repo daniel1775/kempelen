@@ -3,9 +3,12 @@ import { ScrollView, View } from 'react-native';
 import RadioButton from '@/src/UI/atoms/buttons/RadioButton';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreatePlayerForm from '@/src/UI/organisms/player/CreatePlayerForm';
+import { useGlobalSearchParams } from 'expo-router';
 import { useState } from 'react';
 
 export default function CreatePlayer() {
+	const params = useGlobalSearchParams();
+
 	const [creationType, setCreationType] = useState<'manual' | 'online'>(
 		'manual',
 	);
@@ -29,7 +32,7 @@ export default function CreatePlayer() {
 						isActive={creationType === 'online'}
 					/>
 				</View>
-				<CreatePlayerForm typePlayer={creationType} />
+				<CreatePlayerForm kindPlayer={creationType} />
 			</ScrollView>
 		</ScreenLayout>
 	);

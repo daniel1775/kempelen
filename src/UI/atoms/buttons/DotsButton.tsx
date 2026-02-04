@@ -1,4 +1,3 @@
-import { Link } from 'expo-router';
 import { useRef, useState } from 'react';
 import {
 	Modal,
@@ -10,7 +9,11 @@ import {
 
 import DotsIcon from '@/assets/svg/DotsIcon';
 
-const DotsButton = () => {
+type TypeDotsButtonProps = {
+	handlePressEdit: () => void;
+};
+
+const DotsButton = ({ handlePressEdit }: TypeDotsButtonProps) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalPosition, setModalPosition] = useState({ pageX: 0, pageY: 0 });
 
@@ -27,6 +30,7 @@ const DotsButton = () => {
 	};
 
 	const onPressEdit = () => {
+		handlePressEdit();
 		setIsVisible(false);
 	};
 
@@ -54,17 +58,12 @@ const DotsButton = () => {
 							right: screenWidth - modalPosition.pageX,
 						}}
 					>
-						<Link
-							href='/player/create-player'
-							asChild
+						<Pressable
+							onPress={onPressEdit}
+							hitSlop={14}
 						>
-							<Pressable
-								onPress={onPressEdit}
-								hitSlop={14}
-							>
-								<Text className='text-lg text-gray'>Edit</Text>
-							</Pressable>
-						</Link>
+							<Text className='text-lg text-gray'>Edit</Text>
+						</Pressable>
 					</View>
 				</Pressable>
 			</Modal>

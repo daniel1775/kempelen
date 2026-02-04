@@ -23,13 +23,7 @@ const ListPlayers = () => {
 		<FlatList
 			data={allPlayers}
 			keyExtractor={(_, index) => index.toString()}
-			renderItem={({ item }) => (
-				<PlayerCard
-					playerName={item.name}
-					playerElo={item.elo}
-					imageUrl={item.imageUri}
-				/>
-			)}
+			renderItem={({ item: player }) => <PlayerCard player={player} />}
 			ItemSeparatorComponent={() => <View className='h-6' />}
 		/>
 	);

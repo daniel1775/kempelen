@@ -19,7 +19,17 @@ export const getAllPlayers = async () => {
 		/* const prototype = Object.getPrototypeOf(snapshot);
 		console.log(Object.getOwnPropertyNames(prototype)); */
 
-		const allPlayers = snapshot.docs.map((doc) => doc.data());
+		const allPlayers = snapshot.docs.map((doc) => {
+			const docData = doc.data();
+
+			return {
+				id: doc.id,
+				name: docData.name,
+				chessProfile: docData.chess_profile,
+				elo: docData.elo,
+				imageUrl: docData.image_url,
+			};
+		});
 
 		return allPlayers as TypePlayer[];
 	} catch (err) {
