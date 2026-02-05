@@ -1,10 +1,14 @@
+import { useGlobalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
+
+import { getSinglePlayer } from '@/src/api/getSinglePlayer';
 
 import RadioButton from '@/src/UI/atoms/buttons/RadioButton';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreatePlayerForm from '@/src/UI/organisms/player/CreatePlayerForm';
-import { useGlobalSearchParams } from 'expo-router';
-import { useState } from 'react';
+
+import type { TypePlayer } from '@/src/types/player';
 
 export default function CreatePlayer() {
 	const params = useGlobalSearchParams();
@@ -12,6 +16,20 @@ export default function CreatePlayer() {
 	const [creationType, setCreationType] = useState<'manual' | 'online'>(
 		'manual',
 	);
+	const [playerToCreate, setPlayerToCreate] = useState<TypePlayer | null>(null);
+
+	useEffect(() => {
+		const fetchSinglePlayer = async () => {
+			if (!params?.playerId) return;
+
+			const singlePlayer = await getSinglePlayer({
+				playerId: String(params?.playerId),
+			});
+			setPlayerToCreate(singlePlayer);
+		};
+
+		fetchSinglePlayer();
+	}, [params]);
 
 	return (
 		<ScreenLayout title='Create Player'>
@@ -32,7 +50,10 @@ export default function CreatePlayer() {
 						isActive={creationType === 'online'}
 					/>
 				</View>
-				<CreatePlayerForm kindPlayer={creationType} />
+				<CreatePlayerForm
+					kindPlayer={creationType}
+					playerToEdit={playerToCreate}
+				/>
 			</ScrollView>
 		</ScreenLayout>
 	);

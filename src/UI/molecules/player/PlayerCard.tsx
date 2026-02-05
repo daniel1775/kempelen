@@ -22,7 +22,9 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 	const handlePressEdit = () => {
 		router.navigate({
 			pathname: '/player/create-player',
-			params: player,
+			params: {
+				playerId: player.id,
+			},
 		});
 	};
 

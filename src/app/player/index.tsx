@@ -21,9 +21,7 @@ export default function Player() {
 				setValue={setSearchText}
 				containerStyle='mt-16 mb-12'
 			/>
-
 			<ListPlayers />
-
 			<View className='absolute z-20 bottom-6 right-6'>
 				<CustomButton
 					variant='add'

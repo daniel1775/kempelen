@@ -3,17 +3,23 @@ import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
+import { postCreatePlayer } from '@/src/api/postCreatePlayer';
+
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
-import type { TypePlayerToCreate } from '@/src/types/player';
+import type { TypePlayer, TypePlayerToCreate } from '@/src/types/player';
 
 type TypeCreatePlayerFormValues = {
 	kindPlayer: 'manual' | 'online';
+	playerToEdit?: TypePlayer | null;
 };
 
-const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
+const CreatePlayerForm = ({
+	kindPlayer,
+	playerToEdit,
+}: TypeCreatePlayerFormValues) => {
 	const form = useForm({
 		defaultValues: {
 			name: '',
@@ -38,7 +44,7 @@ const CreatePlayerForm = ({ kindPlayer }: TypeCreatePlayerFormValues) => {
 					imageUri: imageFile.name,
 				};
 
-				// await postCreatePlayer(playerToCreate);
+				await postCreatePlayer(playerToCreate);
 			} catch (err) {
 				console.error('[submitCreatePlayerForm] error: ', err);
 			}
