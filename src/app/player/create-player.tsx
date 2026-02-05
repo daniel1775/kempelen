@@ -2,7 +2,7 @@ import { useGlobalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 
-import { getSinglePlayer } from '@/src/api/getSinglePlayer';
+import { fetchSinglePlayer } from '@/src/api/fetchSinglePlayer';
 
 import RadioButton from '@/src/UI/atoms/buttons/RadioButton';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
@@ -19,16 +19,16 @@ export default function CreatePlayer() {
 	const [playerToCreate, setPlayerToCreate] = useState<TypePlayer | null>(null);
 
 	useEffect(() => {
-		const fetchSinglePlayer = async () => {
+		const fetchPlayer = async () => {
 			if (!params?.playerId) return;
 
-			const singlePlayer = await getSinglePlayer({
+			const singlePlayer = await fetchSinglePlayer({
 				playerId: String(params?.playerId),
 			});
 			setPlayerToCreate(singlePlayer);
 		};
 
-		fetchSinglePlayer();
+		fetchPlayer();
 	}, [params]);
 
 	return (

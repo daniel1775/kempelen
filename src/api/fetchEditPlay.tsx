@@ -3,7 +3,7 @@ import DeviceInfo from 'react-native-device-info';
 
 import type { TypePlayerToCreate } from '@/types/player';
 
-export const postCreatePlayer = async (playerToCreate: TypePlayerToCreate) => {
+export const fetchEditPlayer = async (playerToCreate: TypePlayerToCreate) => {
 	try {
 		const deviceId = await DeviceInfo.getUniqueId();
 
@@ -17,6 +17,6 @@ export const postCreatePlayer = async (playerToCreate: TypePlayerToCreate) => {
 				device_id: deviceId,
 			});
 	} catch (err) {
-		console.error('[postCreatePlayer] error: ', err);
+		console.error('[fetchEditPlayer] error: ', err);
 	}
 };

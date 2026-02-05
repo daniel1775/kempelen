@@ -3,7 +3,7 @@ import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 
-import { postCreatePlayer } from '@/src/api/postCreatePlayer';
+import { fetchCreatePlayer } from '@/src/api/fetchCreatePlayer';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
@@ -20,13 +20,17 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
+	const formInitialValues = playerToEdit
+		? playerToEdit
+		: {
+				name: '',
+				chessProfileUrl: '',
+				elo: '',
+				imageUrl: '',
+			};
+
 	const form = useForm({
-		defaultValues: {
-			name: '',
-			chessProfileUrl: '',
-			elo: '',
-			imageUri: '',
-		},
+		defaultValues: formInitialValues,
 		onSubmit: async ({ value, meta }) => {
 			try {
 				const dir = new Directory(Paths.document, 'players');
@@ -34,17 +38,38 @@ const CreatePlayerForm = ({
 					overwrite: true,
 					idempotent: true,
 				});
+				let imageFile: File | null = null;
 
-				const imageFile = new File(value.imageUri);
-				imageFile.move(dir);
+				if (playerToEdit) {
+					if (value.imageUrl && playerToEdit.imageUrl !== value.imageUrl) {
+						imageFile = new File(value.imageUrl);
+						imageFile.move(dir);
+					}
 
-				const playerToCreate: TypePlayerToCreate = {
-					...value,
-					elo: Number(value.elo),
-					imageUri: imageFile.name,
-				};
+					const playerToUpdate: TypePlayerToCreate = {
+						...value,
+						elo: Number(value.elo),
+					};
 
-				await postCreatePlayer(playerToCreate);
+					if (imageFile) {
+						playerToUpdate.imageUri = imageFile.name;
+					}
+
+					await fetchCreatePlayer(playerToEdit);
+				} else {
+					if (value.imageUrl) {
+						imageFile = new File(value.imageUrl);
+						imageFile.move(dir);
+					}
+
+					const playerToCreate: TypePlayerToCreate = {
+						...value,
+						elo: Number(value.elo),
+						imageUri: imageFile?.name ? imageFile?.name : '',
+					};
+
+					await fetchCreatePlayer(playerToCreate);
+				}
 			} catch (err) {
 				console.error('[submitCreatePlayerForm] error: ', err);
 			}
@@ -73,12 +98,12 @@ const CreatePlayerForm = ({
 		});
 
 		if (result.assets && result.assets.length > 0) {
-			form.setFieldValue('imageUri', result.assets[0].uri);
+			form.setFieldValue('imageUrl', result.assets[0].uri);
 		}
 	};
 
 	const removeImage = () => {
-		form.setFieldValue('imageUri', '');
+		form.setFieldValue('imageUrl', '');
 	};
 
 	const handleCleanAllFields = () => {
@@ -137,7 +162,7 @@ const CreatePlayerForm = ({
 					<View className='w-full'>
 						<TextBase customStyles={labelStyles}>ELO: </TextBase>
 						<TextInput
-							value={field.state.value}
+							value={String(field.state.value)}
 							onChangeText={field.handleChange}
 							className={inputStyles}
 							keyboardType='numeric'
@@ -150,7 +175,7 @@ const CreatePlayerForm = ({
 					</View>
 				)}
 			</form.Field>
-			<form.Field name='imageUri'>
+			<form.Field name='imageUrl'>
 				{(field) => (
 					<View className=''>
 						<TextBase customStyles={labelStyles}>Avatar: </TextBase>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 
-import { getAllPlayers } from '@/src/api/getAllPlayers';
+import { fetchAllPlayers } from '@/src/api/fetchAllPlayers';
 import PlayerCard from '@/UI/molecules/player/PlayerCard';
 
 import type { TypePlayer } from '@/src/types/player';
@@ -11,7 +11,7 @@ const ListPlayers = () => {
 
 	useEffect(() => {
 		const fetchPlayersData = async () => {
-			const allPlayersRes = await getAllPlayers();
+			const allPlayersRes = await fetchAllPlayers();
 
 			setAllPlayers(allPlayersRes);
 		};

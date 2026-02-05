@@ -6,7 +6,7 @@ type TypeGetSinglePlayer = {
 	playerId: string;
 };
 
-export const getSinglePlayer = async ({ playerId }: TypeGetSinglePlayer) => {
+export const fetchSinglePlayer = async ({ playerId }: TypeGetSinglePlayer) => {
 	try {
 		const db = getFirestore();
 
@@ -23,13 +23,13 @@ export const getSinglePlayer = async ({ playerId }: TypeGetSinglePlayer) => {
 			id: snapshot.id,
 			name: unformattedPlayer?.name,
 			chessProfile: unformattedPlayer?.chess_profile,
-			elo: unformattedPlayer?.elo,
-			imageUrl: unformattedPlayer?.image_url,
+			elo: unformattedPlayer?.elo ?? '',
+			imageUrl: unformattedPlayer?.image_url ?? '',
 		};
 
 		return singlePlayer as TypePlayer;
 	} catch (err) {
-		console.error('[getAllPlayers] error: ', err);
+		console.error('[fetchSinglePlayer] error: ', err);
 
 		return null;
 	}

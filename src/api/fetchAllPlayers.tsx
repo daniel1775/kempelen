@@ -3,7 +3,7 @@ import DeviceInfo from 'react-native-device-info';
 
 import type { TypePlayer } from '@/types/player';
 
-export const getAllPlayers = async () => {
+export const fetchAllPlayers = async () => {
 	try {
 		const deviceId = await DeviceInfo.getUniqueId();
 
@@ -33,7 +33,7 @@ export const getAllPlayers = async () => {
 
 		return allPlayers as TypePlayer[];
 	} catch (err) {
-		console.error('[getAllPlayers] error: ', err);
+		console.error('[fetchAllPlayers] error: ', err);
 
 		return [];
 	}
