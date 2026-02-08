@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useState } from 'react';
 import { FlatList, View } from 'react-native';
 
 import { fetchAllPlayers } from '@/src/api/fetchAllPlayers';
@@ -9,7 +10,7 @@ import type { TypePlayer } from '@/src/types/player';
 const ListPlayers = () => {
 	const [allPlayers, setAllPlayers] = useState<TypePlayer[]>([]);
 
-	useEffect(() => {
+	useFocusEffect(() => {
 		const fetchPlayersData = async () => {
 			const allPlayersRes = await fetchAllPlayers();
 
@@ -17,7 +18,7 @@ const ListPlayers = () => {
 		};
 
 		fetchPlayersData();
-	}, []);
+	});
 
 	return (
 		<FlatList

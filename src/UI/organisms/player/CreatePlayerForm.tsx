@@ -2,7 +2,9 @@ import { useForm } from '@tanstack/react-form';
 import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
+import { useRouter } from 'expo-router';
 
+import { fetchEditPlayer } from '@/src/api/fetchEditPlayer';
 import { fetchCreatePlayer } from '@/src/api/fetchCreatePlayer';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
@@ -20,6 +22,8 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
+	const router = useRouter();
+
 	const formInitialValues = playerToEdit
 		? playerToEdit
 		: {
@@ -51,11 +55,7 @@ const CreatePlayerForm = ({
 						elo: Number(value.elo),
 					};
 
-					if (imageFile) {
-						playerToUpdate.imageUri = imageFile.name;
-					}
-
-					await fetchCreatePlayer(playerToEdit);
+					await fetchEditPlayer(playerToEdit.id, playerToUpdate);
 				} else {
 					if (value.imageUrl) {
 						imageFile = new File(value.imageUrl);
@@ -65,18 +65,18 @@ const CreatePlayerForm = ({
 					const playerToCreate: TypePlayerToCreate = {
 						...value,
 						elo: Number(value.elo),
-						imageUri: imageFile?.name ? imageFile?.name : '',
+						imageUrl: imageFile?.name ? imageFile?.name : '',
 					};
 
 					await fetchCreatePlayer(playerToCreate);
 				}
+
+				router.back();
 			} catch (err) {
 				console.error('[submitCreatePlayerForm] error: ', err);
 			}
 		},
 	});
-	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
-	const labelStyles = 'text-light-gray text-[16px] mb-2';
 
 	const pickImage = async () => {
 		const permissionResult =
@@ -109,6 +109,9 @@ const CreatePlayerForm = ({
 	const handleCleanAllFields = () => {
 		form.reset();
 	};
+
+	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
+	const labelStyles = 'text-light-gray text-[16px] mb-2';
 
 	return (
 		<View className='gap-10 px-4 items-start'>

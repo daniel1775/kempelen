@@ -12,7 +12,7 @@ export const fetchCreatePlayer = async (playerToCreate: TypePlayerToCreate) => {
 			.add({
 				name: playerToCreate.name,
 				elo: playerToCreate.elo,
-				image_url: playerToCreate.imageUri ?? '',
+				image_url: playerToCreate.imageUrl ?? '',
 				chess_profile: playerToCreate.chessProfileUrl ?? '',
 				device_id: deviceId,
 			});
