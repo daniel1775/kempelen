@@ -25,6 +25,8 @@ export default function CreatePlayer() {
 			const singlePlayer = await fetchSinglePlayer({
 				playerId: String(params?.playerId),
 			});
+			if (!singlePlayer) return;
+
 			setPlayerToCreate(singlePlayer);
 		};
 

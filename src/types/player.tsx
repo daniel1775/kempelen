@@ -8,7 +8,7 @@ export type TypePlayerToCreate = {
 export type TypePlayer = {
 	id: string;
 	name: string;
-	chessProfile?: string;
+	chessProfileUrl?: string;
 	elo: number;
 	imageUrl?: string;
 };

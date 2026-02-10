@@ -3,6 +3,7 @@ import { Image, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import AddButton from '../../atoms/buttons/AddButton';
 import DotsButton from '../../atoms/buttons/DotsButton';
+import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -28,13 +29,15 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 		});
 	};
 
+	const localImageUrl = getLocalStorageImage(player.imageUrl);
+
 	return (
 		<View className='flex flex-row bg-neutral-gray p-4 w-full rounded-lg h-[120px]'>
 			<View className='flex flex-row'>
-				{player.imageUrl ? (
+				{localImageUrl ? (
 					<Image
 						className='w-[80px] h-[80px]'
-						source={{ uri: player.imageUrl }}
+						source={{ uri: localImageUrl }}
 					/>
 				) : null}
 				<View className='ml-4'>

@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 
 import { fetchEditPlayer } from '@/src/api/fetchEditPlayer';
 import { fetchCreatePlayer } from '@/src/api/fetchCreatePlayer';
+import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
@@ -45,15 +46,26 @@ const CreatePlayerForm = ({
 				let imageFile: File | null = null;
 
 				if (playerToEdit) {
+					let imageToUpdate = null;
 					if (value.imageUrl && playerToEdit.imageUrl !== value.imageUrl) {
 						imageFile = new File(value.imageUrl);
 						imageFile.move(dir);
+						imageToUpdate = imageFile.name;
+					} else if (
+						value.imageUrl &&
+						playerToEdit.imageUrl === value.imageUrl
+					) {
+						imageToUpdate = playerToEdit.imageUrl;
 					}
 
 					const playerToUpdate: TypePlayerToCreate = {
-						...value,
+						name: value.name,
+						chessProfileUrl: value.chessProfileUrl ?? '',
 						elo: Number(value.elo),
 					};
+					if (imageToUpdate) {
+						playerToUpdate.imageUrl = imageToUpdate;
+					}
 
 					await fetchEditPlayer(playerToEdit.id, playerToUpdate);
 				} else {
@@ -108,6 +120,15 @@ const CreatePlayerForm = ({
 
 	const handleCleanAllFields = () => {
 		form.reset();
+	};
+
+	const handleRenderImage = (currentImageUrl: string): string => {
+		if (!currentImageUrl.startsWith('file://')) {
+			const localImageUrl = getLocalStorageImage(currentImageUrl);
+			return localImageUrl ?? '';
+		}
+
+		return currentImageUrl;
 	};
 
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
@@ -186,7 +207,7 @@ const CreatePlayerForm = ({
 							<View className='flex-row'>
 								<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
 									<Image
-										source={{ uri: field.state.value }}
+										source={{ uri: handleRenderImage(field.state.value) }}
 										className='w-full h-full'
 									/>
 								</View>
