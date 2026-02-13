@@ -1,28 +1,22 @@
-import { useFocusEffect } from 'expo-router';
-import { useState } from 'react';
-import { FlatList, View } from 'react-native';
-
-import { fetchAllPlayers } from '@/src/api/fetchAllPlayers';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 import PlayerCard from '@/UI/molecules/player/PlayerCard';
 
-import type { TypePlayer } from '@/src/types/player';
+import { useGetAllPlayers } from '@/src/hooks/queries/player/useGetAllPlayers';
 
 const ListPlayers = () => {
-	const [allPlayers, setAllPlayers] = useState<TypePlayer[]>([]);
+	const { allPlayersData, isLoading } = useGetAllPlayers();
 
-	useFocusEffect(() => {
-		const fetchPlayersData = async () => {
-			const allPlayersRes = await fetchAllPlayers();
-
-			setAllPlayers(allPlayersRes);
-		};
-
-		fetchPlayersData();
-	});
+	if (isLoading) {
+		return (
+			<View className='flex-1 items-center justify-center'>
+				<ActivityIndicator size='large' />
+			</View>
+		);
+	}
 
 	return (
 		<FlatList
-			data={allPlayers}
+			data={allPlayersData}
 			keyExtractor={(_, index) => index.toString()}
 			renderItem={({ item: player }) => <PlayerCard player={player} />}
 			ItemSeparatorComponent={() => <View className='h-6' />}
