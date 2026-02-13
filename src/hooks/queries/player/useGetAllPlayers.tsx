@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchAllPlayers } from '@/src/api/fetchAllPlayers';
+import { fetchAllPlayers } from '@/api/players/fetchAllPlayers';
 
 export const useGetAllPlayers = () => {
 	const { data, isLoading, error } = useQuery({

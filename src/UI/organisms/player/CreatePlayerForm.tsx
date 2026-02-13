@@ -4,8 +4,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import { fetchEditPlayer } from '@/src/api/fetchEditPlayer';
-import { fetchCreatePlayer } from '@/src/api/fetchCreatePlayer';
+import { fetchEditPlayer } from '@/api/players/fetchEditPlayer';
+import { fetchCreatePlayer } from '@/api/players/fetchCreatePlayer';
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';

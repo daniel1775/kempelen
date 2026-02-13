@@ -9,7 +9,8 @@
 			"@/svg/*": ["./assets/svg/*"],
 			"@/images/*": ["./assets/images/*"],
 			"@/translations/*": ["./src/translations/*"],
-			"@/types/*": ["./src/types/*"]
+			"@/types/*": ["./src/types/*"],
+			"@/api/*": ["./src/api/*"]
 		}
 	},
 	"include": [
