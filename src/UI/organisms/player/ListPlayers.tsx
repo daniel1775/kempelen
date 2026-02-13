@@ -1,17 +1,15 @@
-import { ActivityIndicator, FlatList, View } from 'react-native';
-import PlayerCard from '@/UI/molecules/player/PlayerCard';
+import { FlatList, View } from 'react-native';
 
 import { useGetAllPlayers } from '@/src/hooks/queries/player/useGetAllPlayers';
+
+import PlayerCard from '@/UI/molecules/player/PlayerCard';
+import Loading from '@/UI/atoms/general/Loading';
 
 const ListPlayers = () => {
 	const { allPlayersData, isLoading } = useGetAllPlayers();
 
 	if (isLoading) {
-		return (
-			<View className='flex-1 items-center justify-center'>
-				<ActivityIndicator size='large' />
-			</View>
-		);
+		return <Loading />;
 	}
 
 	return (
