@@ -9,8 +9,7 @@ export const useCreatePlayer = () => {
 
 	const mutation = useMutation({
 		mutationFn: async (playerToCreate: TypePlayerToCreate) => {
-			const response = await fetchCreatePlayer(playerToCreate);
-			return response;
+			return fetchCreatePlayer(playerToCreate);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['allPlayers'] });

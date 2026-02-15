@@ -4,15 +4,15 @@ import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
-import { fetchEditPlayer } from '@/api/players/fetchEditPlayer';
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
+import { useCreatePlayer } from '@/src/hooks/queries/player/useCreatePlayer';
+import { useEditPlayer } from '@/src/hooks/queries/player/useEditPlayer';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
 import type { TypePlayer, TypePlayerToCreate } from '@/src/types/player';
-import { useCreatePlayer } from '@/src/hooks/queries/player/useCreatePlayer';
 
 type TypeCreatePlayerFormValues = {
 	kindPlayer: 'manual' | 'online';
@@ -24,7 +24,9 @@ const CreatePlayerForm = ({
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
 	const router = useRouter();
+
 	const createPlayer = useCreatePlayer();
+	const editPlayer = useEditPlayer();
 
 	const formInitialValues = playerToEdit
 		? playerToEdit
@@ -68,7 +70,10 @@ const CreatePlayerForm = ({
 						playerToUpdate.imageUrl = imageToUpdate;
 					}
 
-					await fetchEditPlayer(playerToEdit.id, playerToUpdate);
+					editPlayer.mutate({
+						...playerToUpdate,
+						playerId: playerToEdit.id,
+					});
 				} else {
 					if (value.imageUrl) {
 						imageFile = new File(value.imageUrl);
