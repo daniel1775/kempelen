@@ -11,9 +11,13 @@ import DotsIcon from '@/assets/svg/DotsIcon';
 
 type TypeDotsButtonProps = {
 	handlePressEdit: () => void;
+	handlePressDelete: () => void;
 };
 
-const DotsButton = ({ handlePressEdit }: TypeDotsButtonProps) => {
+const DotsButton = ({
+	handlePressEdit,
+	handlePressDelete,
+}: TypeDotsButtonProps) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalPosition, setModalPosition] = useState({ pageX: 0, pageY: 0 });
 
@@ -31,6 +35,11 @@ const DotsButton = ({ handlePressEdit }: TypeDotsButtonProps) => {
 
 	const onPressEdit = () => {
 		handlePressEdit();
+		setIsVisible(false);
+	};
+
+	const onPressDelete = () => {
+		handlePressDelete();
 		setIsVisible(false);
 	};
 
@@ -63,6 +72,13 @@ const DotsButton = ({ handlePressEdit }: TypeDotsButtonProps) => {
 							hitSlop={14}
 						>
 							<Text className='text-lg text-gray'>Edit</Text>
+						</Pressable>
+						<View className='w-full h-[1px] bg-light-gray my-1' />
+						<Pressable
+							onPress={onPressDelete}
+							hitSlop={14}
+						>
+							<Text className='text-lg text-gray'>Delete</Text>
 						</Pressable>
 					</View>
 				</Pressable>

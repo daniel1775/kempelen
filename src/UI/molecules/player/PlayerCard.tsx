@@ -1,9 +1,10 @@
 import { Image, Text, View } from 'react-native';
-
 import { useRouter } from 'expo-router';
+
 import AddButton from '../../atoms/buttons/AddButton';
 import DotsButton from '../../atoms/buttons/DotsButton';
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
+import { useDeletePlayer } from '@/src/hooks/queries/player/useDeletePlayer';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -16,6 +17,8 @@ type TypePlayerCardProps = {
 const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 	const router = useRouter();
 
+	const deletePlayer = useDeletePlayer();
+
 	const onPressAdd = () => {};
 
 	const onPressRemove = () => {};
@@ -27,6 +30,10 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 				playerId: player.id,
 			},
 		});
+	};
+
+	const handlePressDelete = () => {
+		deletePlayer.mutate(player.id);
 	};
 
 	const localImageUrl = getLocalStorageImage(player.imageUrl);
@@ -47,7 +54,10 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 			</View>
 			<View className='flex-1' />
 			<View className='flex justify-between items-end'>
-				<DotsButton handlePressEdit={handlePressEdit} />
+				<DotsButton
+					handlePressEdit={handlePressEdit}
+					handlePressDelete={handlePressDelete}
+				/>
 				{handleAddPlayer && (
 					<AddButton
 						onPressAdd={onPressAdd}

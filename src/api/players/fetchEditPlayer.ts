@@ -8,8 +8,8 @@ export const fetchEditPlayer = async (
 ) => {
 	try {
 		const db = getFirestore();
-
 		const playerRef = doc(db, 'players', playerId);
+
 		await updateDoc(playerRef, {
 			elo: playerToEdit.elo,
 			name: playerToEdit.name,
