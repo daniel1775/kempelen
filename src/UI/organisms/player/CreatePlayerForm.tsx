@@ -7,8 +7,10 @@ import { useRouter } from 'expo-router';
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 import { useCreatePlayer } from '@/src/hooks/queries/player/useCreatePlayer';
 import { useEditPlayer } from '@/src/hooks/queries/player/useEditPlayer';
+import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 
 import GarbageIcon from '@/assets/svg/GarbageIcon';
+import SearchIcon from '@/assets/svg/Search';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
@@ -120,6 +122,16 @@ const CreatePlayerForm = ({
 		}
 	};
 
+	const searchChessComProfile = async (chessProfile?: string) => {
+		if (!chessProfile)
+			return Alert.alert(
+				'Input required',
+				'Please enter a Chess.com username.',
+			);
+
+		await fetchSearchPlayer(chessProfile);
+	};
+
 	const removeImage = () => {
 		form.setFieldValue('imageUrl', '');
 	};
@@ -138,7 +150,7 @@ const CreatePlayerForm = ({
 	};
 
 	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
-	const labelStyles = 'text-light-gray text-[16px] mb-2';
+	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	return (
 		<View className='gap-10 px-4 items-start'>
@@ -149,11 +161,20 @@ const CreatePlayerForm = ({
 							<TextBase customStyles={labelStyles}>
 								Chess.com username:
 							</TextBase>
-							<TextInput
-								value={field.state.value}
-								onChangeText={field.handleChange}
-								className={inputStyles}
-							/>
+							<View className='flex-1 relative'>
+								<TextInput
+									value={field.state.value}
+									onChangeText={field.handleChange}
+									className={`${inputStyles} flex-1`}
+								/>
+								<Pressable
+									className='absolute right-0 top-[-6]'
+									hitSlop={10}
+									onPress={() => searchChessComProfile(field.state.value)}
+								>
+									<SearchIcon />
+								</Pressable>
+							</View>
 						</View>
 					)}
 				</form.Field>
