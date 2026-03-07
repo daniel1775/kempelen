@@ -3,6 +3,7 @@ import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
+import Toast from 'react-native-toast-message';
 
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 import { useCreatePlayer } from '@/src/hooks/queries/player/useCreatePlayer';
@@ -122,6 +123,14 @@ const CreatePlayerForm = ({
 		}
 	};
 
+	const showToast = () => {
+		Toast.show({
+			type: 'info',
+			text1: 'Hello',
+			text2: 'This is some something 👋',
+		});
+	};
+
 	const searchChessComProfile = async (chessProfile?: string) => {
 		if (!chessProfile)
 			return Alert.alert(
@@ -170,7 +179,10 @@ const CreatePlayerForm = ({
 								<Pressable
 									className='absolute right-0 top-[-6]'
 									hitSlop={10}
-									onPress={() => searchChessComProfile(field.state.value)}
+									onPress={() => {
+										showToast();
+										// searchChessComProfile(field.state.value);
+									}}
 								>
 									<SearchIcon />
 								</Pressable>

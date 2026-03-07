@@ -23,7 +23,7 @@ const SearchInput = ({
 				<SearchIcon />
 			</View>
 			<TextInput
-				className='ml-4 mb-2 text-[18px] text-light'
+				className='ml-4 mb-2 text-[18px] text-light flex-1'
 				placeholder={placeholder}
 				onChangeText={(text) => {
 					setValue(text);

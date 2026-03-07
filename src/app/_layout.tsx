@@ -1,11 +1,8 @@
 import '@/src/global.css';
 import 'react-native-reanimated';
 
-import {
-	QueryClient,
-	QueryClientProvider,
-	useQuery,
-} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Toast from 'react-native-toast-message';
 import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -102,6 +99,7 @@ export default function Layout() {
 					</TabTrigger>
 				</TabList>
 			</Tabs>
+			<Toast />
 		</QueryClientProvider>
 	);
 }
