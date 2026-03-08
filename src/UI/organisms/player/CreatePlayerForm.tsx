@@ -1,6 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
-import { useRouter } from 'expo-router';
 import Toast from 'react-native-toast-message';
 
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
@@ -13,6 +12,7 @@ import GarbageIcon from '@/assets/svg/GarbageIcon';
 import SearchIcon from '@/assets/svg/Search';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
+import FormPlayerSearchField from '@/UI/atoms/player/FormPlayerSearchField';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -25,8 +25,6 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
-	const router = useRouter();
-
 	const form = useCreatePlayerForm({ playerToEdit });
 
 	const pickImage = async () => {
@@ -88,38 +86,17 @@ const CreatePlayerForm = ({
 		return currentImageUrl;
 	};
 
-	const inputStyles = 'text-[18px] border-b border-light-gray text-light';
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	return (
 		<View className='gap-10 px-4 items-start'>
 			{kindPlayer === 'online' && (
-				<form.Field name='chessProfileUrl'>
-					{(field) => (
-						<View className='w-full'>
-							<TextBase customStyles={labelStyles}>
-								Chess.com username:
-							</TextBase>
-							<View className='flex-1 relative'>
-								<TextInput
-									value={field.state.value}
-									onChangeText={field.handleChange}
-									className={`${inputStyles} flex-1`}
-								/>
-								<Pressable
-									className='absolute right-0 top-[-6]'
-									hitSlop={10}
-									onPress={() => {
-										showToast();
-										// searchChessComProfile(field.state.value);
-									}}
-								>
-									<SearchIcon />
-								</Pressable>
-							</View>
-						</View>
-					)}
-				</form.Field>
+				<FormPlayerSearchField
+					form={form}
+					name='chessProfileUrl'
+					label='Chess.com username: '
+					onPressSearch={searchChessComProfile}
+				/>
 			)}
 			<FormPlayerTextField
 				name='name'

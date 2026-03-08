@@ -8,19 +8,19 @@ import type {
 	TypeUseCreatePlayerForm,
 } from '@/src/types/player';
 
-type TypeFormPlayerTextField = {
+type TypeFormTextField = {
 	form: TypeUseCreatePlayerForm;
 	name: TypeFormPlayerFieldsName;
 	label: string;
 	noEmptyErrorMsg?: string;
 };
 
-const FormPlayerTextField = ({
+const FormTextField = ({
 	form,
 	name,
 	label,
 	noEmptyErrorMsg,
-}: TypeFormPlayerTextField) => {
+}: TypeFormTextField) => {
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	return (
@@ -48,4 +48,4 @@ const FormPlayerTextField = ({
 	);
 };
 
-export default FormPlayerTextField;
+export default FormTextField;

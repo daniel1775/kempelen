@@ -1,26 +1,26 @@
 import { View } from 'react-native';
 
-import TextBase from '../text/TextBase';
-import CustomTextInput from '../input/CustomTextInput';
+import TextBase from '@/UI/atoms/text/TextBase';
+import CustomTextInput from '@/UI/atoms/input/CustomTextInput';
 
 import type {
 	TypeFormPlayerFieldsName,
 	TypeUseCreatePlayerForm,
 } from '@/src/types/player';
 
-type TypeFormPlayerNumberField = {
+type TypeFormNumberField = {
 	form: TypeUseCreatePlayerForm;
 	name: TypeFormPlayerFieldsName;
 	label: string;
 	noNumberErrorMsg?: string;
 };
 
-const FormPlayerNumberField = ({
+const FormNumberField = ({
 	form,
 	name,
 	label,
 	noNumberErrorMsg,
-}: TypeFormPlayerNumberField) => {
+}: TypeFormNumberField) => {
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	return (
@@ -55,4 +55,4 @@ const FormPlayerNumberField = ({
 	);
 };
 
-export default FormPlayerNumberField;
+export default FormNumberField;
