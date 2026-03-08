@@ -1,21 +1,20 @@
-import { useForm } from '@tanstack/react-form';
-import { Directory, File, Paths } from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, Image, Pressable, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Toast from 'react-native-toast-message';
 
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
-import { useCreatePlayer } from '@/src/hooks/queries/player/useCreatePlayer';
-import { useEditPlayer } from '@/src/hooks/queries/player/useEditPlayer';
 import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
+import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
 
+import FormPlayerNumberField from '@/UI/atoms/player/FormPlayerNumberField';
+import FormPlayerTextField from '@/UI/atoms/player/FormPlayerTextField';
 import GarbageIcon from '@/assets/svg/GarbageIcon';
 import SearchIcon from '@/assets/svg/Search';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 
-import type { TypePlayer, TypePlayerToCreate } from '@/src/types/player';
+import type { TypePlayer } from '@/src/types/player';
 
 type TypeCreatePlayerFormValues = {
 	kindPlayer: 'manual' | 'online';
@@ -28,76 +27,7 @@ const CreatePlayerForm = ({
 }: TypeCreatePlayerFormValues) => {
 	const router = useRouter();
 
-	const createPlayer = useCreatePlayer();
-	const editPlayer = useEditPlayer();
-
-	const formInitialValues = playerToEdit
-		? playerToEdit
-		: {
-				name: '',
-				chessProfileUrl: '',
-				elo: '',
-				imageUrl: '',
-			};
-
-	const form = useForm({
-		defaultValues: formInitialValues,
-		onSubmit: async ({ value, meta }) => {
-			try {
-				const dir = new Directory(Paths.document, 'players');
-				dir.create({
-					overwrite: true,
-					idempotent: true,
-				});
-				let imageFile: File | null = null;
-
-				if (playerToEdit) {
-					let imageToUpdate = null;
-					if (value.imageUrl && playerToEdit.imageUrl !== value.imageUrl) {
-						imageFile = new File(value.imageUrl);
-						imageFile.move(dir);
-						imageToUpdate = imageFile.name;
-					} else if (
-						value.imageUrl &&
-						playerToEdit.imageUrl === value.imageUrl
-					) {
-						imageToUpdate = playerToEdit.imageUrl;
-					}
-
-					const playerToUpdate: TypePlayerToCreate = {
-						name: value.name,
-						chessProfileUrl: value.chessProfileUrl ?? '',
-						elo: Number(value.elo),
-					};
-					if (imageToUpdate) {
-						playerToUpdate.imageUrl = imageToUpdate;
-					}
-
-					editPlayer.mutate({
-						...playerToUpdate,
-						playerId: playerToEdit.id,
-					});
-				} else {
-					if (value.imageUrl) {
-						imageFile = new File(value.imageUrl);
-						imageFile.move(dir);
-					}
-
-					const playerToCreate: TypePlayerToCreate = {
-						...value,
-						elo: Number(value.elo),
-						imageUrl: imageFile?.name ? imageFile?.name : '',
-					};
-
-					createPlayer.mutate(playerToCreate);
-				}
-
-				router.back();
-			} catch (err) {
-				console.error('[submitCreatePlayerForm] error: ', err);
-			}
-		},
-	});
+	const form = useCreatePlayerForm({ playerToEdit });
 
 	const pickImage = async () => {
 		const permissionResult =
@@ -191,53 +121,18 @@ const CreatePlayerForm = ({
 					)}
 				</form.Field>
 			)}
-			<form.Field
+			<FormPlayerTextField
 				name='name'
-				validators={{
-					onChange: ({ value }) =>
-						value === '' ? 'Player needs a name' : undefined,
-				}}
-			>
-				{(field) => (
-					<View className='w-full'>
-						<TextBase customStyles={labelStyles}>Name: </TextBase>
-						<TextInput
-							value={field.state.value}
-							onChangeText={field.handleChange}
-							className={inputStyles}
-						/>
-						{!field.state.meta.isValid && (
-							<TextBase customStyles='!text-red-500 mt-2'>
-								{field.state.meta.errors.join(', ')}
-							</TextBase>
-						)}
-					</View>
-				)}
-			</form.Field>
-			<form.Field
+				label='Name: '
+				form={form}
+				noEmptyErrorMsg='Player needs a name'
+			/>
+			<FormPlayerNumberField
 				name='elo'
-				validators={{
-					onChange: ({ value }) =>
-						!Number.isFinite(Number(value)) ? 'ELO must be numeric' : undefined,
-				}}
-			>
-				{(field) => (
-					<View className='w-full'>
-						<TextBase customStyles={labelStyles}>ELO: </TextBase>
-						<TextInput
-							value={String(field.state.value)}
-							onChangeText={field.handleChange}
-							className={inputStyles}
-							keyboardType='numeric'
-						/>
-						{!field.state.meta.isValid && (
-							<TextBase customStyles='!text-red-500 mt-2'>
-								{field.state.meta.errors.join(', ')}
-							</TextBase>
-						)}
-					</View>
-				)}
-			</form.Field>
+				label='ELO: '
+				form={form}
+				noNumberErrorMsg='ELO must be numeric'
+			/>
 			<form.Field name='imageUrl'>
 				{(field) => (
 					<View className=''>

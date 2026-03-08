@@ -15,6 +15,12 @@ export type TypePlayer = {
 	imageUrl?: string;
 };
 
+export type TypeFormPlayerFieldsName =
+	| 'name'
+	| 'chessProfileUrl'
+	| 'elo'
+	| 'imageUrl';
+
 export const isNewImage = (
 	currentPlayer: TypePlayerToCreate,
 	player?: TypePlayer,

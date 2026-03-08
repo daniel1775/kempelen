@@ -8,34 +8,41 @@ import type {
 	TypeUseCreatePlayerForm,
 } from '@/src/types/player';
 
-type TypeFormPlayerTextField = {
+type TypeFormPlayerNumberField = {
 	form: TypeUseCreatePlayerForm;
 	name: TypeFormPlayerFieldsName;
 	label: string;
-	noEmptyErrorMsg?: string;
+	noNumberErrorMsg?: string;
 };
 
-const FormPlayerTextField = ({
+const FormPlayerNumberField = ({
 	form,
 	name,
 	label,
-	noEmptyErrorMsg,
-}: TypeFormPlayerTextField) => {
+	noNumberErrorMsg,
+}: TypeFormPlayerNumberField) => {
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	return (
 		<form.Field
 			name={name}
 			validators={{
-				onChange: ({ value }) => (value === '' ? noEmptyErrorMsg : undefined),
+				onChange: ({ value }) =>
+					!value || !Number.isFinite(value) || Number(value) < 0
+						? noNumberErrorMsg
+						: undefined,
 			}}
 		>
 			{(field) => (
 				<View className='w-full'>
 					<TextBase customStyles={labelStyles}>{label}</TextBase>
 					<CustomTextInput
-						value={String(field.state.value ?? '')}
-						onChangeText={field.handleChange}
+						value={String(field.state.value)}
+						onChangeText={(value) => {
+							const numericValue = value === '' ? 0 : Number(value);
+							field.handleChange(numericValue);
+						}}
+						keyboardType='numeric'
 					/>
 					{!field.state.meta.isValid && (
 						<TextBase customStyles='!text-red-500 mt-2'>
@@ -48,4 +55,4 @@ const FormPlayerTextField = ({
 	);
 };
 
-export default FormPlayerTextField;
+export default FormPlayerNumberField;
