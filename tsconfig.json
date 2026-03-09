@@ -10,7 +10,8 @@
 			"@/images/*": ["./assets/images/*"],
 			"@/translations/*": ["./src/translations/*"],
 			"@/types/*": ["./src/types/*"],
-			"@/api/*": ["./src/api/*"]
+			"@/api/*": ["./src/api/*"],
+			"@/utils/*": ["./src/utils/*"]
 		}
 	},
 	"include": [

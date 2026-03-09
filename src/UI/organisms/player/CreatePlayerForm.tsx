@@ -1,18 +1,16 @@
 import * as ImagePicker from 'expo-image-picker';
-import { Alert, Image, Pressable, TextInput, View } from 'react-native';
+import { Alert, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
+import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
-import FormPlayerNumberField from '@/UI/atoms/player/FormPlayerNumberField';
-import FormPlayerTextField from '@/UI/atoms/player/FormPlayerTextField';
-import GarbageIcon from '@/assets/svg/GarbageIcon';
-import SearchIcon from '@/assets/svg/Search';
+import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
+import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
-import TextBase from '@/UI/atoms/text/TextBase';
-import FormPlayerSearchField from '@/UI/atoms/player/FormPlayerSearchField';
+import FormSearchField from '@/src/UI/atoms/form/FormSearchField';
+import FormImageField from '@/UI/atoms/form/FormImageField';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -69,82 +67,39 @@ const CreatePlayerForm = ({
 		await fetchSearchPlayer(chessProfile);
 	};
 
-	const removeImage = () => {
-		form.setFieldValue('imageUrl', '');
-	};
-
 	const handleCleanAllFields = () => {
 		form.reset();
 	};
 
-	const handleRenderImage = (currentImageUrl: string): string => {
-		if (!currentImageUrl.startsWith('file://')) {
-			const localImageUrl = getLocalStorageImage(currentImageUrl);
-			return localImageUrl ?? '';
-		}
-
-		return currentImageUrl;
-	};
-
-	const labelStyles = 'text-light-gray text-[16px] mb-3';
-
 	return (
 		<View className='gap-10 px-4 items-start'>
 			{kindPlayer === 'online' && (
-				<FormPlayerSearchField
+				<FormSearchField
 					form={form}
 					name='chessProfileUrl'
 					label='Chess.com username: '
 					onPressSearch={searchChessComProfile}
 				/>
 			)}
-			<FormPlayerTextField
+			<FormTextField
 				name='name'
 				label='Name: '
 				form={form}
 				noEmptyErrorMsg='Player needs a name'
 			/>
-			<FormPlayerNumberField
+			<FormNumberField
 				name='elo'
 				label='ELO: '
 				form={form}
 				noNumberErrorMsg='ELO must be numeric'
 			/>
-			<form.Field name='imageUrl'>
-				{(field) => (
-					<View className=''>
-						<TextBase customStyles={labelStyles}>Avatar: </TextBase>
-						{field.state.value ? (
-							<View className='flex-row'>
-								<View className='p-4 w-[240px] h-[240px] border border-light-gray'>
-									<Image
-										source={{ uri: handleRenderImage(field.state.value) }}
-										className='w-full h-full'
-									/>
-								</View>
-								<Pressable
-									className='ml-4'
-									onPress={removeImage}
-								>
-									<GarbageIcon
-										width={18}
-										height={22}
-									/>
-								</Pressable>
-							</View>
-						) : (
-							<Pressable
-								onPress={pickImage}
-								className='border border-light-gray w-[240px] h-[240px] items-center justify-center'
-							>
-								<TextBase customStyles='text-orange underline'>
-									Upload Image
-								</TextBase>
-							</Pressable>
-						)}
-					</View>
-				)}
-			</form.Field>
+			<FormImageField
+				name='imageUrl'
+				label='Avatar: '
+				form={form}
+				pickImage={pickImage}
+				resolveImageUri={resolveImageUri}
+			/>
 			<View className='flex-row w-full justify-center gap-8'>
 				<CustomButton
 					text='Save'
