@@ -1,6 +1,5 @@
 import { getLocalStorageImage } from '../getLocalStorageImage';
 
-// --- MOCKING EXPO FILE SYSTEM ---
 const mockDirectoryExists = jest.fn();
 const mockFileExists = jest.fn();
 
