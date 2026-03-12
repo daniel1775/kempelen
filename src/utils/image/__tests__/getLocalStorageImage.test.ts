@@ -68,7 +68,7 @@ describe('getLocalStorageImage', () => {
 
 		const result = getLocalStorageImage('avatar.jpg');
 
-		expect(result).toBeUndefined(); // Because the catch block doesn't return anything
+		expect(result).toBeUndefined();
 		expect(console.error).toHaveBeenCalledWith(
 			expect.any(String),
 			expect.any(Error),
