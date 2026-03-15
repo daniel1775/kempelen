@@ -13,7 +13,7 @@ type TypeFormSearchField = {
 	form: TypeUseCreatePlayerForm;
 	name: TypeFormPlayerFieldsName;
 	label: string;
-	onPressSearch: () => void;
+	onPressSearch: (searchValue: string) => void;
 };
 
 const labelStyles = 'text-light-gray text-[16px] mb-3';
@@ -34,11 +34,12 @@ const FormSearchField = ({
 							value={String(field.state.value)}
 							onChangeText={field.handleChange}
 							className='flex-1'
+							autoCapitalize='none'
 						/>
 						<Pressable
 							className='absolute right-0 top-[-6]'
 							hitSlop={10}
-							onPress={onPressSearch}
+							onPress={() => onPressSearch(String(field.state.value))}
 						>
 							<SearchIcon />
 						</Pressable>

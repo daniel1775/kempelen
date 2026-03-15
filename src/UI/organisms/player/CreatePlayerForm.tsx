@@ -1,5 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, View } from 'react-native';
+import { useState } from 'react';
 
 import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
@@ -10,6 +11,7 @@ import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import FormSearchField from '@/src/UI/atoms/form/FormSearchField';
 import FormImageField from '@/UI/atoms/form/FormImageField';
+import ModalInfo from '@/UI/molecules/modal/ModalInfo';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -22,6 +24,8 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
+	const [isEmptySearchChessCom, setIsEmptySearchChessCom] = useState(false);
+
 	const form = useCreatePlayerForm({ playerToEdit });
 
 	const pickImage = async () => {
@@ -49,11 +53,12 @@ const CreatePlayerForm = ({
 	};
 
 	const searchChessComProfile = async (chessProfile?: string) => {
-		if (!chessProfile)
-			return Alert.alert(
-				'Input required',
-				'Please enter a Chess.com username.',
-			);
+		console.log('chessProfile', chessProfile);
+
+		if (!chessProfile) {
+			setIsEmptySearchChessCom(true);
+			return;
+		}
 
 		await fetchSearchPlayer(chessProfile);
 	};
@@ -64,6 +69,12 @@ const CreatePlayerForm = ({
 
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
+			<ModalInfo
+				visible={isEmptySearchChessCom}
+				title='Error'
+				message='Please enter a Chess.com username'
+				onClose={() => setIsEmptySearchChessCom(false)}
+			/>
 			{kindPlayer === 'online' && (
 				<FormSearchField
 					form={form}
