@@ -1,6 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, View } from 'react-native';
-import Toast from 'react-native-toast-message';
 
 import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
@@ -49,14 +48,6 @@ const CreatePlayerForm = ({
 		}
 	};
 
-	const showToast = () => {
-		Toast.show({
-			type: 'info',
-			text1: 'Hello',
-			text2: 'This is some something 👋',
-		});
-	};
-
 	const searchChessComProfile = async (chessProfile?: string) => {
 		if (!chessProfile)
 			return Alert.alert(
@@ -72,7 +63,7 @@ const CreatePlayerForm = ({
 	};
 
 	return (
-		<View className='gap-10 px-4 items-start'>
+		<View className='gap-10 px-4 items-start pb-16'>
 			{kindPlayer === 'online' && (
 				<FormSearchField
 					form={form}
