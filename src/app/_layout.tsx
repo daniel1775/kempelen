@@ -41,6 +41,10 @@ i18n.use(initReactI18next).init({
 	},
 });
 
+if (__DEV__) {
+	require('../../ReactotronConfig');
+}
+
 export default function Layout() {
 	const insets = useSafeAreaInsets();
 	const calculated = Math.max(
