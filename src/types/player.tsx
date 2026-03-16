@@ -33,3 +33,5 @@ export const isNewImage = (
 };
 
 export type TypeUseCreatePlayerForm = ReturnType<typeof useCreatePlayerForm>;
+
+export type TypeKindPlayer = 'manual' | 'online';

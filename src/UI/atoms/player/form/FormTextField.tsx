@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
-import TextBase from '../text/TextBase';
-import CustomTextInput from '../input/CustomTextInput';
+import TextBase from '../../text/TextBase';
+import CustomTextInput from '../../input/CustomTextInput';
 
 import type {
 	TypeFormPlayerFieldsName,

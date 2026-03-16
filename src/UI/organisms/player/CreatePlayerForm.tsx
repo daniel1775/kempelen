@@ -6,17 +6,17 @@ import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
-import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
-import FormTextField from '@/src/UI/atoms/form/FormTextField';
+import FormNumberField from '@/src/UI/atoms/player/form/FormNumberField';
+import FormTextField from '@/src/UI/atoms/player/form/FormTextField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
-import FormSearchField from '@/src/UI/atoms/form/FormSearchField';
-import FormImageField from '@/UI/atoms/form/FormImageField';
+import FormSearchField from '@/src/UI/atoms/player/form/FormSearchField';
+import FormImageField from '@/src/UI/atoms/player/form/FormImageField';
 import ModalInfo from '@/UI/molecules/modal/ModalInfo';
 
-import type { TypePlayer } from '@/src/types/player';
+import type { TypeKindPlayer, TypePlayer } from '@/src/types/player';
 
 type TypeCreatePlayerFormValues = {
-	kindPlayer: 'manual' | 'online';
+	kindPlayer: TypeKindPlayer;
 	playerToEdit?: TypePlayer | null;
 };
 
@@ -25,6 +25,7 @@ const CreatePlayerForm = ({
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
 	const [isEmptySearchChessCom, setIsEmptySearchChessCom] = useState(false);
+	const [isNotFoundError, setIsNotFoundError] = useState(false);
 
 	const form = useCreatePlayerForm({ playerToEdit });
 
@@ -53,8 +54,6 @@ const CreatePlayerForm = ({
 	};
 
 	const searchChessComProfile = async (chessProfile?: string) => {
-		console.log('chessProfile', chessProfile);
-
 		if (!chessProfile) {
 			setIsEmptySearchChessCom(true);
 			return;
