@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import ModalInfo from '@/src/UI/molecules/modal/ModalInfo';
 import FormSearchField from '@/src/UI/atoms/player/form/FormSearchField';
-import { useState } from 'react';
+
+import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 
 import type {
 	TypeKindPlayer,
@@ -10,15 +13,22 @@ import type {
 type TypeChessComProfileFieldProps = {
 	kindPlayer: TypeKindPlayer;
 	form: TypeUseCreatePlayerForm;
-	searchChessComProfile: (chessProfile?: string) => void;
 };
 
 const ChessComProfileField = ({
 	kindPlayer,
 	form,
-	searchChessComProfile,
 }: TypeChessComProfileFieldProps) => {
 	const [isEmptySearchChessCom, setIsEmptySearchChessCom] = useState(false);
+
+	const searchChessComProfile = async (chessProfile?: string) => {
+		if (!chessProfile) {
+			setIsEmptySearchChessCom(true);
+			return;
+		}
+
+		await fetchSearchPlayer(chessProfile);
+	};
 
 	return (
 		<>
@@ -33,7 +43,9 @@ const ChessComProfileField = ({
 					form={form}
 					name='chessProfileUrl'
 					label='Chess.com username: '
-					onPressSearch={searchChessComProfile}
+					onPressSearch={() => {
+						searchChessComProfile(form.state.values.chessProfileUrl);
+					}}
 				/>
 			)}
 		</>

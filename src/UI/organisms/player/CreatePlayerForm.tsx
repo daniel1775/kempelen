@@ -1,17 +1,14 @@
 import * as ImagePicker from 'expo-image-picker';
 import { Alert, View } from 'react-native';
-import { useState } from 'react';
 
-import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
 import FormNumberField from '@/src/UI/atoms/player/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/player/form/FormTextField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
-import FormSearchField from '@/src/UI/atoms/player/form/FormSearchField';
 import FormImageField from '@/src/UI/atoms/player/form/FormImageField';
-import ModalInfo from '@/UI/molecules/modal/ModalInfo';
+import ChessComProfileField from '@/UI/atoms/player/form/ChessComProfileField';
 
 import type { TypeKindPlayer, TypePlayer } from '@/src/types/player';
 
@@ -24,9 +21,6 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
-	const [isEmptySearchChessCom, setIsEmptySearchChessCom] = useState(false);
-	const [isNotFoundError, setIsNotFoundError] = useState(false);
-
 	const form = useCreatePlayerForm({ playerToEdit });
 
 	const pickImage = async () => {
@@ -53,33 +47,16 @@ const CreatePlayerForm = ({
 		}
 	};
 
-	const searchChessComProfile = async (chessProfile?: string) => {
-		if (!chessProfile) {
-			setIsEmptySearchChessCom(true);
-			return;
-		}
-
-		await fetchSearchPlayer(chessProfile);
-	};
-
 	const handleCleanAllFields = () => {
 		form.reset();
 	};
 
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
-			<ModalInfo
-				visible={isEmptySearchChessCom}
-				title='Error'
-				message='Please enter a Chess.com username'
-				onClose={() => setIsEmptySearchChessCom(false)}
-			/>
 			{kindPlayer === 'online' && (
-				<FormSearchField
+				<ChessComProfileField
+					kindPlayer={kindPlayer}
 					form={form}
-					name='chessProfileUrl'
-					label='Chess.com username: '
-					onPressSearch={searchChessComProfile}
 				/>
 			)}
 			<FormTextField
