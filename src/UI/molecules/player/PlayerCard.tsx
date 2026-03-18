@@ -10,7 +10,6 @@ import type { TypePlayer } from '@/src/types/player';
 
 type TypePlayerCardProps = {
 	player: TypePlayer;
-
 	handleAddPlayer?: (player: TypePlayer) => void;
 };
 

@@ -29,6 +29,8 @@ const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
 			keyExtractor={(_, index) => index.toString()}
 			renderItem={({ item: player }) => <PlayerCard player={player} />}
 			ItemSeparatorComponent={() => <View className='h-6' />}
+			ListFooterComponent={() => <View className='h-[130px] w-full' />}
+			showsVerticalScrollIndicator={false}
 		/>
 	);
 };
