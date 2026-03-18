@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type { TypeChessComStatsResponse } from '@/src/types/chessComStats';
+import type { TypeChessComStatsResponse } from '@/src/types/chessCom';
 
 export const fetchSearchPlayerStats = async (nickname: string) => {
 	try {
