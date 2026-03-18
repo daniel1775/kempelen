@@ -1,7 +1,7 @@
-import * as ImagePicker from 'expo-image-picker';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
+import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
 import FormNumberField from '@/src/UI/atoms/player/form/FormNumberField';
@@ -23,29 +23,9 @@ const CreatePlayerForm = ({
 }: TypeCreatePlayerFormValues) => {
 	const form = useCreatePlayerForm({ playerToEdit });
 
-	const pickImage = async () => {
-		const permissionResult =
-			await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-		if (!permissionResult.granted) {
-			Alert.alert(
-				'Permission required',
-				'Permission to access the media library is required.',
-			);
-			return;
-		}
-
-		let result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ['images'],
-			allowsEditing: true,
-			aspect: [4, 3],
-			quality: 1,
-		});
-
-		if (result.assets && result.assets.length > 0) {
-			form.setFieldValue('imageUrl', result.assets[0].uri);
-		}
-	};
+	const { pickImage } = usePickImage((uri) => {
+		form.setFieldValue('imageUrl', uri);
+	});
 
 	const handleCleanAllFields = () => {
 		form.reset();
