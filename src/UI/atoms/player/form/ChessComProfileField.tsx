@@ -33,22 +33,16 @@ const ChessComProfileField = ({
 
 		if (!player) {
 			setIsPlayerNotFound(true);
-		} else {
-			setIsPlayerFound(true);
-
-			const name = player.name || player.username || '';
-			const avatar = player.avatar || '';
-			// We try to get rapid rating, or blitz, or fide, defaulting to 0
-			const elo =
-				player.stats?.chess_rapid?.last?.rating ||
-				player.stats?.chess_blitz?.last?.rating ||
-				player.stats?.fide ||
-				0;
-
-			form.setFieldValue('name', name);
-			form.setFieldValue('imageUrl', avatar);
-			form.setFieldValue('elo', elo);
+			return;
 		}
+
+		setIsPlayerFound(true);
+
+		const name = player?.name || player?.username || '';
+		const avatar = player?.avatar || '';
+
+		form.setFieldValue('name', name);
+		form.setFieldValue('imageUrl', avatar);
 	};
 
 	return (

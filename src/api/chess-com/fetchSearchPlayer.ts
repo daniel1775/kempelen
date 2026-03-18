@@ -1,3 +1,5 @@
+import type { TypeChessComPlayerResponse } from '@/src/types/chessCom';
+
 import axios from 'axios';
 
 export const fetchSearchPlayer = async (nickname: string) => {
@@ -6,7 +8,7 @@ export const fetchSearchPlayer = async (nickname: string) => {
 			`https://api.chess.com/pub/player/${nickname}`,
 		);
 
-		return response.data;
+		return response.data as TypeChessComPlayerResponse;
 	} catch (err) {
 		console.error('[fetchSearchPlayer] error: ', err);
 		return null;
