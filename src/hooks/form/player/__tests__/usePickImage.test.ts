@@ -9,7 +9,7 @@ jest.mock('expo-image-picker', () => ({
 	launchImageLibraryAsync: jest.fn(),
 }));
 
-describe('usePickImage', () => {
+describe('usePickImage tests', () => {
 	const mockOnImagePicked = jest.fn();
 
 	beforeEach(() => {
@@ -18,7 +18,9 @@ describe('usePickImage', () => {
 	});
 
 	it('should alert and return early if permission is not granted', async () => {
-		(ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock).mockResolvedValue({
+		(
+			ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock
+		).mockResolvedValue({
 			granted: false,
 		});
 
@@ -28,7 +30,9 @@ describe('usePickImage', () => {
 			await result.current.pickImage();
 		});
 
-		expect(ImagePicker.requestMediaLibraryPermissionsAsync).toHaveBeenCalledTimes(1);
+		expect(
+			ImagePicker.requestMediaLibraryPermissionsAsync,
+		).toHaveBeenCalledTimes(1);
 		expect(Alert.alert).toHaveBeenCalledWith(
 			'Permission required',
 			'Permission to access the media library is required.',
@@ -38,7 +42,9 @@ describe('usePickImage', () => {
 	});
 
 	it('should call launchImageLibraryAsync and onImagePicked if permission granted and image selected', async () => {
-		(ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock).mockResolvedValue({
+		(
+			ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock
+		).mockResolvedValue({
 			granted: true,
 		});
 		(ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue({
@@ -58,12 +64,16 @@ describe('usePickImage', () => {
 			aspect: [4, 3],
 			quality: 1,
 		});
-		expect(mockOnImagePicked).toHaveBeenCalledWith('file://mock/path/to/image.jpg');
+		expect(mockOnImagePicked).toHaveBeenCalledWith(
+			'file://mock/path/to/image.jpg',
+		);
 		expect(Alert.alert).not.toHaveBeenCalled();
 	});
 
 	it('should not call onImagePicked if the user cancels the image picker (no assets)', async () => {
-		(ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock).mockResolvedValue({
+		(
+			ImagePicker.requestMediaLibraryPermissionsAsync as jest.Mock
+		).mockResolvedValue({
 			granted: true,
 		});
 		(ImagePicker.launchImageLibraryAsync as jest.Mock).mockResolvedValue({
