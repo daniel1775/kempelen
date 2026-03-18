@@ -17,6 +17,12 @@ describe('resolveImageUri', () => {
 		jest.clearAllMocks();
 	});
 
+	it('should return an empty string if no image is provided', () => {
+		const result = resolveImageUri(undefined);
+		expect(result).toBe('');
+		expect(mockGetLocalStorageImage).not.toHaveBeenCalled();
+	});
+
 	it('should return the identical string if it starts with http', () => {
 		const uriHttp = 'https://example.com/image.jpg';
 		const result = resolveImageUri(uriHttp);

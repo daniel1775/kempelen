@@ -3,8 +3,8 @@ import { useRouter } from 'expo-router';
 
 import AddButton from '../../atoms/buttons/AddButton';
 import DotsButton from '../../atoms/buttons/DotsButton';
-import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 import { useDeletePlayer } from '@/src/hooks/queries/player/useDeletePlayer';
+import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -36,7 +36,7 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 		deletePlayer.mutate(player.id);
 	};
 
-	const localImageUrl = getLocalStorageImage(player.imageUrl);
+	const localImageUrl = resolveImageUri(player.imageUrl);
 
 	return (
 		<View className='flex flex-row bg-neutral-gray p-4 w-full rounded-lg h-[120px]'>

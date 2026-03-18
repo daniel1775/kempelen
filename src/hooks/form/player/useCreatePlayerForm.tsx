@@ -35,6 +35,64 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 				imageUrl: '',
 			};
 
+	const handleSaveImage = (dir: Directory, imageUri?: string) => {
+		if (!imageUri) {
+			return '';
+		}
+		if (imageUri.startsWith('http')) {
+			return imageUri;
+		}
+
+		const imageFile = new File(imageUri);
+		imageFile.move(dir);
+
+		return imageFile.name;
+	};
+
+	const handleCreatePlayer = async (
+		formPlayer: TypePlayerToCreate,
+		dir: Directory,
+	) => {
+		const playerToCreate: TypePlayerToCreate = {
+			...formPlayer,
+			elo: Number(formPlayer.elo),
+			imageUrl: handleSaveImage(dir, formPlayer.imageUrl),
+		};
+
+		await createPlayer.mutateAsync(playerToCreate);
+	};
+
+	const handleEditPlayer = async (
+		formPlayer: TypePlayerToCreate,
+		playerToEdit: TypePlayer,
+		dir: Directory,
+	) => {
+		let imageToUpdate = null;
+
+		if (isNewImage(formPlayer, playerToEdit)) {
+			imageToUpdate = handleSaveImage(dir, formPlayer.imageUrl);
+		} else if (
+			formPlayer.imageUrl &&
+			playerToEdit.imageUrl === formPlayer.imageUrl
+		) {
+			imageToUpdate = playerToEdit.imageUrl;
+		}
+
+		const playerToUpdate: TypePlayerToCreate = {
+			name: formPlayer.name,
+			chessProfileUrl: formPlayer.chessProfileUrl ?? '',
+			elo: Number(formPlayer.elo),
+		};
+		if (imageToUpdate) {
+			playerToUpdate.imageUrl = imageToUpdate;
+		}
+
+		await editPlayer.mutateAsync({
+			...playerToUpdate,
+			playerId: playerToEdit.id,
+		});
+	};
+
 	const form = useForm({
 		defaultValues: formInitialValues,
 		onSubmit: async ({ value, meta }) => {
@@ -44,47 +102,11 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 					overwrite: true,
 					idempotent: true,
 				});
-				let imageFile: File | null = null;
 
 				if (playerToEdit) {
-					let imageToUpdate = null;
-					if (isNewImage(value, playerToEdit)) {
-						imageFile = new File(value.imageUrl);
-						imageFile.move(dir);
-						imageToUpdate = imageFile.name;
-					} else if (
-						value.imageUrl &&
-						playerToEdit.imageUrl === value.imageUrl
-					) {
-						imageToUpdate = playerToEdit.imageUrl;
-					}
-
-					const playerToUpdate: TypePlayerToCreate = {
-						name: value.name,
-						chessProfileUrl: value.chessProfileUrl ?? '',
-						elo: Number(value.elo),
-					};
-					if (imageToUpdate) {
-						playerToUpdate.imageUrl = imageToUpdate;
-					}
-
-					editPlayer.mutate({
-						...playerToUpdate,
-						playerId: playerToEdit.id,
-					});
+					await handleEditPlayer(value, playerToEdit, dir);
 				} else {
-					if (value.imageUrl) {
-						imageFile = new File(value.imageUrl);
-						imageFile.move(dir);
-					}
-
-					const playerToCreate: TypePlayerToCreate = {
-						...value,
-						elo: Number(value.elo),
-						imageUrl: imageFile?.name ? imageFile?.name : '',
-					};
-
-					createPlayer.mutate(playerToCreate);
+					await handleCreatePlayer(value, dir);
 				}
 
 				router.back();

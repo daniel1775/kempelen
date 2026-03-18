@@ -1,6 +1,10 @@
 import { getLocalStorageImage } from '@/src/utils/image/getLocalStorageImage';
 
-export const resolveImageUri = (currentImageUrl: string): string => {
+export const resolveImageUri = (currentImageUrl?: string): string => {
+	if (!currentImageUrl) {
+		return '';
+	}
+
 	if (currentImageUrl.startsWith('http')) {
 		return currentImageUrl;
 	}
