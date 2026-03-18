@@ -6,8 +6,6 @@ export const fetchSearchPlayer = async (nickname: string) => {
 			`https://api.chess.com/pub/player/${nickname}`,
 		);
 
-		console.log('response', response.data);
-
 		return response.data;
 	} catch (err) {
 		console.error('[fetchSearchPlayer] error: ', err);
