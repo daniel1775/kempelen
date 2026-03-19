@@ -20,6 +20,7 @@ export default function Player() {
 				value={searchText}
 				setValue={setSearchText}
 				containerStyle='mt-16 mb-12'
+				placeholder={t('searchPlayer')}
 			/>
 			<ListPlayers searchText={searchText.toLocaleLowerCase()} />
 			<View className='absolute z-20 bottom-6 right-6'>

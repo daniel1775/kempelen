@@ -1,3 +1,22 @@
 {
-  "players": "Jugadores"
+	"players": "Jugadores",
+	"uploadImage": "Subir Imagen",
+	"elo": "ELO",
+	"playerNeedsAName": "El jugador necesita un nombre",
+	"eloMustBeNumeric": "El ELO debe ser numérico",
+	"name": "Nombre",
+	"avatar": "Avatar",
+	"save": "Guardar",
+	"clean": "Limpiar",
+	"error": "Error",
+	"pleaseEnterAChessComUsername": "Por favor ingresa un nombre de usuario de Chess.com",
+	"playerNotFound": "Jugador no encontrado",
+	"playerNotFoundMessage": "No pudimos encontrar un jugador con ese nombre de usuario de Chess.com. Por favor verifica la ortografía e inténtalo de nuevo",
+	"playerFound": "¡Jugador encontrado!",
+	"playerProfileLoadedSuccess": "El perfil del jugador se cargó con éxito",
+	"chessComUsername": "Usuario de Chess.com",
+	"accept": "Aceptar",
+	"createPlayer": "Crear Jugador",
+	"manually": "Manualmente",
+	"linkedWithChessCom": "Vinculado con Chess.com"
 }

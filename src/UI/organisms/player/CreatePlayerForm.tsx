@@ -1,4 +1,5 @@
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
@@ -21,6 +22,7 @@ const CreatePlayerForm = ({
 	kindPlayer,
 	playerToEdit,
 }: TypeCreatePlayerFormValues) => {
+	const { t } = useTranslation();
 	const form = useCreatePlayerForm({ playerToEdit });
 
 	const { pickImage } = usePickImage((uri) => {
@@ -41,32 +43,32 @@ const CreatePlayerForm = ({
 			)}
 			<FormTextField
 				name='name'
-				label='Name: '
+				label={`${t('name')}: `}
 				form={form}
-				noEmptyErrorMsg='Player needs a name'
+				noEmptyErrorMsg={t('playerNeedsAName')}
 			/>
 			<FormNumberField
 				name='elo'
-				label='ELO: '
+				label={`${t('elo')}: `}
 				form={form}
-				noNumberErrorMsg='ELO must be numeric'
+				noNumberErrorMsg={t('eloMustBeNumeric')}
 			/>
 			<FormImageField
 				name='imageUrl'
-				label='Avatar: '
+				label={`${t('avatar')}: `}
 				form={form}
 				pickImage={pickImage}
 				resolveImageUri={resolveImageUri}
 			/>
 			<View className='flex-row w-full justify-center gap-8'>
 				<CustomButton
-					text='Save'
+					text={t('save')}
 					onPress={() => {
 						form.handleSubmit();
 					}}
 				/>
 				<CustomButton
-					text='Clean'
+					text={t('clean')}
 					onPress={handleCleanAllFields}
 				/>
 			</View>

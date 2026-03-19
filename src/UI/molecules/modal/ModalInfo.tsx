@@ -3,6 +3,7 @@ import { Modal, Text, View, Pressable } from 'react-native';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 type TypeModalInfoProps = {
 	visible: boolean;
@@ -17,6 +18,7 @@ const ModalInfo = ({
 	message,
 	onClose,
 }: TypeModalInfoProps) => {
+	const { t } = useTranslation();
 	return (
 		<Modal
 			visible={visible}
@@ -34,7 +36,7 @@ const ModalInfo = ({
 
 					<CustomButton
 						onPress={onClose}
-						text='Accept'
+						text={t('accept')}
 					/>
 				</View>
 			</View>

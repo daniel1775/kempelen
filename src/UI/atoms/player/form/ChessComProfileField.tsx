@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ModalInfo from '@/src/UI/molecules/modal/ModalInfo';
 import FormSearchField from '@/src/UI/atoms/player/form/FormSearchField';
@@ -20,6 +21,7 @@ const ChessComProfileField = ({
 	kindPlayer,
 	form,
 }: TypeChessComProfileFieldProps) => {
+	const { t } = useTranslation();
 	const [isEmptySearchChessCom, setIsEmptySearchChessCom] = useState(false);
 	const [isPlayerNotFound, setIsPlayerNotFound] = useState(false);
 	const [isPlayerFound, setIsPlayerFound] = useState(false);
@@ -60,27 +62,27 @@ const ChessComProfileField = ({
 		<>
 			<ModalInfo
 				visible={isEmptySearchChessCom}
-				title='Error'
-				message='Please enter a Chess.com username'
+				title={t('error')}
+				message={t('pleaseEnterAChessComUsername')}
 				onClose={() => setIsEmptySearchChessCom(false)}
 			/>
 			<ModalInfo
 				visible={isPlayerNotFound}
-				title='Player not found'
-				message='We could not find a player with that Chess.com username. Please check the spelling and try again'
+				title={t('playerNotFound')}
+				message={t('playerNotFoundMessage')}
 				onClose={() => setIsPlayerNotFound(false)}
 			/>
 			<ModalInfo
 				visible={isPlayerFound}
-				title='Player found!'
-				message='The player profile was loaded successfully'
+				title={t('playerFound')}
+				message={t('playerProfileLoadedSuccess')}
 				onClose={() => setIsPlayerFound(false)}
 			/>
 			{kindPlayer === 'online' && (
 				<FormSearchField
 					form={form}
 					name='chessProfileUrl'
-					label='Chess.com username: '
+					label={`${t('chessComUsername')}: `}
 					onPressSearch={() => {
 						searchChessComProfile(form.state.values.chessProfileUrl);
 					}}

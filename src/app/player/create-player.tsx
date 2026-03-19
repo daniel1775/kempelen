@@ -1,6 +1,7 @@
 import { useGlobalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { fetchSinglePlayer } from '@/api/players/fetchSinglePlayer';
 
@@ -12,6 +13,7 @@ import type { TypePlayer } from '@/src/types/player';
 
 export default function CreatePlayer() {
 	const params = useGlobalSearchParams();
+	const { t } = useTranslation();
 
 	const [creationType, setCreationType] = useState<'manual' | 'online'>(
 		'manual',
@@ -34,18 +36,18 @@ export default function CreatePlayer() {
 	}, [params]);
 
 	return (
-		<ScreenLayout title='Create Player'>
+		<ScreenLayout title={t('createPlayer')}>
 			<ScrollView>
 				<View className='flex-1 mt-16 gap-4 mb-12 px-4'>
 					<RadioButton
-						label='Manually'
+						label={t('manually')}
 						onPress={() => {
 							setCreationType('manual');
 						}}
 						isActive={creationType === 'manual'}
 					/>
 					<RadioButton
-						label='Linked with Chess.com'
+						label={t('linkedWithChessCom')}
 						onPress={() => {
 							setCreationType('online');
 						}}

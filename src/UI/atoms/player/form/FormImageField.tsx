@@ -2,6 +2,7 @@ import { View, Image, Pressable } from 'react-native';
 
 import TextBase from '@/UI/atoms/text/TextBase';
 import GarbageIcon from '@/assets/svg/GarbageIcon';
+import { useTranslation } from 'react-i18next';
 
 import type {
 	TypeFormPlayerFieldsName,
@@ -23,6 +24,7 @@ const FormImageField = ({
 	pickImage,
 	resolveImageUri,
 }: TypeFormImageField) => {
+	const { t } = useTranslation();
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	const removeImage = () => {
@@ -58,7 +60,7 @@ const FormImageField = ({
 							className='border border-light-gray w-[240px] h-[240px] items-center justify-center'
 						>
 							<TextBase customStyles='text-orange underline'>
-								Upload Image
+								{t('uploadImage')}
 							</TextBase>
 						</Pressable>
 					)}
