@@ -18,5 +18,12 @@
 	"accept": "Aceptar",
 	"createPlayer": "Crear Jugador",
 	"manually": "Manualmente",
-	"linkedWithChessCom": "Vinculado con Chess.com"
+	"linkedWithChessCom": "Vinculado con Chess.com",
+	"searchPlayer": "Buscar jugador...",
+	"currentTournaments": "Torneos actuales",
+	"finishedTournaments": "Torneos finalizados",
+	"tournamentTitle": "título-del-torneo",
+	"numberOfPlayers": "Número de jugadores",
+	"description": "Descripción",
+	"createNewTournament": "Crear nuevo\ntorneo"
 }

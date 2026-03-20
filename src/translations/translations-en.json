@@ -18,5 +18,12 @@
 	"accept": "Accept",
 	"createPlayer": "Create Player",
 	"manually": "Manually",
-	"linkedWithChessCom": "Linked with Chess.com"
+	"linkedWithChessCom": "Linked with Chess.com",
+	"searchPlayer": "Search player...",
+	"currentTournaments": "Current tournaments",
+	"finishedTournaments": "Finished tournaments",
+	"tournamentTitle": "tournament-title",
+	"numberOfPlayers": "Number of players",
+	"description": "Description",
+	"createNewTournament": "Create new\ntournament"
 }

@@ -17,11 +17,11 @@ const CustomButton = ({
 	return (
 		<Pressable
 			{...props}
-			className={`bg-neutral-gray self-center ${variant === 'primary' ? 'rounded-full px-10 py-4' : 'rounded-full p-4 border border-orange'}`}
+			className={`bg-neutral-gray self-center ${variant === 'primary' ? 'rounded-full px-10 py-4' : 'rounded-full p-4 border border-orange'} ${buttonStyles}`}
 		>
 			{variant === 'primary' && (
 				<Text
-					className={`${variant === 'primary' ? 'text-orange' : 'text-black'} text-[18px]`}
+					className={`${variant === 'primary' ? 'text-orange' : 'text-black'} text-[18px] text-center`}
 				>
 					{text}
 				</Text>
