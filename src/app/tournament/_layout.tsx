@@ -12,6 +12,13 @@ export default function TournamentLayout() {
 					headerShown: true,
 				}}
 			/>
+			<Stack.Screen
+				name='create-tournament'
+				options={{
+					header: () => <Header isEmpty />,
+					headerShown: true,
+				}}
+			/>
 		</Stack>
 	);
 }

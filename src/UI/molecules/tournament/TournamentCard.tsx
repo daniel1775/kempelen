@@ -1,18 +1,19 @@
-import { Image, Text, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import TextBase from '@/src/UI/atoms/text/TextBase';
 
 type TypeTournamentCardProps = {
 	title: string;
-	numPlayers: number;
+	numPlayers?: number;
 	description?: string;
 	imageUrl?: string;
 };
 
 const TournamentCard = ({
 	title,
-	numPlayers,
+	numPlayers = 0,
 	description,
 	imageUrl, // We can pass a dummy rocket image from ListTournaments or keep it flexible
 }: TypeTournamentCardProps) => {
@@ -32,9 +33,16 @@ const TournamentCard = ({
 				<TextBase customStyles='text-orange text-[19px] mb-1'>
 					{title || t('tournamentTitle')}
 				</TextBase>
-				<TextBase customStyles='text-light-gray text-[15px] mb-3'>
-					{numPlayers}
-				</TextBase>
+				<View className='flex flex-row items-center mb-3 gap-x-2'>
+					<TextBase customStyles='text-light-gray text-[15px]'>
+						{numPlayers}
+					</TextBase>
+					<FontAwesome
+						name='user'
+						size={17}
+						color='#ABA7A7'
+					/>
+				</View>
 				<TextBase customStyles='text-light-gray text-[15px]'>
 					{description || t('description')}
 				</TextBase>
