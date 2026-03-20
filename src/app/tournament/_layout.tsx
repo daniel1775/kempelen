@@ -1,14 +1,17 @@
 import { Stack } from 'expo-router';
 
+import Header from '@/src/UI/layouts/Header';
+
 export default function TournamentLayout() {
 	return (
-		<Stack
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<Stack.Screen name='index' />
-			<Stack.Screen name='create-tournament' />
+		<Stack screenOptions={{}}>
+			<Stack.Screen
+				name='index'
+				options={{
+					header: () => <Header isEmpty />,
+					headerShown: true,
+				}}
+			/>
 		</Stack>
 	);
 }

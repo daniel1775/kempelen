@@ -1,4 +1,11 @@
-import { Text, Pressable, View, LayoutAnimation, Platform, UIManager } from 'react-native';
+import {
+	Text,
+	Pressable,
+	View,
+	LayoutAnimation,
+	Platform,
+	UIManager,
+} from 'react-native';
 import Animated, {
 	useAnimatedStyle,
 	withTiming,
@@ -6,19 +13,19 @@ import Animated, {
 import UpCaretIcon from '@/assets/svg/UpCaretIcon';
 import { useState } from 'react';
 
-if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+if (
+	Platform.OS === 'android' &&
+	UIManager.setLayoutAnimationEnabledExperimental
+) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-type TypeSectionHeaderProps = {
+type TypeAccordionProps = {
 	title: string;
 	children?: React.ReactNode;
 };
 
-const SectionHeader = ({
-	title,
-	children,
-}: TypeSectionHeaderProps) => {
+const Accordion = ({ title, children }: TypeAccordionProps) => {
 	const [isExpanded, setIsExpanded] = useState(true);
 
 	const handleToggle = () => {
@@ -38,7 +45,7 @@ const SectionHeader = ({
 				className='flex-row justify-between items-center border-b border-light-gray pb-2 mb-4 mt-8 w-full'
 				onPress={handleToggle}
 			>
-				<Text className='text-orange text-lg'>{title}</Text>
+				<Text className='text-orange text-2xl'>{title}</Text>
 				<Animated.View style={arrowStyle}>
 					<UpCaretIcon />
 				</Animated.View>
@@ -48,4 +55,4 @@ const SectionHeader = ({
 	);
 };
 
-export default SectionHeader;
+export default Accordion;

@@ -1,9 +1,11 @@
 import { Image, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
+import TextBase from '@/src/UI/atoms/text/TextBase';
+
 type TypeTournamentCardProps = {
-	title?: string;
-	numPlayers?: string | number;
+	title: string;
+	numPlayers: number;
 	description?: string;
 	imageUrl?: string;
 };
@@ -12,7 +14,7 @@ const TournamentCard = ({
 	title,
 	numPlayers,
 	description,
-	imageUrl // We can pass a dummy rocket image from ListTournaments or keep it flexible
+	imageUrl, // We can pass a dummy rocket image from ListTournaments or keep it flexible
 }: TypeTournamentCardProps) => {
 	const { t } = useTranslation();
 
@@ -27,15 +29,15 @@ const TournamentCard = ({
 				<View className='w-[100px] h-[100px] bg-gray' />
 			)}
 			<View className='ml-4 flex-1 py-1'>
-				<Text className='text-orange text-[17px] mb-1'>
+				<TextBase customStyles='text-orange text-[19px] mb-1'>
 					{title || t('tournamentTitle')}
-				</Text>
-				<Text className='text-light-gray text-[13px] mb-3'>
-					{numPlayers || t('numberOfPlayers')}
-				</Text>
-				<Text className='text-light-gray text-[13px]'>
+				</TextBase>
+				<TextBase customStyles='text-light-gray text-[15px] mb-3'>
+					{numPlayers}
+				</TextBase>
+				<TextBase customStyles='text-light-gray text-[15px]'>
 					{description || t('description')}
-				</Text>
+				</TextBase>
 			</View>
 		</View>
 	);

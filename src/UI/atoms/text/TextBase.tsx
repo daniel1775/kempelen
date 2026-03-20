@@ -1,7 +1,7 @@
 import { Text } from 'react-native';
 
 type TextBaseProps = {
-	children: string;
+	children: string | number;
 	customStyles?: string;
 };
 
