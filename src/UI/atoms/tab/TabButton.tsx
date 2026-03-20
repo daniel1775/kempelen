@@ -6,9 +6,16 @@ import PlayerIcon from '@/assets/svg/Player';
 import SettingsIcon from '@/assets/svg/Settings';
 import StatisticsIcon from '@/assets/svg/Statistics';
 import TournamentIcon from '@/assets/svg/Tournament';
+import Entypo from '@expo/vector-icons/Entypo';
 
 type TypeTabButtonProps = {
-	iconType: 'tournament' | 'player' | 'statistics' | 'settings' | 'kempelen';
+	iconType:
+		| 'tournament'
+		| 'player'
+		| 'statistics'
+		| 'settings'
+		| 'kempelen'
+		| 'home';
 } & TabTriggerSlotProps;
 
 const TabButton = ({ isFocused, iconType, ...props }: TypeTabButtonProps) => {
@@ -54,6 +61,14 @@ const TabButton = ({ isFocused, iconType, ...props }: TypeTabButtonProps) => {
 					<KempelenIcon
 						height={iconsMeasures.height}
 						width={iconsMeasures.width}
+					/>
+				);
+			case 'home':
+				return (
+					<Entypo
+						name='home'
+						size={iconsMeasures.height}
+						color='#F9AC52'
 					/>
 				);
 			default:

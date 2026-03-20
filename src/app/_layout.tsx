@@ -67,7 +67,7 @@ export default function Layout() {
 						href='/'
 						asChild
 					>
-						<TabButton iconType='tournament' />
+						<TabButton iconType='home' />
 					</TabTrigger>
 					<TabTrigger
 						name='player'
@@ -88,11 +88,11 @@ export default function Layout() {
 						/>
 					</Pressable>
 					<TabTrigger
-						name='statistics'
-						href='/statistics'
+						name='tournament'
+						href='/tournament'
 						asChild
 					>
-						<TabButton iconType='statistics' />
+						<TabButton iconType='tournament' />
 					</TabTrigger>
 					<TabTrigger
 						name='settings'
