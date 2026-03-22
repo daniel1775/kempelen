@@ -1194,12 +1194,12 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.37):
     - BoringSSL-GRPC/Interface (= 0.0.37)
   - BoringSSL-GRPC/Interface (0.0.37)
-  - EXConstants (18.0.10):
+  - EXConstants (18.0.13):
     - ExpoModulesCore
   - EXImageLoader (6.0.0):
     - ExpoModulesCore
     - React-Core
-  - Expo (54.0.25):
+  - Expo (54.0.33):
     - ExpoModulesCore
     - hermes-engine
     - RCTRequired
@@ -1224,18 +1224,18 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoAsset (12.0.10):
+  - ExpoAsset (12.0.12):
     - ExpoModulesCore
   - ExpoFileSystem (19.0.21):
     - ExpoModulesCore
-  - ExpoFont (14.0.9):
+  - ExpoFont (14.0.11):
     - ExpoModulesCore
-  - ExpoHaptics (15.0.7):
+  - ExpoHaptics (15.0.8):
     - ExpoModulesCore
-  - ExpoHead (6.0.15):
+  - ExpoHead (6.0.23):
     - ExpoModulesCore
     - RNScreens
-  - ExpoImage (3.0.10):
+  - ExpoImage (3.0.11):
     - ExpoModulesCore
     - libavif/libdav1d
     - SDWebImage (~> 5.21.0)
@@ -1244,11 +1244,11 @@ PODS:
     - SDWebImageWebPCoder (~> 0.14.6)
   - ExpoImagePicker (17.0.10):
     - ExpoModulesCore
-  - ExpoKeepAwake (15.0.7):
+  - ExpoKeepAwake (15.0.8):
     - ExpoModulesCore
-  - ExpoLinking (8.0.9):
+  - ExpoLinking (8.0.11):
     - ExpoModulesCore
-  - ExpoModulesCore (3.0.26):
+  - ExpoModulesCore (3.0.29):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1271,35 +1271,48 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoSplashScreen (31.0.11):
+  - ExpoSplashScreen (31.0.13):
     - ExpoModulesCore
-  - ExpoSymbols (1.0.7):
+  - ExpoSymbols (1.0.8):
     - ExpoModulesCore
-  - ExpoSystemUI (6.0.8):
+  - ExpoSystemUI (6.0.9):
     - ExpoModulesCore
-  - ExpoWebBrowser (15.0.9):
+  - ExpoWebBrowser (15.0.10):
     - ExpoModulesCore
   - FBLazyVector (0.81.5)
-  - Firebase/CoreOnly (12.6.0):
-    - FirebaseCore (~> 12.6.0)
-  - Firebase/Firestore (12.6.0):
+  - Firebase/Auth (12.10.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 12.6.0)
-  - FirebaseAppCheckInterop (12.6.0)
-  - FirebaseCore (12.6.0):
-    - FirebaseCoreInternal (~> 12.6.0)
+    - FirebaseAuth (~> 12.10.0)
+  - Firebase/CoreOnly (12.10.0):
+    - FirebaseCore (~> 12.10.0)
+  - Firebase/Firestore (12.10.0):
+    - Firebase/CoreOnly
+    - FirebaseFirestore (~> 12.10.0)
+  - FirebaseAppCheckInterop (12.10.0)
+  - FirebaseAuth (12.10.0):
+    - FirebaseAppCheckInterop (~> 12.10.0)
+    - FirebaseAuthInterop (~> 12.10.0)
+    - FirebaseCore (~> 12.10.0)
+    - FirebaseCoreExtension (~> 12.10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GTMSessionFetcher/Core (< 6.0, >= 3.4)
+    - RecaptchaInterop (~> 101.0)
+  - FirebaseAuthInterop (12.10.0)
+  - FirebaseCore (12.10.0):
+    - FirebaseCoreInternal (~> 12.10.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
-  - FirebaseCoreExtension (12.6.0):
-    - FirebaseCore (~> 12.6.0)
-  - FirebaseCoreInternal (12.6.0):
+  - FirebaseCoreExtension (12.10.0):
+    - FirebaseCore (~> 12.10.0)
+  - FirebaseCoreInternal (12.10.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
-  - FirebaseFirestore (12.6.0):
-    - FirebaseCore (~> 12.6.0)
-    - FirebaseCoreExtension (~> 12.6.0)
-    - FirebaseFirestoreInternal (~> 12.6.0)
-    - FirebaseSharedSwift (~> 12.6.0)
-  - FirebaseFirestoreInternal (12.6.0):
+  - FirebaseFirestore (12.10.0):
+    - FirebaseCore (~> 12.10.0)
+    - FirebaseCoreExtension (~> 12.10.0)
+    - FirebaseFirestoreInternal (~> 12.10.0)
+    - FirebaseSharedSwift (~> 12.10.0)
+  - FirebaseFirestoreInternal (12.10.0):
     - abseil/algorithm (~> 1.20240722.0)
     - abseil/base (~> 1.20240722.0)
     - abseil/container/flat_hash_map (~> 1.20240722.0)
@@ -1308,21 +1321,34 @@ PODS:
     - abseil/strings/strings (~> 1.20240722.0)
     - abseil/time (~> 1.20240722.0)
     - abseil/types (~> 1.20240722.0)
-    - FirebaseAppCheckInterop (~> 12.6.0)
-    - FirebaseCore (~> 12.6.0)
+    - FirebaseAppCheckInterop (~> 12.10.0)
+    - FirebaseCore (~> 12.10.0)
     - "gRPC-C++ (~> 1.69.0)"
     - gRPC-Core (~> 1.69.0)
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
-  - FirebaseSharedSwift (12.6.0)
+  - FirebaseSharedSwift (12.10.0)
+  - GoogleUtilities/AppDelegateSwizzler (8.1.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
   - GoogleUtilities/Environment (8.1.0):
     - GoogleUtilities/Privacy
   - GoogleUtilities/Logger (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (8.1.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (8.1.0)":
     - GoogleUtilities/Privacy
   - GoogleUtilities/Privacy (8.1.0)
+  - GoogleUtilities/Reachability (8.1.0):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
   - "gRPC-C++ (1.69.0)":
     - "gRPC-C++/Implementation (= 1.69.0)"
     - "gRPC-C++/Interface (= 1.69.0)"
@@ -1415,12 +1441,13 @@ PODS:
     - gRPC-Core/Privacy (= 1.69.0)
   - gRPC-Core/Interface (1.69.0)
   - gRPC-Core/Privacy (1.69.0)
+  - GTMSessionFetcher/Core (5.1.0)
   - hermes-engine (0.81.5):
     - hermes-engine/Pre-built (= 0.81.5)
   - hermes-engine/Pre-built (0.81.5)
   - leveldb-library (1.22.6)
-  - libavif/core (0.11.1)
-  - libavif/libdav1d (0.11.1):
+  - libavif/core (1.0.0)
+  - libavif/libdav1d (1.0.0):
     - libavif/core
     - libdav1d (>= 0.6.0)
   - libdav1d (1.2.0)
@@ -3139,15 +3166,80 @@ PODS:
     - React-utils (= 0.81.5)
     - ReactNativeDependencies
   - ReactNativeDependencies (0.81.5)
-  - RNDeviceInfo (15.0.1):
+  - RecaptchaInterop (101.0.0)
+  - RNDeviceInfo (15.0.2):
     - React-Core
-  - RNFBApp (23.7.0):
-    - Firebase/CoreOnly (= 12.6.0)
+  - RNFBApp (23.8.8):
+    - Firebase/CoreOnly (= 12.10.0)
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
     - React-Core
-  - RNFBFirestore (23.7.0):
-    - Firebase/Firestore (= 12.6.0)
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - RNFBAuth (23.8.8):
+    - Firebase/Auth (= 12.10.0)
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
     - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
     - RNFBApp
+    - Yoga
+  - RNFBFirestore (23.8.8):
+    - Firebase/Firestore (= 12.10.0)
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - RNFBApp
+    - Yoga
   - RNGestureHandler (2.28.0):
     - hermes-engine
     - RCTRequired
@@ -3171,7 +3263,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNReanimated (4.1.5):
+  - RNReanimated (4.1.6):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3193,10 +3285,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNReanimated/reanimated (= 4.1.5)
+    - RNReanimated/reanimated (= 4.1.6)
     - RNWorklets
     - Yoga
-  - RNReanimated/reanimated (4.1.5):
+  - RNReanimated/reanimated (4.1.6):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3218,10 +3310,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNReanimated/reanimated/apple (= 4.1.5)
+    - RNReanimated/reanimated/apple (= 4.1.6)
     - RNWorklets
     - Yoga
-  - RNReanimated/reanimated/apple (4.1.5):
+  - RNReanimated/reanimated/apple (4.1.6):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3408,9 +3500,9 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - SDWebImage (5.21.5):
-    - SDWebImage/Core (= 5.21.5)
-  - SDWebImage/Core (5.21.5)
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
   - SDWebImageAVIFCoder (0.11.1):
     - libavif/core (>= 0.11.0)
     - SDWebImage (~> 5.10)
@@ -3509,6 +3601,7 @@ DEPENDENCIES:
   - ReactNativeDependencies (from `../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -3523,6 +3616,8 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheckInterop
+    - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -3532,11 +3627,13 @@ SPEC REPOS:
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - GTMSessionFetcher
     - leveldb-library
     - libavif
     - libdav1d
     - libwebp
     - nanopb
+    - RecaptchaInterop
     - SDWebImage
     - SDWebImageAVIFCoder
     - SDWebImageSVGCoder
@@ -3716,6 +3813,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-device-info"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
   RNGestureHandler:
@@ -3734,38 +3833,41 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   abseil: a05cc83bf02079535e17169a73c5be5ba47f714b
   BoringSSL-GRPC: dded2a44897e45f28f08ae87a55ee4bcd19bc508
-  EXConstants: e6e50cdfcb4524f40121d1fdcff24e97b7dcd2fd
+  EXConstants: 3feb66fd1d94202fc1f0946d74e029d8b224b60e
   EXImageLoader: e501c001bc40b8326605e82e6e80363c80fe06b5
-  Expo: e8cf1adbe75933bd8b0f78a1c69bfefb1ff55566
-  ExpoAsset: ee515c16290e521de1870dcdee66d78173fbc533
+  Expo: 20986af30c0ecead9d1500bf989a6ceaa027bfaf
+  ExpoAsset: d999f3bbd998a750f3b74cb913229848901b926b
   ExpoFileSystem: aefcd337b94b874f88752ebefc52813b84992fad
-  ExpoFont: b881d43057dceb7b31ff767b24f612609e80f60f
-  ExpoHaptics: b48d913e7e5f23816c6f130e525c9a6501b160b5
-  ExpoHead: 16bab3395d4328e88e4282a4f6ef4f44b1225c8d
-  ExpoImage: 6eb842cd07817402640545c41884dd7f5fbfbca5
+  ExpoFont: c625dbd97ed57e9089b172b2a7bb99003d074664
+  ExpoHaptics: 7240781406f4563c3f4eb1e72864302a8c643fd0
+  ExpoHead: 3f6ed6cbda48f13bcaddae98f8e5dc525dcfb34f
+  ExpoImage: f6bcd30bb98d4c484869668fbc32834bb3ee5bfb
   ExpoImagePicker: 115fada5d2e90bf900dea64151953ca39f67b47b
-  ExpoKeepAwake: 3f5e3ac53627849174f3603271df8e08f174ed4a
-  ExpoLinking: 50a65cd7beb6051ffc82f84ffb33961dd5e55a5b
-  ExpoModulesCore: 8d8dcd7054b2c7ee1ec6a99e7f99cbbad0d5af21
-  ExpoSplashScreen: f46795cd52cdad65d30e54043f04c86401c4f85d
-  ExpoSymbols: ef7b8ac77ac2d496b1bc3f0f7daf5e19c3a9933a
-  ExpoSystemUI: 9441d46a8efbf9224d1b2e6b18042452ffd0ed79
-  ExpoWebBrowser: 35223474c19e261c0661ecc7caa513d054244ab5
+  ExpoKeepAwake: 44bf6715bc1d2ddb17afe19d927cd039cda123f0
+  ExpoLinking: ebf543fd411d56375cb4eee07f6ab4e31c7ad959
+  ExpoModulesCore: 7539a1ca866bc75274589535c95a338c0f74e667
+  ExpoSplashScreen: 72fbc6dd9d6404dd9d0725a56c9ac1383bc0b14f
+  ExpoSymbols: a0e8217dc2789d9ed0f28b63a466fc5beafd5100
+  ExpoSystemUI: 4611247a411f231229f7e04449856035bd18ba21
+  ExpoWebBrowser: 88b116cd378d9609c776c0903fe4070fca461588
   FBLazyVector: e95a291ad2dadb88e42b06e0c5fb8262de53ec12
-  Firebase: a451a7b61536298fd5cbfe3a746fd40443a50679
-  FirebaseAppCheckInterop: e2178171b4145013c7c1a3cc464d1d446d3a1896
-  FirebaseCore: 0e38ad5d62d980a47a64b8e9301ffa311457be04
-  FirebaseCoreExtension: 032fd6f8509e591fda8cb76f6651f20d926b121f
-  FirebaseCoreInternal: 69bf1306a05b8ac43004f6cc1f804bb7b05b229e
-  FirebaseFirestore: 51ce079b9ddcaa481644164eda649d362c2a6396
-  FirebaseFirestoreInternal: 8b1d2b0a1b859b2ddbd63f448c416c5be7367405
-  FirebaseSharedSwift: 79f27fff0addd15c3de19b87fba426f3cc2c964f
+  Firebase: 99f203d3a114c6ba591f3b32263a9626e450af65
+  FirebaseAppCheckInterop: 2480ab50a070a6bc02e26e62733874361f017a11
+  FirebaseAuth: 7109e33998bbd96f983dc02b97289b535f6f4141
+  FirebaseAuthInterop: f9c841843d840cae6a7db7551452eac520ffa3bd
+  FirebaseCore: f4428e22415ea3b3eca652c2098413dabf2a23a9
+  FirebaseCoreExtension: 3473a6ec16a91aee29fb75994a86c0220d2cddf3
+  FirebaseCoreInternal: e7bbaeb00ab73011298f35ed223aa7371e212948
+  FirebaseFirestore: 3c85b7fc1cbad3bcfc0ba807861aa55e0ad4af22
+  FirebaseFirestoreInternal: a5120d3aea03c837ff9937c90e8a95f81e6a0706
+  FirebaseSharedSwift: 3d1e448b7202e36821a492941c84592d1308ea14
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   "gRPC-C++": cc207623316fb041a7a3e774c252cf68a058b9e8
   gRPC-Core: 860978b7db482de8b4f5e10677216309b5ff6330
+  GTMSessionFetcher: b8ab00db932816e14b0a0664a08cb73dda6d164b
   hermes-engine: 9f4dfe93326146a1c99eb535b1cb0b857a3cd172
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
-  libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
+  libavif: 5f8e715bea24debec477006f21ef9e95432e254d
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
@@ -3834,15 +3936,17 @@ SPEC CHECKSUMS:
   ReactCodegen: 8cdd5dde550463bc215652a888a61c8ca8f1e787
   ReactCommon: e6e232202a447d353e5531f2be82f50f47cbaa9a
   ReactNativeDependencies: 71ce9c28beb282aa720ea7b46980fff9669f428a
-  RNDeviceInfo: 53f9c84e28e854a308d3e548e25ef120b4615531
-  RNFBApp: 0f3157e7a912def73edd1268da68f1dcc8c5ed46
-  RNFBFirestore: 02d7d09c9d894bd21dd72fd7cbf8abe3c52a9dd2
+  RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
+  RNDeviceInfo: d79872e11c8e9c4de0d65b0ee6e0cee719f37fea
+  RNFBApp: f15df30b9449e3386826c7767561bc10ab9f7ff4
+  RNFBAuth: 9ebbc54d251ddb79031d743c841d27426d1fb50b
+  RNFBFirestore: e016f70a3e48eb353b488334e9c41d20e292adb5
   RNGestureHandler: c971f0a10fdffe00dfb4c142e87f34cdcd704376
-  RNReanimated: 5682a2efd21fd95d705ef6e69850d8345f4feafe
+  RNReanimated: f6923d4159aab5c12a6fa54e468aee947c70750d
   RNScreens: e91463674394a1969b4688eb5db419d7045fce2d
   RNSVG: 88b3b3e9e675fa4a2e14405c4c7f886ea8c82e06
   RNWorklets: 28ee7370ca8da356fcc914e3e68b97e9752196d2
-  SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
   SDWebImageAVIFCoder: afe194a084e851f70228e4be35ef651df0fc5c57
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
