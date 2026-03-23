@@ -13,13 +13,6 @@ import Animated, {
 import UpCaretIcon from '@/assets/svg/UpCaretIcon';
 import { useState } from 'react';
 
-if (
-	Platform.OS === 'android' &&
-	UIManager.setLayoutAnimationEnabledExperimental
-) {
-	UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
 type TypeAccordionProps = {
 	title: string;
 	children?: React.ReactNode;

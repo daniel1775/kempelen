@@ -8,11 +8,13 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Dimensions, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getAuth, signInAnonymously } from '@react-native-firebase/auth';
 
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
 import translationsEs from '@/src/translations/translations-es.json';
 import TabButton from '@/UI/atoms/tab/TabButton';
+import { useEffect } from 'react';
 
 const { height: screenHeight } = Dimensions.get('window');
 const BASE_RATIO = 0.05;
@@ -52,6 +54,20 @@ export default function Layout() {
 		Math.round(screenHeight * BASE_RATIO),
 	);
 	const tabHeight = calculated + insets.bottom;
+
+	useEffect(() => {
+		signInAnonymously(getAuth())
+			.then(() => {
+				console.log('User signed in anonymously');
+			})
+			.catch((error) => {
+				if (error.code === 'auth/operation-not-allowed') {
+					console.log('Enable anonymous in your firebase console.');
+				}
+
+				console.error(error);
+			});
+	}, []);
 
 	return (
 		<QueryClientProvider client={queryClient}>
