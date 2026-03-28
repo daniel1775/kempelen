@@ -1,4 +1,4 @@
-import { useCreatePlayerForm } from '../hooks/form/player/useCreatePlayerForm';
+import { useCreatePlayerForm } from '@/hooks/form/player/useCreatePlayerForm';
 
 export type TypePlayerToCreate = {
 	name: string;
