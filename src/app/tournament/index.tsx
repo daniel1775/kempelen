@@ -1,5 +1,4 @@
-import firestore from '@react-native-firebase/firestore';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
@@ -10,20 +9,6 @@ import CustomButton from '@/src/UI/atoms/buttons/CustomButton';
 export default function Tournament() {
 	const { t } = useTranslation();
 	const router = useRouter();
-
-	useFocusEffect(() => {
-		const fetchTournaments = async () => {
-			const tournamentsSnapshot = await firestore()
-				.collection('tournaments')
-				.get();
-
-			const tournaments = tournamentsSnapshot.docs.map((doc) => doc.data());
-
-			console.log('Tournaments: ', tournaments);
-		};
-
-		// fetchTournaments();
-	});
 
 	return (
 		<ScreenLayout title='Tournaments'>
