@@ -1,6 +1,6 @@
 export type TypeTournament = {
 	deviceId: string;
-	name: string;
+	title: string;
 	roundsNumber: number;
 	tiebreak: string;
 	scoreByes: string;
