@@ -25,5 +25,12 @@
 	"tournamentTitle": "tournament-title",
 	"numberOfPlayers": "Number of players",
 	"description": "Description",
-	"createNewTournament": "Create new\ntournament"
+	"createNewTournament": "Create new\ntournament",
+	"rounds": "Rounds",
+	"tiebreak": "Tiebreak",
+	"scoreByes": "Score byes",
+	"image": "Image",
+	"tournamentNeedsATitle": "Tournament needs a title",
+	"roundsMustBeNumeric": "Rounds must be numeric",
+	"title": "Title"
 }
