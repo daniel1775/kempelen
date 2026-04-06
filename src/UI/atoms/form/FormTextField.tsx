@@ -1,16 +1,11 @@
 import { View } from 'react-native';
 
-import TextBase from '../../text/TextBase';
-import CustomTextInput from '../../input/CustomTextInput';
-
-import type {
-	TypeFormPlayerFieldsName,
-	TypeUseCreatePlayerForm,
-} from '@/src/types/player';
+import TextBase from '../text/TextBase';
+import CustomTextInput from '../input/CustomTextInput';
 
 type TypeFormTextField = {
-	form: TypeUseCreatePlayerForm;
-	name: TypeFormPlayerFieldsName;
+	form: any;
+	name: any;
 	label: string;
 	noEmptyErrorMsg?: string;
 };
@@ -27,10 +22,11 @@ const FormTextField = ({
 		<form.Field
 			name={name}
 			validators={{
-				onChange: ({ value }) => (value === '' ? noEmptyErrorMsg : undefined),
+				onChange: ({ value }: { value: string }) =>
+					value === '' ? noEmptyErrorMsg : undefined,
 			}}
 		>
-			{(field) => (
+			{(field: any) => (
 				<View className='w-full'>
 					<TextBase customStyles={labelStyles}>{label}</TextBase>
 					<CustomTextInput

@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { useCreatePlayerForm } from '@/src/hooks/form/player/useCreatePlayerForm';
+import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
@@ -9,24 +9,13 @@ import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
-import ChessComProfileField from '@/UI/atoms/player/form/ChessComProfileField';
 
-import type { TypeKindPlayer, TypePlayer } from '@/src/types/player';
-
-type TypeCreatePlayerFormValues = {
-	kindPlayer: TypeKindPlayer;
-	playerToEdit?: TypePlayer | null;
-};
-
-const CreatePlayerForm = ({
-	kindPlayer,
-	playerToEdit,
-}: TypeCreatePlayerFormValues) => {
+const CreateTournamentForm = () => {
 	const { t } = useTranslation();
-	const form = useCreatePlayerForm({ playerToEdit });
+	const form = useCreateTournamentForm();
 
 	const { pickImage } = usePickImage((uri) => {
-		form.setFieldValue('imageUrl', uri);
+		form.setFieldValue('image', uri);
 	});
 
 	const handleCleanAllFields = () => {
@@ -35,27 +24,36 @@ const CreatePlayerForm = ({
 
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
-			{kindPlayer === 'online' && (
-				<ChessComProfileField
-					kindPlayer={kindPlayer}
-					form={form}
-				/>
-			)}
 			<FormTextField
-				name='name'
-				label={`${t('name')}: `}
+				name='title'
+				label={`${t('title')}: `}
 				form={form}
-				noEmptyErrorMsg={t('playerNeedsAName')}
+				noEmptyErrorMsg={t('tournamentNeedsATitle')}
 			/>
 			<FormNumberField
-				name='elo'
-				label={`${t('elo')}: `}
+				name='roundsNumber'
+				label={`${t('rounds')}: `}
 				form={form}
-				noNumberErrorMsg={t('eloMustBeNumeric')}
+				noNumberErrorMsg={t('roundsMustBeNumeric')}
+			/>
+			<FormTextField
+				name='tiebreak'
+				label={`${t('tiebreak')}: `}
+				form={form}
+			/>
+			<FormTextField
+				name='scoreByes'
+				label={`${t('scoreByes')}: `}
+				form={form}
+			/>
+			<FormTextField
+				name='description'
+				label={`${t('description')}: `}
+				form={form}
 			/>
 			<FormImageField
-				name='imageUrl'
-				label={`${t('avatar')}: `}
+				name='image'
+				label={`${t('image')}: `}
 				form={form}
 				pickImage={pickImage}
 				resolveImageUri={resolveImageUri}
@@ -76,4 +74,4 @@ const CreatePlayerForm = ({
 	);
 };
 
-export default CreatePlayerForm;
+export default CreateTournamentForm;

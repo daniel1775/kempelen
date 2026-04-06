@@ -1,16 +1,11 @@
 import { View } from 'react-native';
 
-import TextBase from '@/UI/atoms/text/TextBase';
-import CustomTextInput from '@/UI/atoms/input/CustomTextInput';
-
-import type {
-	TypeFormPlayerFieldsName,
-	TypeUseCreatePlayerForm,
-} from '@/src/types/player';
+import TextBase from '../text/TextBase';
+import CustomTextInput from '../input/CustomTextInput';
 
 type TypeFormNumberField = {
-	form: TypeUseCreatePlayerForm;
-	name: TypeFormPlayerFieldsName;
+	form: any;
+	name: any;
 	label: string;
 	noNumberErrorMsg?: string;
 };
@@ -27,18 +22,18 @@ const FormNumberField = ({
 		<form.Field
 			name={name}
 			validators={{
-				onChange: ({ value }) =>
+				onChange: ({ value }: { value: number }) =>
 					!value || !Number.isFinite(value) || Number(value) < 0
 						? noNumberErrorMsg
 						: undefined,
 			}}
 		>
-			{(field) => (
+			{(field: any) => (
 				<View className='w-full'>
 					<TextBase customStyles={labelStyles}>{label}</TextBase>
 					<CustomTextInput
 						value={String(field.state.value)}
-						onChangeText={(value) => {
+						onChangeText={(value: string) => {
 							const numericValue = value === '' ? 0 : Number(value);
 							field.handleChange(numericValue);
 						}}

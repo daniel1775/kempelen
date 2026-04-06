@@ -1,17 +1,12 @@
 import { View, Pressable } from 'react-native';
 
 import SearchIcon from '@/assets/svg/Search';
-import TextBase from '@/UI/atoms/text/TextBase';
-import CustomTextInput from '@/UI/atoms/input/CustomTextInput';
-
-import type {
-	TypeFormPlayerFieldsName,
-	TypeUseCreatePlayerForm,
-} from '@/src/types/player';
+import TextBase from '../text/TextBase';
+import CustomTextInput from '../input/CustomTextInput';
 
 type TypeFormSearchField = {
-	form: TypeUseCreatePlayerForm;
-	name: TypeFormPlayerFieldsName;
+	form: any;
+	name: any;
 	label: string;
 	onPressSearch: (searchValue: string) => void;
 };
@@ -26,7 +21,7 @@ const FormSearchField = ({
 }: TypeFormSearchField) => {
 	return (
 		<form.Field name={name}>
-			{(field) => (
+			{(field: any) => (
 				<View className='w-full'>
 					<TextBase customStyles={labelStyles}>{label}</TextBase>
 					<View className='flex-1 relative'>

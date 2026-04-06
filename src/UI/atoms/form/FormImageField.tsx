@@ -1,17 +1,12 @@
 import { View, Image, Pressable } from 'react-native';
-
-import TextBase from '@/UI/atoms/text/TextBase';
-import GarbageIcon from '@/assets/svg/GarbageIcon';
 import { useTranslation } from 'react-i18next';
 
-import type {
-	TypeFormPlayerFieldsName,
-	TypeUseCreatePlayerForm,
-} from '@/src/types/player';
+import TextBase from '../text/TextBase';
+import GarbageIcon from '@/assets/svg/GarbageIcon';
 
 type TypeFormImageField = {
-	form: TypeUseCreatePlayerForm;
-	name: TypeFormPlayerFieldsName;
+	form: any;
+	name: any;
 	label: string;
 	pickImage: () => void;
 	resolveImageUri: (currentImageUrl: string) => string;
@@ -28,12 +23,12 @@ const FormImageField = ({
 	const labelStyles = 'text-light-gray text-[16px] mb-3';
 
 	const removeImage = () => {
-		form.setFieldValue('imageUrl', '');
+		form.setFieldValue(name, '');
 	};
 
 	return (
 		<form.Field name={name}>
-			{(field) => (
+			{(field: any) => (
 				<View>
 					<TextBase customStyles={labelStyles}>{label}</TextBase>
 					{field.state.value ? (

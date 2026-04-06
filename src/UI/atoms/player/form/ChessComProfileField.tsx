@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import ModalInfo from '@/src/UI/molecules/modal/ModalInfo';
-import FormSearchField from '@/src/UI/atoms/player/form/FormSearchField';
+import FormSearchField from '@/src/UI/atoms/form/FormSearchField';
 
 import { fetchSearchPlayer } from '@/src/api/chess-com/fetchSearchPlayer';
 import { fetchSearchPlayerStats } from '@/src/api/chess-com/fetchSearchPlayerStats';
@@ -34,7 +34,7 @@ const ChessComProfileField = ({
 
 		const [player, stats] = await Promise.all([
 			fetchSearchPlayer(chessProfile),
-			fetchSearchPlayerStats(chessProfile)
+			fetchSearchPlayerStats(chessProfile),
 		]);
 
 		if (!player) {
@@ -48,10 +48,10 @@ const ChessComProfileField = ({
 		const avatar = player?.avatar || '';
 
 		const elo =
-				stats?.chess_rapid?.last?.rating ||
-				stats?.chess_blitz?.last?.rating ||
-				stats?.fide ||
-				0;
+			stats?.chess_rapid?.last?.rating ||
+			stats?.chess_blitz?.last?.rating ||
+			stats?.fide ||
+			0;
 
 		form.setFieldValue('name', name);
 		form.setFieldValue('imageUrl', avatar);
