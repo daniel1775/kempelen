@@ -7,6 +7,7 @@ export default function CreateTournament() {
 	return (
 		<ScreenLayout title='Initial settings'>
 			<ScrollView>
+				<View className='mt-16' />
 				<CreateTournamentForm />
 			</ScrollView>
 		</ScreenLayout>

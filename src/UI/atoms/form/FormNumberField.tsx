@@ -34,7 +34,14 @@ const FormNumberField = ({
 					<CustomTextInput
 						value={String(field.state.value)}
 						onChangeText={(value: string) => {
+							const isNumericInput = /^[0-9]*$/.test(value);
+
+							if (!isNumericInput) {
+								return;
+							}
+
 							const numericValue = value === '' ? 0 : Number(value);
+
 							field.handleChange(numericValue);
 						}}
 						keyboardType='numeric'
