@@ -1,6 +1,7 @@
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 
 export type TypeTournament = {
+	id: string;
 	deviceId: string;
 	title: string;
 	roundsNumber: number;
