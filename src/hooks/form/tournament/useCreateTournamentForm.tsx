@@ -38,7 +38,7 @@ export const useCreateTournamentForm = () => {
 		defaultValues: formInitialValues,
 		onSubmit: async ({ value }) => {
 			try {
-				const dir = new Directory(Paths.document, 'tournaments');
+				const dir = new Directory(Paths.document);
 				dir.create({
 					overwrite: true,
 					idempotent: true,

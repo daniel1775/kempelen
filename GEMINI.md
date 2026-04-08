@@ -7,3 +7,5 @@
 - When you create a new file, check the existing folder structure and naming conventions and follow them.
 
 - When you create code, use the existing patterns and follow them such as the way of return values from hooks.
+
+- Always do unit tests for little UI atoms and molecules, also for hooks or any isolated functions.

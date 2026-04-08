@@ -6,7 +6,7 @@ export const getLocalStorageImage = (imageName?: string) => {
 			return null;
 		}
 
-		const dir = new Directory(Paths.document, 'players');
+		const dir = new Directory(Paths.document);
 
 		if (!dir.exists) {
 			console.warn(

@@ -97,7 +97,7 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 		defaultValues: formInitialValues,
 		onSubmit: async ({ value, meta }) => {
 			try {
-				const dir = new Directory(Paths.document, 'players');
+				const dir = new Directory(Paths.document);
 				dir.create({
 					overwrite: true,
 					idempotent: true,
