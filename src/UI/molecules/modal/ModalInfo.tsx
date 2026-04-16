@@ -1,4 +1,4 @@
-import { Modal, Text, View, Pressable } from 'react-native';
+import { Modal, View } from 'react-native';
 
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TextBase from '@/UI/atoms/text/TextBase';

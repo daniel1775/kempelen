@@ -1,4 +1,4 @@
-import { TextInput, View } from 'react-native';
+import { TextInput, View, Platform } from 'react-native';
 
 import SearchIcon from '@/assets/svg/Search';
 
@@ -15,16 +15,19 @@ const SearchInput = ({
 	placeholder,
 	containerStyle,
 }: TypeSearchInputProps) => {
+	const isIOS = Platform.OS === 'ios';
+
 	return (
 		<View
-			className={`flex flex-row border-b border-orange w-full ${containerStyle}`}
+			className={`flex flex-row border-b border-orange w-full ${isIOS ? 'pb-3' : ''} ${containerStyle}`}
 		>
-			<View className='mb-3'>
+			<View className='justify-center'>
 				<SearchIcon />
 			</View>
 			<TextInput
-				className='ml-4 mb-2 text-[18px] text-light flex-1'
+				className='ml-4 text-[18px] text-light flex-1'
 				placeholder={placeholder}
+				placeholderTextColor='#ABA7A7'
 				onChangeText={(text) => {
 					setValue(text);
 				}}
