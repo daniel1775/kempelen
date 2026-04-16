@@ -94,9 +94,7 @@ export default function Layout() {
 					</TabTrigger>
 					<Pressable
 						className='border-2 rounded-full bg-gray border-light-orange p-5 -top-3'
-						onPress={() => {
-							// Navigate to the home page or perform any action
-						}}
+						onPress={() => {}}
 					>
 						<KempelenIcon
 							height={iconsMeasures.height + 11}
