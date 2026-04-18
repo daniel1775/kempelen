@@ -1,6 +1,7 @@
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { useRouter } from 'expo-router';
 
 import { useGetAllTournaments } from '@/src/hooks/queries/tournament/useGetAllTournaments';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
@@ -14,6 +15,7 @@ const dummyImage =
 
 const ListTournaments = () => {
 	const { t } = useTranslation();
+	const router = useRouter();
 	const { allTournamentsData, isLoading } = useGetAllTournaments();
 
 	const currentTournaments = useMemo(() => {
@@ -32,6 +34,15 @@ const ListTournaments = () => {
 		);
 	}, [allTournamentsData]);
 
+	const onPressTournament = (id: string) => {
+		router.push({
+			pathname: '/tournament/single-tournament',
+			params: {
+				id,
+			},
+		});
+	};
+
 	if (isLoading) {
 		return <Loading />;
 	}
@@ -44,13 +55,19 @@ const ListTournaments = () => {
 			<View className='mb-4'>
 				<Accordion title={t('currentTournaments')}>
 					{currentTournaments.map((tournament) => (
-						<TournamentCard
+						<Pressable
 							key={tournament.id}
-							title={tournament.title}
-							numPlayers={0} // TODO: Add logic to calculate number of players
-							description={tournament.description}
-							imageUrl={resolveImageUri(tournament.image) || dummyImage}
-						/>
+							onPress={() => {
+								onPressTournament(tournament.id);
+							}}
+						>
+							<TournamentCard
+								title={tournament.title}
+								numPlayers={0} // TODO: Add logic to calculate number of players
+								description={tournament.description}
+								imageUrl={resolveImageUri(tournament.image) || dummyImage}
+							/>
+						</Pressable>
 					))}
 				</Accordion>
 			</View>
