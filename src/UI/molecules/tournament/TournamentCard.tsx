@@ -15,7 +15,7 @@ const TournamentCard = ({
 	title,
 	numPlayers = 0,
 	description,
-	imageUrl, // We can pass a dummy rocket image from ListTournaments or keep it flexible
+	imageUrl,
 }: TypeTournamentCardProps) => {
 	const { t } = useTranslation();
 

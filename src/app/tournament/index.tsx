@@ -18,7 +18,7 @@ export default function Tournament() {
 				<CustomButton
 					variant='add'
 					onPress={() => {
-						router.navigate('/tournament/create-tournament');
+						router.push('/tournament/create-tournament');
 					}}
 				/>
 			</View>

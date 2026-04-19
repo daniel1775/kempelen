@@ -10,9 +10,6 @@ import Accordion from '@/src/UI/molecules/layout/Accordion';
 import TournamentCard from '@/src/UI/molecules/tournament/TournamentCard';
 import Loading from '@/src/UI/atoms/general/Loading';
 
-const dummyImage =
-	'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=200&h=200&fit=crop';
-
 const ListTournaments = () => {
 	const { t } = useTranslation();
 	const router = useRouter();
@@ -65,7 +62,7 @@ const ListTournaments = () => {
 								title={tournament.title}
 								numPlayers={0} // TODO: Add logic to calculate number of players
 								description={tournament.description}
-								imageUrl={resolveImageUri(tournament.image) || dummyImage}
+								imageUrl={resolveImageUri(tournament.image)}
 							/>
 						</Pressable>
 					))}
@@ -80,7 +77,7 @@ const ListTournaments = () => {
 							title={tournament.title}
 							numPlayers={0} // TODO: Add logic to calculate number of players
 							description={tournament.description}
-							imageUrl={resolveImageUri(tournament.image) || dummyImage}
+							imageUrl={resolveImageUri(tournament.image)}
 						/>
 					))}
 				</Accordion>
