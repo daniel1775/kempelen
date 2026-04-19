@@ -2,34 +2,31 @@ import { useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
+import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
+
 import TournamentHeader from '@/src/UI/molecules/tournament/TournamentHeader';
 import TournamentInfo from '@/src/UI/organisms/tournament/TournamentInfo';
 import TournamentTabs from '@/src/UI/molecules/tournament/TournamentTabs';
+
+import type { TypeSingleTournamentParams } from '@/src/types/navigation';
 
 export default function SingleTournament() {
 	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>(
 		'standings',
 	);
 
-	const { tournamentId } = useLocalSearchParams();
+	const { tournamentId } = useLocalSearchParams<TypeSingleTournamentParams>();
 
-	const tournamentData = {
-		title: 'Current-tournament',
-		description:
-			'description of the tournament lorem ipsum dolor allk sj doij kdjkds skdljf skdjfljk',
-		status: 'in progress',
-		imageUrl:
-			'https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=1000&auto=format&fit=crop', // A space/rocket themed image
-	};
+	const { singleTournamentData } = useGetSingleTournament(tournamentId);
 
 	return (
 		<ScrollView className='flex-1 bg-gray'>
-			<TournamentHeader imageUrl={tournamentData.imageUrl} />
+			<TournamentHeader imageUrl={singleTournamentData?.image || ''} />
 
 			<TournamentInfo
-				title={tournamentData.title}
-				description={tournamentData.description}
-				status={tournamentData.status}
+				title={singleTournamentData?.title || ''}
+				description={singleTournamentData?.description || ''}
+				status={singleTournamentData?.status || ''}
 				onEdit={() => console.log('Edit pressed')}
 				onDelete={() => console.log('Delete pressed')}
 				onMoreInfo={() => console.log('More info pressed')}
