@@ -34,11 +34,11 @@ const ListTournaments = () => {
 		);
 	}, [allTournamentsData]);
 
-	const onPressTournament = (id: string) => {
+	const onPressTournament = (tournamentId: string) => {
 		router.push({
 			pathname: '/tournament/single-tournament',
 			params: {
-				id,
+				tournamentId,
 			},
 		});
 	};
