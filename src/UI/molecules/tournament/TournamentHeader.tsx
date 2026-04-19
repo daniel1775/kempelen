@@ -21,6 +21,7 @@ const TournamentHeader = ({ imageUrl }: TypeTournamentHeaderProps) => {
 					source={DefaultTournamentImage}
 					style={{ width: '100%', height: '100%' }}
 					contentFit='cover'
+					testID='default-image'
 				/>
 			)}
 			<View className='absolute inset-0 bg-black/60' />
