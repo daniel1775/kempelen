@@ -15,7 +15,7 @@ export default function TournamentLayout() {
 			<Stack.Screen
 				name='single-tournament'
 				options={{
-					header: () => <Header isEmpty />,
+					header: () => <Header />,
 					headerShown: true,
 				}}
 			/>
