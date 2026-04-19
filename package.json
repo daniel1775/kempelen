@@ -15,7 +15,18 @@
 		"preset": "jest-expo",
 		"setupFilesAfterEnv": [
 			"<rootDir>/jest.setup.ts"
-		]
+		],
+		"moduleNameMapper": {
+			"^@/images/(.*)$": "<rootDir>/assets/images/$1",
+			"^@/svg/(.*)$": "<rootDir>/assets/svg/$1",
+			"^@/UI/(.*)$": "<rootDir>/src/UI/$1",
+			"^@/hooks/(.*)$": "<rootDir>/src/hooks/$1",
+			"^@/utils/(.*)$": "<rootDir>/src/utils/$1",
+			"^@/api/(.*)$": "<rootDir>/src/api/$1",
+			"^@/types/(.*)$": "<rootDir>/src/types/$1",
+			"^@/translations/(.*)$": "<rootDir>/src/translations/$1",
+			"^@/(.*)$": "<rootDir>/$1"
+		}
 	},
 	"dependencies": {
 		"@expo/vector-icons": "^15.0.3",
