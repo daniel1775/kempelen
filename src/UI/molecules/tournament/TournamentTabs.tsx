@@ -7,13 +7,18 @@ type TypeTournamentTabsProps = {
 	onTabChange: (tab: TypeTab) => void;
 };
 
-const TournamentTabs = ({ activeTab, onTabChange }: TypeTournamentTabsProps) => {
+const TournamentTabs = ({
+	activeTab,
+	onTabChange,
+}: TypeTournamentTabsProps) => {
+	const tabStyles = 'flex-1 py-2 rounded-md border ';
+
 	return (
 		<View className='flex-row justify-between gap-4 mt-6'>
 			<Pressable
 				onPress={() => onTabChange('rounds')}
 				testID='tab-rounds'
-				className={`flex-1 py-4 rounded-md border ${
+				className={`${tabStyles} ${
 					activeTab === 'rounds'
 						? 'bg-orange border-orange'
 						: 'border-neutral-gray'
@@ -30,7 +35,7 @@ const TournamentTabs = ({ activeTab, onTabChange }: TypeTournamentTabsProps) => 
 			<Pressable
 				onPress={() => onTabChange('standings')}
 				testID='tab-standings'
-				className={`flex-1 py-4 rounded-md border ${
+				className={`${tabStyles} ${
 					activeTab === 'standings'
 						? 'bg-orange border-orange'
 						: 'border-neutral-gray'
