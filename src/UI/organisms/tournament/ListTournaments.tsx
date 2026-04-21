@@ -1,10 +1,10 @@
 import { Pressable, ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 import { useRouter } from 'expo-router';
 
 import { useGetAllTournaments } from '@/src/hooks/queries/tournament/useGetAllTournaments';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
+import { useGetTournamentsFiltered } from '@/src/hooks/tournament/useGetTournamentsFiltered';
 
 import Accordion from '@/src/UI/molecules/layout/Accordion';
 import TournamentCard from '@/src/UI/molecules/tournament/TournamentCard';
@@ -15,21 +15,11 @@ const ListTournaments = () => {
 	const router = useRouter();
 	const { allTournamentsData, isLoading } = useGetAllTournaments();
 
-	const currentTournaments = useMemo(() => {
-		return (
-			allTournamentsData?.filter(
-				(tournament) => tournament.status !== 'finished',
-			) || []
-		);
-	}, [allTournamentsData]);
-
-	const finishedTournaments = useMemo(() => {
-		return (
-			allTournamentsData?.filter(
-				(tournament) => tournament.status === 'finished',
-			) || []
-		);
-	}, [allTournamentsData]);
+	const { currentTournaments, finishedTournaments } = useGetTournamentsFiltered(
+		{
+			allTournamentsData,
+		},
+	);
 
 	const onPressTournament = (tournamentId: string) => {
 		router.push({
