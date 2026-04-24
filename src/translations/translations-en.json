@@ -32,5 +32,15 @@
 	"image": "Image",
 	"tournamentNeedsATitle": "Tournament needs a title",
 	"roundsMustBeNumeric": "Rounds must be numeric",
-	"title": "Title"
+	"title": "Title",
+	"edit": "Edit",
+	"delete": "Delete",
+	"moreInfo": "More info",
+	"roundsContentPlaceholder": "Rounds content will appear here",
+	"standingsContentPlaceholder": "Standings content will appear here",
+	"statisticsIndexPage": "Statistics index page",
+	"settingsIndexPage": "Settings index page",
+	"tournaments": "Tournaments",
+	"initialSettings": "Initial settings",
+	"standings": "Standings"
 }

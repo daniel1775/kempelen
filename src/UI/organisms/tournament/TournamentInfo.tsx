@@ -1,4 +1,6 @@
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import DotsButton from '@/src/UI/atoms/buttons/DotsButton';
 import Badge from '@/src/UI/atoms/general/Badge';
 import Link from '@/src/UI/atoms/text/Link';
@@ -20,6 +22,8 @@ const TournamentInfo = ({
 	onDelete,
 	onMoreInfo,
 }: TypeTournamentInfoProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<View className='mt-6 px-6'>
 			<View className='flex-row justify-between items-center'>
@@ -37,7 +41,7 @@ const TournamentInfo = ({
 			<View className='flex-row justify-between items-end mt-4'>
 				<Badge text={status} />
 				<Link
-					text='more info'
+					text={t('moreInfo')}
 					onPress={onMoreInfo}
 				/>
 			</View>

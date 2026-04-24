@@ -32,5 +32,15 @@
 	"image": "Imagen",
 	"tournamentNeedsATitle": "El torneo necesita un título",
 	"roundsMustBeNumeric": "Las rondas deben ser numéricas",
-	"title": "Título"
+	"title": "Título",
+	"edit": "Editar",
+	"delete": "Eliminar",
+	"moreInfo": "Más información",
+	"roundsContentPlaceholder": "El contenido de rondas aparecerá aquí",
+	"standingsContentPlaceholder": "El contenido de la tabla aparecerá aquí",
+	"statisticsIndexPage": "Página de inicio de estadísticas",
+	"settingsIndexPage": "Página de inicio de configuración",
+	"tournaments": "Torneos",
+	"initialSettings": "Configuración inicial",
+	"standings": "Tabla de posiciones"
 }

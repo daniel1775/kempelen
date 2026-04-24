@@ -7,6 +7,8 @@ import {
 	View,
 } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
+
 import DotsIcon from '@/assets/svg/DotsIcon';
 
 type TypeDotsButtonProps = {
@@ -18,6 +20,7 @@ const DotsButton = ({
 	handlePressEdit,
 	handlePressDelete,
 }: TypeDotsButtonProps) => {
+	const { t } = useTranslation();
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalPosition, setModalPosition] = useState({ pageX: 0, pageY: 0 });
 
@@ -71,14 +74,14 @@ const DotsButton = ({
 							onPress={onPressEdit}
 							hitSlop={14}
 						>
-							<Text className='text-lg text-gray'>Edit</Text>
+							<Text className='text-lg text-gray'>{t('edit')}</Text>
 						</Pressable>
 						<View className='w-full h-[1px] bg-light-gray my-1' />
 						<Pressable
 							onPress={onPressDelete}
 							hitSlop={14}
 						>
-							<Text className='text-lg text-gray'>Delete</Text>
+							<Text className='text-lg text-gray'>{t('delete')}</Text>
 						</Pressable>
 					</View>
 				</Pressable>

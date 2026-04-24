@@ -1,9 +1,12 @@
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function StatisticsIndex() {
+	const { t } = useTranslation();
+
 	return (
 		<View className='flex-1 items-center justify-center bg-white'>
-			<Text className='text-lg'>Statistics index page</Text>
+			<Text className='text-lg'>{t('statisticsIndexPage')}</Text>
 		</View>
 	);
 }

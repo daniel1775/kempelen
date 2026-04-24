@@ -11,7 +11,7 @@ export default function Tournament() {
 	const router = useRouter();
 
 	return (
-		<ScreenLayout title='Tournaments'>
+		<ScreenLayout title={t('tournaments')}>
 			<ListTournaments />
 
 			<View className='absolute z-20 bottom-6 right-6'>

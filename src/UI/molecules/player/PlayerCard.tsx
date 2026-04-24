@@ -2,10 +2,11 @@ import { Image, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-import AddButton from '../../atoms/buttons/AddButton';
-import DotsButton from '../../atoms/buttons/DotsButton';
 import { useDeletePlayer } from '@/src/hooks/queries/player/useDeletePlayer';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
+
+import AddButton from '@/src/UI/atoms/buttons/AddButton';
+import DotsButton from '@/src/UI/atoms/buttons/DotsButton';
 
 import type { TypePlayer } from '@/src/types/player';
 
@@ -50,7 +51,9 @@ const PlayerCard = ({ player, handleAddPlayer }: TypePlayerCardProps) => {
 				) : null}
 				<View className='ml-4'>
 					<Text className='text-light text-[15px] mb-2'>{player.name}</Text>
-					<Text className='text-light text-[15px]'>{t('elo')}: {player.elo}</Text>
+					<Text className='text-light text-[15px]'>
+						{t('elo')}: {player.elo}
+					</Text>
 				</View>
 			</View>
 			<View className='flex-1' />

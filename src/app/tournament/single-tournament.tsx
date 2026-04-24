@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
 
@@ -11,6 +12,7 @@ import TournamentTabs from '@/src/UI/molecules/tournament/TournamentTabs';
 import type { TypeSingleTournamentParams } from '@/src/types/navigation';
 
 export default function SingleTournament() {
+	const { t } = useTranslation();
 	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>(
 		'standings',
 	);
@@ -41,11 +43,11 @@ export default function SingleTournament() {
 				<View className='mt-8 mb-10'>
 					{activeTab === 'rounds' ? (
 						<Text className='text-light-gray text-center text-lg italic'>
-							Rounds content will appear here
+							{t('roundsContentPlaceholder')}
 						</Text>
 					) : (
 						<Text className='text-light-gray text-center text-lg italic'>
-							Standings content will appear here
+							{t('standingsContentPlaceholder')}
 						</Text>
 					)}
 				</View>

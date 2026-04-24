@@ -1,4 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 type TypeTab = 'rounds' | 'standings';
 
@@ -11,6 +12,7 @@ const TournamentTabs = ({
 	activeTab,
 	onTabChange,
 }: TypeTournamentTabsProps) => {
+	const { t } = useTranslation();
 	const tabStyles = 'flex-1 py-2 rounded-md border ';
 
 	return (
@@ -29,7 +31,7 @@ const TournamentTabs = ({
 						activeTab === 'rounds' ? 'text-gray' : 'text-orange'
 					}`}
 				>
-					Rounds
+					{t('rounds')}
 				</Text>
 			</Pressable>
 			<Pressable
@@ -46,7 +48,7 @@ const TournamentTabs = ({
 						activeTab === 'standings' ? 'text-gray' : 'text-orange'
 					}`}
 				>
-					Standings
+					{t('standings')}
 				</Text>
 			</Pressable>
 		</View>
