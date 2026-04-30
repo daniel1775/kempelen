@@ -27,14 +27,22 @@ const TournamentInfo = ({
 	return (
 		<View className='mt-6 px-6'>
 			<View className='flex-row justify-between items-center'>
-				<Text className='text-orange text-3xl font-bold flex-1'>{title}</Text>
+				<Text
+					className='text-orange text-3xl font-bold flex-1'
+					testID='tournament-title'
+				>
+					{title}
+				</Text>
 				<DotsButton
 					handlePressEdit={onEdit}
 					handlePressDelete={onDelete}
 				/>
 			</View>
 
-			<Text className='text-light-gray text-lg mt-4 leading-6'>
+			<Text
+				className='text-light-gray text-lg mt-4 leading-6'
+				testID='tournament-description'
+			>
 				{description}
 			</Text>
 
@@ -43,6 +51,7 @@ const TournamentInfo = ({
 				<Link
 					text={t('moreInfo')}
 					onPress={onMoreInfo}
+					testID='more-info-link'
 				/>
 			</View>
 		</View>

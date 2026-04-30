@@ -2,7 +2,12 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import TournamentInfo from '../TournamentInfo';
 
-// Mocking children components to isolate TournamentInfo
+jest.mock('react-i18next', () => ({
+	useTranslation: () => ({
+		t: (key: string) => key,
+	}),
+}));
+
 jest.mock('@/src/UI/atoms/buttons/DotsButton', () => {
 	const { Pressable, Text } = require('react-native');
 	return (props: any) => (
@@ -26,22 +31,28 @@ describe('TournamentInfo Component', () => {
 	};
 
 	it('renders correctly', () => {
-		const { getByText } = render(<TournamentInfo {...props} />);
-		expect(getByText('Current-tournament')).toBeTruthy();
-		expect(getByText('Tournament description')).toBeTruthy();
-		expect(getByText('in progress')).toBeTruthy();
-		expect(getByText('more info')).toBeTruthy();
+		const { getByTestId } = render(<TournamentInfo {...props} />);
+
+		expect(getByTestId('tournament-title')).toHaveTextContent(
+			'Current-tournament',
+		);
+		expect(getByTestId('tournament-description')).toHaveTextContent(
+			'Tournament description',
+		);
+		expect(getByTestId('more-info-link').props.children).toBeTruthy();
 	});
 
 	it('calls onEdit when DotsButton is used', () => {
 		const { getByTestId } = render(<TournamentInfo {...props} />);
 		fireEvent.press(getByTestId('mock-dots-button'));
+
 		expect(props.onEdit).toHaveBeenCalled();
 	});
 
 	it('calls onMoreInfo when link is pressed', () => {
-		const { getByText } = render(<TournamentInfo {...props} />);
-		fireEvent.press(getByText('more info'));
+		const { getByTestId } = render(<TournamentInfo {...props} />);
+		fireEvent.press(getByTestId('more-info-link'));
+
 		expect(props.onMoreInfo).toHaveBeenCalled();
 	});
 });
