@@ -5,11 +5,7 @@ import { useCreatePlayer } from '@/hooks/queries/player/useCreatePlayer';
 import { useEditPlayer } from '@/hooks/queries/player/useEditPlayer';
 import { saveImageLocally } from '@/src/utils/image/saveImageLocally';
 
-import {
-	isNewImage,
-	type TypePlayer,
-	type TypePlayerToCreate,
-} from '@/src/types/player';
+import type { TypePlayer, TypePlayerToCreate } from '@/src/types/player';
 
 type TypeCreatePlayerForm = {
 	playerToEdit?: TypePlayer | null;
@@ -51,12 +47,12 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 	) => {
 		let imageToUpdate = null;
 
-		if (isNewImage(formPlayer, playerToEdit)) {
+		const isNewImage =
+			formPlayer.imageUrl && formPlayer.imageUrl !== playerToEdit.imageUrl;
+
+		if (isNewImage) {
 			imageToUpdate = saveImageLocally(formPlayer.imageUrl);
-		} else if (
-			formPlayer.imageUrl &&
-			playerToEdit.imageUrl === formPlayer.imageUrl
-		) {
+		} else {
 			imageToUpdate = playerToEdit.imageUrl;
 		}
 
