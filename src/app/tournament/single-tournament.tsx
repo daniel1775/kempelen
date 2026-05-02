@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
@@ -12,7 +12,9 @@ import TournamentTabs from '@/src/UI/molecules/tournament/TournamentTabs';
 import type { TypeSingleTournamentParams } from '@/src/types/navigation';
 
 export default function SingleTournament() {
+	const router = useRouter();
 	const { t } = useTranslation();
+
 	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>(
 		'standings',
 	);
@@ -29,7 +31,12 @@ export default function SingleTournament() {
 				title={singleTournamentData?.title || ''}
 				description={singleTournamentData?.description || ''}
 				status={singleTournamentData?.status || ''}
-				onEdit={() => console.log('Edit pressed')}
+				onEdit={() =>
+					router.push({
+						pathname: '/tournament/create-tournament',
+						params: { tournamentId },
+					})
+				}
 				onDelete={() => console.log('Delete pressed')}
 				onMoreInfo={() => console.log('More info pressed')}
 			/>
