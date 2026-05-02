@@ -18,7 +18,7 @@ export type TypeTournamentToCreate = {
 	tiebreak: string;
 	scoreByes: string;
 	description: string;
-	image: string;
+	image?: string;
 };
 
 export type TypeFormTournamentFieldsName =

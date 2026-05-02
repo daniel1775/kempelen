@@ -22,7 +22,7 @@ export default function TournamentLayout() {
 			<Stack.Screen
 				name='create-tournament'
 				options={{
-					header: () => <Header isEmpty />,
+					header: () => <Header />,
 					headerShown: true,
 				}}
 			/>

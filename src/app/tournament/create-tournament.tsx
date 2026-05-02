@@ -2,11 +2,12 @@ import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useLocalSearchParams } from 'expo-router';
 
+import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
+
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
 
 import type { TypeCreateTournamentParams } from '@/src/types/navigation';
-import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
 
 export default function CreateTournament() {
 	const { t } = useTranslation();
@@ -15,7 +16,9 @@ export default function CreateTournament() {
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
 
 	return (
-		<ScreenLayout title={t('initialSettings')}>
+		<ScreenLayout
+			title={tournamentId ? t('editTournament') : t('initialSettings')}
+		>
 			<ScrollView>
 				<View className='mt-16' />
 				<CreateTournamentForm tournamentToEdit={singleTournamentData} />

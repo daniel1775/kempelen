@@ -59,7 +59,7 @@ export const useCreateTournamentForm = ({
 			imageToUpdate = tournamentToEdit.image;
 		}
 
-		const tournamentPayload: Partial<TypeTournamentToCreate> = {
+		const tournamentPayload: TypeTournamentToCreate = {
 			title: formTournament.title,
 			roundsNumber: Number(formTournament.roundsNumber),
 			tiebreak: formTournament.tiebreak,

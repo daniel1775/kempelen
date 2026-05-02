@@ -42,5 +42,7 @@
 	"settingsIndexPage": "Settings index page",
 	"tournaments": "Tournaments",
 	"initialSettings": "Initial settings",
+	"editTournament": "Edit tournament",
+	"editPlayer": "Edit player",
 	"standings": "Standings"
 }

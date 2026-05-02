@@ -42,5 +42,7 @@
 	"settingsIndexPage": "Página de inicio de configuración",
 	"tournaments": "Torneos",
 	"initialSettings": "Configuración inicial",
+	"editTournament": "Editar torneo",
+	"editPlayer": "Editar jugador",
 	"standings": "Tabla de posiciones"
 }

@@ -36,7 +36,7 @@ export default function CreatePlayer() {
 	}, [params]);
 
 	return (
-		<ScreenLayout title={t('createPlayer')}>
+		<ScreenLayout title={playerToCreate ? t('editPlayer') : t('createPlayer')}>
 			<ScrollView>
 				<View className='flex-1 mt-16 gap-4 mb-12 px-4'>
 					<RadioButton
