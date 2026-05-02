@@ -1,53 +1,42 @@
 import { useForm } from '@tanstack/react-form';
-import { Directory, Paths, File } from 'expo-file-system';
 import { useRouter } from 'expo-router';
 
 import { useCreateTournament } from '@/src/hooks/queries/tournament/useCreateTournament';
+import { saveImageLocally } from '@/src/utils/image/saveImageLocally';
 
-import type { TypeTournamentToCreate } from '@/src/types/tournament';
+import type {
+	TypeTournamentToCreate,
+	TypeTournament,
+} from '@/src/types/tournament';
 
-export const useCreateTournamentForm = () => {
+type TypeCreateTournamentFormProps = {
+	tournamentToEdit?: TypeTournament | null;
+};
+
+export const useCreateTournamentForm = ({
+	tournamentToEdit,
+}: TypeCreateTournamentFormProps) => {
 	const router = useRouter();
 
 	const createTournament = useCreateTournament();
 
 	const formInitialValues: TypeTournamentToCreate = {
-		title: '',
-		roundsNumber: 0,
-		tiebreak: '',
-		scoreByes: '',
-		description: '',
-		image: '',
-	};
-
-	const handleSaveImage = (dir: Directory, imageUri?: string) => {
-		if (!imageUri) {
-			return '';
-		}
-		if (imageUri.startsWith('http')) {
-			return imageUri;
-		}
-
-		const imageFile = new File(imageUri);
-		imageFile.move(dir);
-
-		return imageFile.name;
+		title: tournamentToEdit?.title || '',
+		roundsNumber: tournamentToEdit?.roundsNumber || 0,
+		tiebreak: tournamentToEdit?.tiebreak || '',
+		scoreByes: tournamentToEdit?.scoreByes || '',
+		description: tournamentToEdit?.description || '',
+		image: tournamentToEdit?.image || '',
 	};
 
 	const form = useForm({
 		defaultValues: formInitialValues,
 		onSubmit: async ({ value }) => {
 			try {
-				const dir = new Directory(Paths.document);
-				dir.create({
-					overwrite: true,
-					idempotent: true,
-				});
-
 				const tournamentToCreate: TypeTournamentToCreate = {
 					...value,
 					roundsNumber: Number(value.roundsNumber),
-					image: handleSaveImage(dir, value.image),
+					image: saveImageLocally(value.image),
 				};
 
 				await createTournament.mutateAsync(tournamentToCreate);

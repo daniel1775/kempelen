@@ -1,9 +1,9 @@
 import { useForm } from '@tanstack/react-form';
-import { Directory, Paths, File } from 'expo-file-system';
 import { useRouter } from 'expo-router';
 
 import { useCreatePlayer } from '@/hooks/queries/player/useCreatePlayer';
 import { useEditPlayer } from '@/hooks/queries/player/useEditPlayer';
+import { saveImageLocally } from '@/src/utils/image/saveImageLocally';
 
 import {
 	isNewImage,
@@ -35,28 +35,11 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 				imageUrl: '',
 			};
 
-	const handleSaveImage = (dir: Directory, imageUri?: string) => {
-		if (!imageUri) {
-			return '';
-		}
-		if (imageUri.startsWith('http')) {
-			return imageUri;
-		}
-
-		const imageFile = new File(imageUri);
-		imageFile.move(dir);
-
-		return imageFile.name;
-	};
-
-	const handleCreatePlayer = async (
-		formPlayer: TypePlayerToCreate,
-		dir: Directory,
-	) => {
+	const handleCreatePlayer = async (formPlayer: TypePlayerToCreate) => {
 		const playerToCreate: TypePlayerToCreate = {
 			...formPlayer,
 			elo: Number(formPlayer.elo),
-			imageUrl: handleSaveImage(dir, formPlayer.imageUrl),
+			imageUrl: saveImageLocally(formPlayer.imageUrl),
 		};
 
 		await createPlayer.mutateAsync(playerToCreate);
@@ -65,12 +48,11 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 	const handleEditPlayer = async (
 		formPlayer: TypePlayerToCreate,
 		playerToEdit: TypePlayer,
-		dir: Directory,
 	) => {
 		let imageToUpdate = null;
 
 		if (isNewImage(formPlayer, playerToEdit)) {
-			imageToUpdate = handleSaveImage(dir, formPlayer.imageUrl);
+			imageToUpdate = saveImageLocally(formPlayer.imageUrl);
 		} else if (
 			formPlayer.imageUrl &&
 			playerToEdit.imageUrl === formPlayer.imageUrl
@@ -97,16 +79,10 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 		defaultValues: formInitialValues,
 		onSubmit: async ({ value, meta }) => {
 			try {
-				const dir = new Directory(Paths.document);
-				dir.create({
-					overwrite: true,
-					idempotent: true,
-				});
-
 				if (playerToEdit) {
-					await handleEditPlayer(value, playerToEdit, dir);
+					await handleEditPlayer(value, playerToEdit);
 				} else {
-					await handleCreatePlayer(value, dir);
+					await handleCreatePlayer(value);
 				}
 
 				router.back();

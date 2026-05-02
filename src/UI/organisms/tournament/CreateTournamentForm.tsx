@@ -4,15 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
+import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
 
 import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 
-const CreateTournamentForm = () => {
+type TypeCreateTournamentFormProps = {
+	tournamentId?: string;
+};
+
+const CreateTournamentForm = ({
+	tournamentId,
+}: TypeCreateTournamentFormProps) => {
 	const { t } = useTranslation();
-	const form = useCreateTournamentForm();
+	const { singleTournamentData } = useGetSingleTournament(tournamentId);
+	const form = useCreateTournamentForm({
+		tournamentToEdit: singleTournamentData,
+	});
 
 	const { pickImage } = usePickImage((uri) => {
 		form.setFieldValue('image', uri);
