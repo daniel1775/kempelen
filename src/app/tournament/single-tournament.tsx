@@ -4,29 +4,46 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
+import { useDeleteTournament } from '@/src/hooks/queries/tournament/useDeleteTournament';
 
 import TournamentHeader from '@/src/UI/molecules/tournament/TournamentHeader';
 import TournamentInfo from '@/src/UI/organisms/tournament/TournamentInfo';
 import TournamentTabs from '@/src/UI/molecules/tournament/TournamentTabs';
+import ModalConfirmation from '@/src/UI/molecules/modal/ModalConfirmation';
 
 import type { TypeSingleTournamentParams } from '@/src/types/navigation';
 
 export default function SingleTournament() {
-	const router = useRouter();
 	const { t } = useTranslation();
+
+	const router = useRouter();
+	const { tournamentId } = useLocalSearchParams<TypeSingleTournamentParams>();
 
 	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>(
 		'standings',
 	);
-
-	const { tournamentId } = useLocalSearchParams<TypeSingleTournamentParams>();
+	const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
+	const { mutateAsync: deleteTournament } = useDeleteTournament();
+
+	const handleDeleteTournament = async () => {
+		await deleteTournament(tournamentId);
+		setIsDeleteModalVisible(false);
+		router.back();
+	};
 
 	return (
 		<ScrollView className='flex-1 bg-gray'>
-			<TournamentHeader imageUrl={singleTournamentData?.image || ''} />
+			<ModalConfirmation
+				visible={isDeleteModalVisible}
+				title={t('deleteTournament')}
+				message={t('areYouSureDeleteTournament')}
+				onCancel={() => setIsDeleteModalVisible(false)}
+				onConfirm={handleDeleteTournament}
+			/>
 
+			<TournamentHeader imageUrl={singleTournamentData?.image || ''} />
 			<TournamentInfo
 				title={singleTournamentData?.title || ''}
 				description={singleTournamentData?.description || ''}
@@ -37,7 +54,7 @@ export default function SingleTournament() {
 						params: { tournamentId },
 					})
 				}
-				onDelete={() => console.log('Delete pressed')}
+				onDelete={() => setIsDeleteModalVisible(true)}
 				onMoreInfo={() => console.log('More info pressed')}
 			/>
 

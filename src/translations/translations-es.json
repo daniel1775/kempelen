@@ -44,5 +44,8 @@
 	"initialSettings": "Configuración inicial",
 	"editTournament": "Editar torneo",
 	"editPlayer": "Editar jugador",
-	"standings": "Tabla de posiciones"
+	"standings": "Tabla de posiciones",
+	"deleteTournament": "Eliminar torneo",
+	"areYouSureDeleteTournament": "¿Estás seguro de que quieres eliminar este torneo?",
+	"cancel": "Cancelar"
 }

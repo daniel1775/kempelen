@@ -11,6 +11,7 @@ export const useDeleteTournament = () => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['allTournaments'] });
+			queryClient.invalidateQueries({ queryKey: ['singleTournament'] });
 		},
 	});
 

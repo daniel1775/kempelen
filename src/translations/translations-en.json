@@ -44,5 +44,8 @@
 	"initialSettings": "Initial settings",
 	"editTournament": "Edit tournament",
 	"editPlayer": "Edit player",
-	"standings": "Standings"
+	"standings": "Standings",
+	"deleteTournament": "Delete tournament",
+	"areYouSureDeleteTournament": "Are you sure you want to delete this tournament?",
+	"cancel": "Cancel"
 }
