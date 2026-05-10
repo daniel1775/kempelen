@@ -29,6 +29,9 @@
 		}
 	},
 	"dependencies": {
+		"@buoy-gg/core": "^2.1.15",
+		"@buoy-gg/network": "^2.1.15",
+		"@buoy-gg/react-query": "^2.1.15",
 		"@expo/vector-icons": "^15.0.3",
 		"@invertase/react-native-apple-authentication": "^2.5.1",
 		"@react-native-firebase/app": "^23.8.8",

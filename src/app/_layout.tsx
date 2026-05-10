@@ -1,6 +1,8 @@
 import '@/src/global.css';
 import 'react-native-reanimated';
 
+import { useEffect } from 'react';
+import { FloatingDevTools } from '@buoy-gg/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
@@ -14,7 +16,6 @@ import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
 import translationsEs from '@/src/translations/translations-es.json';
 import TabButton from '@/UI/atoms/tab/TabButton';
-import { useEffect } from 'react';
 
 const { height: screenHeight } = Dimensions.get('window');
 const BASE_RATIO = 0.05;
@@ -118,6 +119,7 @@ export default function Layout() {
 				</TabList>
 			</Tabs>
 			<Toast />
+			<FloatingDevTools licenseKey={process.env.EXPO_PUBLIC_BUOY_LICENSE_KEY} />
 		</QueryClientProvider>
 	);
 }
