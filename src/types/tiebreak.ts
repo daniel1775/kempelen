@@ -5,11 +5,8 @@ export type TypeTiebreakOption =
 	| 'victory-points'
 	| 'direct-encounter';
 
-export type TypeTiebreakResponse = {
+export type TypeTiebreak = {
 	id: string;
 	name: TypeTiebreakOption;
-};
-
-export type TypeTiebreak = TypeTiebreakResponse & {
 	description: string;
 };
