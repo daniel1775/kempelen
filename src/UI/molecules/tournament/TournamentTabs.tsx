@@ -35,13 +35,14 @@ const TournamentTabs = ({
 				</Text>
 			</Pressable>
 			<Pressable
-				onPress={() => onTabChange('standings')}
+				/* onPress={() => onTabChange('standings')} */
 				testID='tab-standings'
-				className={`${tabStyles} ${
+				className={`${tabStyles} invisible ${
 					activeTab === 'standings'
 						? 'bg-orange border-orange'
 						: 'border-neutral-gray'
 				}`}
+				/* className={`${tabStyles} invisible`} */
 			>
 				<Text
 					className={`text-center text-xl ${

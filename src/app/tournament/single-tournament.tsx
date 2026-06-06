@@ -19,9 +19,7 @@ export default function SingleTournament() {
 	const router = useRouter();
 	const { tournamentId } = useLocalSearchParams<TypeSingleTournamentParams>();
 
-	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>(
-		'standings',
-	);
+	const [activeTab, setActiveTab] = useState<'rounds' | 'standings'>('rounds');
 	const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
