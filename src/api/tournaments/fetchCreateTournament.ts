@@ -7,7 +7,9 @@ import DeviceInfo from 'react-native-device-info';
 
 import type { TypeTournamentToCreate } from '@/src/types/tournament';
 
-export const fetchCreateTournament = async (tournamentToCreate: TypeTournamentToCreate) => {
+export const fetchCreateTournament = async (
+	tournamentToCreate: TypeTournamentToCreate,
+) => {
 	try {
 		const db = getFirestore();
 		const deviceId = await DeviceInfo.getUniqueId();
