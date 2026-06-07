@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalSearchParams } from 'expo-router';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
+import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
 
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
@@ -14,6 +15,7 @@ export default function CreateTournament() {
 	const { tournamentId } = useLocalSearchParams<TypeCreateTournamentParams>();
 
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
+	const { allTiebreaksData } = useGetAllTiebreaks();
 
 	return (
 		<ScreenLayout
@@ -21,7 +23,10 @@ export default function CreateTournament() {
 		>
 			<ScrollView>
 				<View className='mt-16' />
-				<CreateTournamentForm tournamentToEdit={singleTournamentData} />
+				<CreateTournamentForm
+					tournamentToEdit={singleTournamentData}
+					allTiebreaks={allTiebreaksData}
+				/>
 			</ScrollView>
 		</ScreenLayout>
 	);

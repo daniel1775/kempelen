@@ -11,13 +11,16 @@ import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 
 import type { TypeTournament } from '@/src/types/tournament';
+import type { TypeTiebreak } from '@/src/types/tiebreak';
 
 type TypeCreateTournamentFormProps = {
 	tournamentToEdit?: TypeTournament | null;
+	allTiebreaks?: TypeTiebreak[];
 };
 
 const CreateTournamentForm = ({
 	tournamentToEdit,
+	allTiebreaks,
 }: TypeCreateTournamentFormProps) => {
 	const { t } = useTranslation();
 

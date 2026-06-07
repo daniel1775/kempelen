@@ -6,15 +6,9 @@ import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import ListTournaments from '@/src/UI/organisms/tournament/ListTournaments';
 import CustomButton from '@/src/UI/atoms/buttons/CustomButton';
 
-import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
-
 export default function Tournament() {
 	const { t } = useTranslation();
 	const router = useRouter();
-
-	const { allTiebreaksData } = useGetAllTiebreaks();
-
-	console.log('allTie = ', allTiebreaksData);
 
 	return (
 		<ScreenLayout title={t('tournaments')}>
