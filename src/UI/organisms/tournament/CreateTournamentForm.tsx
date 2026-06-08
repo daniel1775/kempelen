@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
@@ -9,6 +10,9 @@ import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
+import TiebreakSortableList from '@/UI/organisms/tiebreak/TiebreakSortableList';
+import TiebreakList from '@/UI/organisms/tiebreak/TiebreakList';
+import TextBase from '@/UI/atoms/text/TextBase';
 
 import type { TypeTournament } from '@/src/types/tournament';
 import type { TypeTiebreak } from '@/src/types/tiebreak';
@@ -22,8 +26,9 @@ const CreateTournamentForm = ({
 	tournamentToEdit,
 	allTiebreaks,
 }: TypeCreateTournamentFormProps) => {
-	const { t } = useTranslation();
+	const [showTiebreaks, setShowTiebreaks] = useState(false);
 
+	const { t } = useTranslation();
 	const form = useCreateTournamentForm({
 		tournamentToEdit,
 	});
@@ -38,6 +43,9 @@ const CreateTournamentForm = ({
 
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
+			{allTiebreaks && allTiebreaks.length > 0 && showTiebreaks && (
+				<TiebreakSortableList allTiebreaks={allTiebreaks} />
+			)}
 			<FormTextField
 				name='title'
 				label={`${t('title')}: `}
@@ -50,11 +58,14 @@ const CreateTournamentForm = ({
 				form={form}
 				noNumberErrorMsg={t('roundsMustBeNumeric')}
 			/>
-			<FormTextField
-				name='tiebreak'
-				label={`${t('tiebreak')}: `}
-				form={form}
-			/>
+			<View>
+				<TextBase customStyles={'text-light-gray text-[16px] mb-3'}>
+					{`${t('tiebreaks')}: `}
+				</TextBase>
+			</View>
+			{allTiebreaks && allTiebreaks.length > 0 && (
+				<TiebreakList allTiebreaks={allTiebreaks} />
+			)}
 			<FormTextField
 				name='scoreByes'
 				label={`${t('scoreByes')}: `}
