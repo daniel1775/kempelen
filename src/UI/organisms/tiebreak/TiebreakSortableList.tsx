@@ -18,7 +18,7 @@ const TiebreakSortableList = ({
 }: TypeTiebreakSortableListProps) => {
 	const renderItem = useCallback(
 		(props: SortableRenderItemProps<(typeof allTiebreaks)[0]>) => {
-			const { item, id, ...rest } = props;
+			const { item, id, index, ...rest } = props;
 			return (
 				<SortableItem
 					key={id}
@@ -26,7 +26,11 @@ const TiebreakSortableList = ({
 					data={item}
 					{...rest}
 				>
-					<TiebreakCard tiebreakData={item} />
+					<TiebreakCard
+						tiebreakData={item}
+						orderNumber={index + 1}
+						onlyView={false}
+					/>
 				</SortableItem>
 			);
 		},
@@ -34,13 +38,18 @@ const TiebreakSortableList = ({
 	);
 
 	return (
-		<Modal>
-			<View>
-				<Sortable
-					data={allTiebreaks}
-					renderItem={renderItem}
-					itemHeight={60}
-				/>
+		<Modal
+			transparent
+			animationType='fade'
+		>
+			<View className='flex-1 justify-center items-center bg-black/80 px-6'>
+				<View className=' h-[500px] w-[90%]'>
+					<Sortable
+						data={allTiebreaks}
+						renderItem={renderItem}
+						itemHeight={60}
+					/>
+				</View>
 			</View>
 		</Modal>
 	);

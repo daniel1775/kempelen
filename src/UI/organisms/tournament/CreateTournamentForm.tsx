@@ -27,6 +27,7 @@ const CreateTournamentForm = ({
 	allTiebreaks,
 }: TypeCreateTournamentFormProps) => {
 	const [showTiebreaks, setShowTiebreaks] = useState(false);
+	const [showInfo, setShowInfo] = useState(false);
 
 	const { t } = useTranslation();
 	const form = useCreateTournamentForm({
@@ -58,7 +59,10 @@ const CreateTournamentForm = ({
 				form={form}
 				noNumberErrorMsg={t('roundsMustBeNumeric')}
 			/>
-			<FormTiebreakField />
+			<FormTiebreakField
+				onEditPress={() => setShowTiebreaks(true)}
+				onInfoPress={() => setShowInfo(true)}
+			/>
 			{allTiebreaks && allTiebreaks.length > 0 && (
 				<TiebreakList allTiebreaks={allTiebreaks} />
 			)}

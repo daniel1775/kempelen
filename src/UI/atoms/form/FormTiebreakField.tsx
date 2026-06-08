@@ -1,13 +1,19 @@
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Entypo from '@expo/vector-icons/Entypo';
 
 import TextBase from '@/UI/atoms/text/TextBase';
 
-type TypeFormTiebreakFieldProps = {};
+type TypeFormTiebreakFieldProps = {
+	onEditPress: () => void;
+	onInfoPress: () => void;
+};
 
-const FormTiebreakField = ({}: TypeFormTiebreakFieldProps) => {
+const FormTiebreakField = ({
+	onEditPress,
+	onInfoPress,
+}: TypeFormTiebreakFieldProps) => {
 	const { t } = useTranslation();
 
 	return (
@@ -15,16 +21,20 @@ const FormTiebreakField = ({}: TypeFormTiebreakFieldProps) => {
 			<TextBase customStyles={'text-light-gray text-[16px] mr-4'}>
 				{`${t('tiebreaks')} `}
 			</TextBase>
-			<MaterialIcons
-				name='edit'
-				size={24}
-				color='white'
-			/>
-			<Entypo
-				name='info-with-circle'
-				size={22}
-				color='white'
-			/>
+			<Pressable onPress={onEditPress}>
+				<MaterialIcons
+					name='edit'
+					size={24}
+					color='white'
+				/>
+			</Pressable>
+			<Pressable onPress={onInfoPress}>
+				<Entypo
+					name='info-with-circle'
+					size={22}
+					color='white'
+				/>
+			</Pressable>
 		</View>
 	);
 };

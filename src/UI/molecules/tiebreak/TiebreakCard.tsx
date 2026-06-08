@@ -1,4 +1,5 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { SortableItem } from 'react-native-reanimated-dnd';
 
 import TextBase from '@/UI/atoms/text/TextBase';
 
@@ -13,7 +14,7 @@ type TypeTiebreakCardProps = {
 const TiebreakCard = ({
 	tiebreakData,
 	orderNumber,
-	onlyView = false,
+	onlyView = true,
 }: TypeTiebreakCardProps) => {
 	return (
 		<View className='flex-1 flex-row bg-neutral-gray'>
@@ -23,9 +24,11 @@ const TiebreakCard = ({
 			<TextBase customStyles='text-white py-2 text-[16px]'>
 				{tiebreakData.name}
 			</TextBase>
-			{onlyView && (
+			{!onlyView && (
 				<View className='flex-1 items-end justify-center pr-4'>
-					<TextBase>⣿</TextBase>
+					<SortableItem.Handle>
+						<Text className='text-white'>⣿</Text>
+					</SortableItem.Handle>
 				</View>
 			)}
 		</View>
