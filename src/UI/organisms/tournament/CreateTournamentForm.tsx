@@ -12,10 +12,10 @@ import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TiebreakSortableList from '@/UI/organisms/tiebreak/TiebreakSortableList';
 import TiebreakList from '@/UI/organisms/tiebreak/TiebreakList';
-import TextBase from '@/UI/atoms/text/TextBase';
 
 import type { TypeTournament } from '@/src/types/tournament';
 import type { TypeTiebreak } from '@/src/types/tiebreak';
+import FormTiebreakField from '../../atoms/form/FormTiebreakField';
 
 type TypeCreateTournamentFormProps = {
 	tournamentToEdit?: TypeTournament | null;
@@ -58,11 +58,7 @@ const CreateTournamentForm = ({
 				form={form}
 				noNumberErrorMsg={t('roundsMustBeNumeric')}
 			/>
-			<View>
-				<TextBase customStyles={'text-light-gray text-[16px] mb-3'}>
-					{`${t('tiebreaks')}: `}
-				</TextBase>
-			</View>
+			<FormTiebreakField />
 			{allTiebreaks && allTiebreaks.length > 0 && (
 				<TiebreakList allTiebreaks={allTiebreaks} />
 			)}
