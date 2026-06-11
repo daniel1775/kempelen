@@ -24,6 +24,9 @@ const TiebreakSortableList = ({
 					key={id}
 					id={id}
 					data={item}
+					onDrop={(a, b, allPositions) => {
+						console.log('position: ', allPositions);
+					}}
 					{...rest}
 				>
 					<TiebreakCard
