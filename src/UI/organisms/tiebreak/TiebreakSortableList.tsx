@@ -13,10 +13,14 @@ import CustomButton from '@/UI/atoms/buttons/CustomButton';
 
 type TypeTiebreakSortableListProps = {
 	allTiebreaks: TypeTiebreak[];
+	onSave: () => void;
+	onCancel: () => void;
 };
 
 const TiebreakSortableList = ({
 	allTiebreaks,
+	onSave,
+	onCancel,
 }: TypeTiebreakSortableListProps) => {
 	const { t } = useTranslation();
 
@@ -29,6 +33,8 @@ const TiebreakSortableList = ({
 					id={id}
 					data={item}
 					onDrop={(a, b, allPositions) => {
+						console.log('a: ', a);
+						console.log('b: ', b);
 						console.log('position: ', allPositions);
 					}}
 					{...rest}
@@ -49,8 +55,8 @@ const TiebreakSortableList = ({
 			transparent
 			animationType='fade'
 		>
-			<View className='flex-1 justify-center items-center bg-black/80 px-6 '>
-				<View className='justify-center items-center w-[90%] bg-gray'>
+			<View className='flex-1 justify-center items-center bg-black/80 px-6'>
+				<View className='justify-center items-center w-[90%] bg-gray py-6'>
 					<View className='h-[290px] w-[80%] bg-gray'>
 						<Sortable
 							data={allTiebreaks}
@@ -62,12 +68,12 @@ const TiebreakSortableList = ({
 					<View className='flex-row justify-center gap-x-4 mt-6'>
 						<CustomButton
 							text={t('cancel')}
-							onPress={() => {}}
+							onPress={onCancel}
 							variant='primary-sm'
 						/>
 						<CustomButton
 							text={t('save')}
-							onPress={() => {}}
+							onPress={onSave}
 							variant='primary-sm'
 						/>
 					</View>

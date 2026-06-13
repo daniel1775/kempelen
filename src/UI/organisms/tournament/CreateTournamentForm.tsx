@@ -42,10 +42,20 @@ const CreateTournamentForm = ({
 		form.reset();
 	};
 
+	const onCancel = () => {
+		setShowTiebreaks(false);
+	};
+
+	const onSave = () => {};
+
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
 			{allTiebreaks && allTiebreaks.length > 0 && showTiebreaks && (
-				<TiebreakSortableList allTiebreaks={allTiebreaks} />
+				<TiebreakSortableList
+					allTiebreaks={allTiebreaks}
+					onCancel={onCancel}
+					onSave={onSave}
+				/>
 			)}
 			<FormTextField
 				name='title'
