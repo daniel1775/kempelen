@@ -6,10 +6,11 @@ import {
 	SortableItem,
 	SortableRenderItemProps,
 } from 'react-native-reanimated-dnd';
+
 import TiebreakCard from '@/UI/molecules/tiebreak/TiebreakCard';
+import CustomButton from '@/UI/atoms/buttons/CustomButton';
 
 import type { TypeTiebreak } from '@/src/types/tiebreak';
-import CustomButton from '@/UI/atoms/buttons/CustomButton';
 
 type TypeTiebreakSortableListProps = {
 	allTiebreaks: TypeTiebreak[];

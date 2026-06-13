@@ -8,5 +8,5 @@ export type TypeTiebreakOption =
 export type TypeTiebreak = {
 	id: string;
 	name: TypeTiebreakOption;
-	description: string;
+	description?: string;
 };

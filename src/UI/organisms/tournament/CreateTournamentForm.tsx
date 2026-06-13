@@ -12,10 +12,10 @@ import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TiebreakSortableList from '@/UI/organisms/tiebreak/TiebreakSortableList';
 import TiebreakList from '@/UI/organisms/tiebreak/TiebreakList';
+import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
 
 import type { TypeTournament } from '@/src/types/tournament';
 import type { TypeTiebreak } from '@/src/types/tiebreak';
-import FormTiebreakField from '../../atoms/form/FormTiebreakField';
 
 type TypeCreateTournamentFormProps = {
 	tournamentToEdit?: TypeTournament | null;

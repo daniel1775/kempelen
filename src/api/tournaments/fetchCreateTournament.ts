@@ -19,7 +19,7 @@ export const fetchCreateTournament = async (
 		await addDoc(tournamentRef, {
 			title: tournamentToCreate.title,
 			rounds_number: tournamentToCreate.roundsNumber,
-			tiebreak: tournamentToCreate.tiebreak,
+			tiebreaks: tournamentToCreate.tiebreaks,
 			score_byes: tournamentToCreate.scoreByes,
 			description: tournamentToCreate.description,
 			image: tournamentToCreate.image ?? '',
