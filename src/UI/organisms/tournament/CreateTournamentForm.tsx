@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
@@ -19,12 +19,10 @@ import type { TypeTiebreak } from '@/src/types/tiebreak';
 
 type TypeCreateTournamentFormProps = {
 	tournamentToEdit?: TypeTournament | null;
-	allTiebreaks?: TypeTiebreak[];
 };
 
 const CreateTournamentForm = ({
 	tournamentToEdit,
-	allTiebreaks,
 }: TypeCreateTournamentFormProps) => {
 	const [showTiebreaks, setShowTiebreaks] = useState(false);
 	const [showInfo, setShowInfo] = useState(false);
@@ -33,6 +31,10 @@ const CreateTournamentForm = ({
 	const form = useCreateTournamentForm({
 		tournamentToEdit,
 	});
+
+	const userTiebreaks = useMemo(() => {
+		return form.getFieldValue('tiebreaks') || [];
+	}, [showTiebreaks]);
 
 	const { pickImage } = usePickImage((uri) => {
 		form.setFieldValue('image', uri);
@@ -46,13 +48,16 @@ const CreateTournamentForm = ({
 		setShowTiebreaks(false);
 	};
 
-	const onSave = () => {};
+	const onSave = (tiebreaksToUpdate: TypeTiebreak[]) => {
+		form.setFieldValue('tiebreaks', tiebreaksToUpdate);
+		setShowTiebreaks(false);
+	};
 
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
-			{allTiebreaks && allTiebreaks.length > 0 && showTiebreaks && (
+			{userTiebreaks && userTiebreaks.length > 0 && showTiebreaks && (
 				<TiebreakSortableList
-					allTiebreaks={allTiebreaks}
+					allTiebreaks={userTiebreaks}
 					onCancel={onCancel}
 					onSave={onSave}
 				/>
@@ -73,8 +78,8 @@ const CreateTournamentForm = ({
 				onEditPress={() => setShowTiebreaks(true)}
 				onInfoPress={() => setShowInfo(true)}
 			/>
-			{allTiebreaks && allTiebreaks.length > 0 && (
-				<TiebreakList allTiebreaks={allTiebreaks} />
+			{userTiebreaks && userTiebreaks.length > 0 && (
+				<TiebreakList allTiebreaks={userTiebreaks} />
 			)}
 			<FormTextField
 				name='scoreByes'

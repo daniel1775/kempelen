@@ -1,5 +1,5 @@
 import { View, Modal } from 'react-native';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
 	Sortable,
@@ -14,7 +14,7 @@ import type { TypeTiebreak } from '@/src/types/tiebreak';
 
 type TypeTiebreakSortableListProps = {
 	allTiebreaks: TypeTiebreak[];
-	onSave: () => void;
+	onSave: (tiebreaks: TypeTiebreak[]) => void;
 	onCancel: () => void;
 };
 
@@ -23,6 +23,8 @@ const TiebreakSortableList = ({
 	onSave,
 	onCancel,
 }: TypeTiebreakSortableListProps) => {
+	const [tiebreaksToUpdate, setTiebreaksToUpdate] = useState(allTiebreaks);
+
 	const { t } = useTranslation();
 
 	const renderItem = useCallback(
@@ -34,9 +36,18 @@ const TiebreakSortableList = ({
 					id={id}
 					data={item}
 					onDrop={(a, b, allPositions) => {
-						console.log('a: ', a);
-						console.log('b: ', b);
-						console.log('position: ', allPositions);
+						if (!allPositions || allPositions.length === 0) return;
+
+						const positionsOrdered: TypeTiebreak[] = [];
+
+						Object.keys(allPositions).map((key) => {
+							const position = allPositions[key];
+							positionsOrdered[position] = allTiebreaks.find(
+								(item) => item.id === key,
+							)!;
+						});
+
+						setTiebreaksToUpdate(positionsOrdered);
 					}}
 					{...rest}
 				>
@@ -74,7 +85,7 @@ const TiebreakSortableList = ({
 						/>
 						<CustomButton
 							text={t('save')}
-							onPress={onSave}
+							onPress={() => onSave(tiebreaksToUpdate)}
 							variant='primary-sm'
 						/>
 					</View>

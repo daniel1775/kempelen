@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { useCreateTournament } from '@/src/hooks/queries/tournament/useCreateTournament';
 import { useEditTournament } from '@/src/hooks/queries/tournament/useEditTournament';
 import { saveImageLocally } from '@/src/utils/image/saveImageLocally';
+import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
 
 import type {
 	TypeTournamentToCreate,
@@ -21,11 +22,12 @@ export const useCreateTournamentForm = ({
 
 	const { mutateAsync: createTournament } = useCreateTournament();
 	const { mutateAsync: editTournament } = useEditTournament();
+	const { allTiebreaksData } = useGetAllTiebreaks();
 
 	const formInitialValues: TypeTournamentToCreate = {
 		title: tournamentToEdit?.title || '',
 		roundsNumber: tournamentToEdit?.roundsNumber || 0,
-		tiebreaks: tournamentToEdit?.tiebreaks || [],
+		tiebreaks: tournamentToEdit?.tiebreaks || allTiebreaksData || [],
 		scoreByes: tournamentToEdit?.scoreByes || '',
 		description: tournamentToEdit?.description || '',
 		image: tournamentToEdit?.image || '',
