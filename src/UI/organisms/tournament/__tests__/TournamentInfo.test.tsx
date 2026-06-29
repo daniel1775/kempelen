@@ -10,7 +10,8 @@ jest.mock('react-i18next', () => ({
 
 jest.mock('@/src/UI/atoms/buttons/DotsButton', () => {
 	const { Pressable, Text } = require('react-native');
-	return (props: any) => (
+
+	const MockDotsButton = (props: any) => (
 		<Pressable
 			onPress={props.handlePressEdit}
 			testID='mock-dots-button'
@@ -18,6 +19,8 @@ jest.mock('@/src/UI/atoms/buttons/DotsButton', () => {
 			<Text>Dots</Text>
 		</Pressable>
 	);
+
+	return MockDotsButton;
 });
 
 describe('TournamentInfo Component', () => {
