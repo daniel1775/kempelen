@@ -1,0 +1,7 @@
+# nodeLinker: hoisted
+allowBuilds:
+  "@buoy-gg/shared-ui": true
+  "@firebase/util": true
+  protobufjs: true
+  unrs-resolver: true
+shamefullyHoist: true
