@@ -39,5 +39,5 @@ yarn-error.*
 app-example
 
 # native folders
-# ios/
-# android/
+ios/
+android/
