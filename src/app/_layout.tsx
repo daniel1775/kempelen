@@ -11,6 +11,9 @@ import { initReactI18next } from 'react-i18next';
 import { Dimensions, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getAuth, signInAnonymously } from '@react-native-firebase/auth';
+import { useNetworkActivityDevTools, withOnBootNetworkActivityRecording } from '@rozenite/network-activity-plugin';
+import { useReactNavigationDevTools } from '@rozenite/react-navigation-plugin';
+import { useNavigationContainerRef } from 'expo-router';
 
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
@@ -55,6 +58,13 @@ export default function Layout() {
 		Math.round(screenHeight * BASE_RATIO),
 	);
 	const tabHeight = calculated + insets.bottom;
+
+	const navigationRef = useNavigationContainerRef();
+
+	// Rozenite plugins
+	withOnBootNetworkActivityRecording();
+	useReactNavigationDevTools({ ref: navigationRef });
+	useNetworkActivityDevTools();
 
 	useEffect(() => {
 		signInAnonymously(getAuth())
