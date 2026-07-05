@@ -1,10 +1,12 @@
 import { FlatList, View } from 'react-native';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useGetAllPlayers } from '@/src/hooks/queries/player/useGetAllPlayers';
 
 import PlayerCard from '@/UI/molecules/player/PlayerCard';
 import Loading from '@/UI/atoms/general/Loading';
+import TextBase from '@/UI/atoms/text/TextBase';
 
 type TypeListPlayersProps = {
 	searchText: string;
@@ -12,6 +14,7 @@ type TypeListPlayersProps = {
 
 const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
 	const { allPlayersData, isLoading } = useGetAllPlayers();
+	const { t } = useTranslation();
 
 	const filteredPlayers = useMemo(() => {
 		return allPlayersData?.filter((player) =>
@@ -21,6 +24,26 @@ const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
 
 	if (isLoading) {
 		return <Loading />;
+	}
+
+	if (!isLoading && allPlayersData?.length === 0) {
+		return (
+			<View className='flex-1 items-center pt-32'>
+				<TextBase>
+					{t('noPlayersAvailable')}
+				</TextBase>
+			</View>
+		)
+	}
+
+	if (!isLoading && filteredPlayers?.length === 0) {
+		return (
+			<View className='flex-1 items-center pt-32'>
+				<TextBase>
+					{t('noPlayersFound')}
+				</TextBase>
+			</View>
+		)
 	}
 
 	return (

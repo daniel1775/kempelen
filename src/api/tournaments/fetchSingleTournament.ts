@@ -19,19 +19,19 @@ export const fetchSingleTournament = async ({ tournamentId }: TypeGetSingleTourn
 
 		const unformattedTournament = snapshot.data();
 
-		const singleTournament = {
+		const singleTournament: TypeTournament = {
 			id: snapshot.id,
 			deviceId: unformattedTournament?.device_id,
 			title: unformattedTournament?.title,
 			roundsNumber: unformattedTournament?.rounds_number,
-			tiebreak: unformattedTournament?.tiebreak,
+			tiebreaks: unformattedTournament?.tiebreak,
 			scoreByes: unformattedTournament?.score_byes,
 			description: unformattedTournament?.description,
 			image: unformattedTournament?.image ?? '',
 			status: unformattedTournament?.status,
 		};
 
-		return singleTournament as TypeTournament;
+		return singleTournament;
 	} catch (err) {
 		console.error('[fetchSingleTournament] error: ', err);
 

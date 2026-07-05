@@ -47,5 +47,7 @@
 	"standings": "Standings",
 	"deleteTournament": "Delete tournament",
 	"areYouSureDeleteTournament": "Are you sure you want to delete this tournament?",
-	"cancel": "Cancel"
+	"cancel": "Cancel",
+	"noPlayersAvailable": "No players available",
+	"noPlayersFound": "No players found"
 }

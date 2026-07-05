@@ -129,7 +129,7 @@ export default function Layout() {
 				</TabList>
 			</Tabs>
 			<Toast />
-			<FloatingDevTools licenseKey={process.env.EXPO_PUBLIC_BUOY_LICENSE_KEY} />
+			{/* <FloatingDevTools licenseKey={process.env.EXPO_PUBLIC_BUOY_LICENSE_KEY} /> */}
 		</QueryClientProvider>
 	);
 }

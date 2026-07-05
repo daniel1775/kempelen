@@ -47,5 +47,7 @@
 	"standings": "Tabla de posiciones",
 	"deleteTournament": "Eliminar torneo",
 	"areYouSureDeleteTournament": "¿Estás seguro de que quieres eliminar este torneo?",
-	"cancel": "Cancelar"
+	"cancel": "Cancelar",
+	"noPlayersAvailable": "No hay jugadores disponibles",
+	"noPlayersFound": "No se encontraron jugadores"
 }
