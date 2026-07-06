@@ -6,7 +6,7 @@ import { useGetAllTournaments } from '@/src/hooks/queries/tournament/useGetAllTo
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 import { useGetTournamentsFiltered } from '@/src/hooks/tournament/useGetTournamentsFiltered';
 
-import Accordion from '@/src/UI/molecules/layout/Accordion';
+import Accordion from '@/src/UI/molecules/accordion/Accordion';
 import TournamentCard from '@/src/UI/molecules/tournament/TournamentCard';
 import Loading from '@/src/UI/atoms/general/Loading';
 
