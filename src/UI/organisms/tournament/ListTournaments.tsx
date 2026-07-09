@@ -49,7 +49,7 @@ const ListTournaments = () => {
 							}}
 						>
 							<TournamentCard
-								title={tournament.title}
+								title={tournament.name}
 								numPlayers={0} // TODO: Add logic to calculate number of players
 								description={tournament.description}
 								imageUrl={resolveImageUri(tournament.image)}
@@ -64,7 +64,7 @@ const ListTournaments = () => {
 					{finishedTournaments.map((tournament) => (
 						<TournamentCard
 							key={tournament.id}
-							title={tournament.title}
+							title={tournament.name}
 							numPlayers={0} // TODO: Add logic to calculate number of players
 							description={tournament.description}
 							imageUrl={resolveImageUri(tournament.image)}

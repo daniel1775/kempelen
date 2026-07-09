@@ -43,7 +43,7 @@ export default function SingleTournament() {
 
 			<TournamentHeader imageUrl={singleTournamentData?.image || ''} />
 			<TournamentInfo
-				title={singleTournamentData?.title || ''}
+				title={singleTournamentData?.name || ''}
 				description={singleTournamentData?.description || ''}
 				status={singleTournamentData?.status || ''}
 				onEdit={() =>

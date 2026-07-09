@@ -6,7 +6,9 @@ type TypeGetSingleTournament = {
 	tournamentId: string;
 };
 
-export const fetchSingleTournament = async ({ tournamentId }: TypeGetSingleTournament) => {
+export const fetchSingleTournament = async ({
+	tournamentId,
+}: TypeGetSingleTournament) => {
 	try {
 		const db = getFirestore();
 
@@ -22,13 +24,14 @@ export const fetchSingleTournament = async ({ tournamentId }: TypeGetSingleTourn
 		const singleTournament: TypeTournament = {
 			id: snapshot.id,
 			deviceId: unformattedTournament?.device_id,
-			title: unformattedTournament?.title,
+			name: unformattedTournament?.name,
 			roundsNumber: unformattedTournament?.rounds_number,
 			tiebreaks: unformattedTournament?.tiebreak,
 			scoreByes: unformattedTournament?.score_byes,
 			description: unformattedTournament?.description,
 			image: unformattedTournament?.image ?? '',
 			status: unformattedTournament?.status,
+			rounds: [],
 		};
 
 		return singleTournament;

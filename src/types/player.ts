@@ -15,6 +15,12 @@ export type TypePlayer = {
 	imageUrl?: string;
 };
 
+export type TypeRoundPlayer = {
+	playerId: string;
+	color: 'white' | 'black';
+	result: number;
+};
+
 export type TypeFormPlayerFieldsName =
 	| 'name'
 	| 'chessProfileUrl'
