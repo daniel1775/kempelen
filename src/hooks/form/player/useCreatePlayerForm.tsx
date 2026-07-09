@@ -1,5 +1,4 @@
 import { useForm } from '@tanstack/react-form';
-import { useRouter } from 'expo-router';
 
 import { useCreatePlayer } from '@/hooks/queries/player/useCreatePlayer';
 import { useEditPlayer } from '@/hooks/queries/player/useEditPlayer';
@@ -12,8 +11,6 @@ type TypeCreatePlayerForm = {
 };
 
 export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
-	const router = useRouter();
-
 	const editPlayer = useEditPlayer();
 	const createPlayer = useCreatePlayer();
 
@@ -80,8 +77,6 @@ export const useCreatePlayerForm = ({ playerToEdit }: TypeCreatePlayerForm) => {
 				} else {
 					await handleCreatePlayer(value);
 				}
-
-				router.back();
 			} catch (err) {
 				console.error('[submitCreatePlayerForm] error: ', err);
 			}
