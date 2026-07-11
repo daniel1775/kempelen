@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
-import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
 
 import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
@@ -28,7 +27,6 @@ const CreateTournamentForm = ({
 	const [showTiebreaks, setShowTiebreaks] = useState(false);
 	const [showInfo, setShowInfo] = useState(false);
 
-	useGetAllTiebreaks();
 	const { t } = useTranslation();
 	const form = useCreateTournamentForm({
 		tournamentToEdit,

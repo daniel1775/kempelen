@@ -1,8 +1,12 @@
 import { Stack } from 'expo-router';
 
+import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
+
 import Header from '@/src/UI/layouts/Header';
 
 export default function TournamentLayout() {
+	useGetAllTiebreaks();
+
 	return (
 		<Stack screenOptions={{}}>
 			<Stack.Screen

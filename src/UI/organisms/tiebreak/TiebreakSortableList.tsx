@@ -30,6 +30,7 @@ const TiebreakSortableList = ({
 	const renderItem = useCallback(
 		(props: SortableRenderItemProps<(typeof allTiebreaks)[0]>) => {
 			const { item, id, index, ...rest } = props;
+
 			return (
 				<SortableItem
 					key={id}
@@ -71,7 +72,7 @@ const TiebreakSortableList = ({
 				<View className='justify-center items-center w-[90%] bg-gray py-6'>
 					<View className='h-[290px] w-[80%] bg-gray'>
 						<Sortable
-							data={allTiebreaks}
+							data={tiebreaksToUpdate}
 							renderItem={renderItem}
 							itemHeight={60}
 							style={{ backgroundColor: '#23272A' }}
