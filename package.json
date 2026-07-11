@@ -43,7 +43,7 @@
 		"@rozenite/network-activity-plugin": "^1.13.0",
 		"@rozenite/react-navigation-plugin": "^1.13.0",
 		"@rozenite/tanstack-query-plugin": "^1.13.0",
-		"@tanstack/react-form": "^1.27.7",
+		"@tanstack/react-form": "^1.33.1",
 		"@tanstack/react-query": "^5.90.20",
 		"axios": "^1.13.6",
 		"expo": "~54.0.25",

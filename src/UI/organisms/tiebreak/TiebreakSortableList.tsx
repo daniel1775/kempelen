@@ -70,7 +70,7 @@ const TiebreakSortableList = ({
 		>
 			<View className='flex-1 justify-center items-center bg-black/80 px-6'>
 				<View className='justify-center items-center w-[90%] bg-gray py-6'>
-					<View className='h-[290px] w-[80%] bg-gray'>
+					<View className='h-[300px] w-[80%] bg-gray'>
 						<Sortable
 							data={tiebreaksToUpdate}
 							renderItem={renderItem}

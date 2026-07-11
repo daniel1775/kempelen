@@ -1,5 +1,6 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from '@tanstack/react-form';
 import { useMemo, useState } from 'react';
 
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
@@ -32,10 +33,10 @@ const CreateTournamentForm = ({
 		tournamentToEdit,
 	});
 
-	const userTiebreaks = useMemo(() => {
-		return form.getFieldValue('tiebreaks') || [];
-		// eslint-disable-next-line
-	}, [form, showTiebreaks]);
+	const userTiebreaks = useSelector(
+		form.store,
+		(state) => state.values.tiebreaks,
+	);
 
 	const { pickImage } = usePickImage((uri) => {
 		form.setFieldValue('image', uri);
