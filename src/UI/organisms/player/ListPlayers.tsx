@@ -8,11 +8,17 @@ import PlayerCard from '@/UI/molecules/player/PlayerCard';
 import Loading from '@/UI/atoms/general/Loading';
 import TextBase from '@/UI/atoms/text/TextBase';
 
+import type { TypePlayer } from '@/src/types/player';
+
 type TypeListPlayersProps = {
 	searchText: string;
+	isPlayersForTournament?: boolean;
 };
 
-const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
+const ListPlayers = ({
+	searchText,
+	isPlayersForTournament,
+}: TypeListPlayersProps) => {
 	const { allPlayersData, isLoading } = useGetAllPlayers();
 	const { t } = useTranslation();
 
@@ -22,6 +28,12 @@ const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
 		);
 	}, [searchText, allPlayersData]);
 
+	const handleSelectPlayerForTournament = (player: TypePlayer) => {
+		if (!isPlayersForTournament) {
+			return;
+		}
+	};
+
 	if (isLoading) {
 		return <Loading />;
 	}
@@ -29,21 +41,17 @@ const ListPlayers = ({ searchText }: TypeListPlayersProps) => {
 	if (!isLoading && allPlayersData?.length === 0) {
 		return (
 			<View className='flex-1 items-center pt-32'>
-				<TextBase>
-					{t('noPlayersAvailable')}
-				</TextBase>
+				<TextBase>{t('noPlayersAvailable')}</TextBase>
 			</View>
-		)
+		);
 	}
 
 	if (!isLoading && filteredPlayers?.length === 0) {
 		return (
 			<View className='flex-1 items-center pt-32'>
-				<TextBase>
-					{t('noPlayersFound')}
-				</TextBase>
+				<TextBase>{t('noPlayersFound')}</TextBase>
 			</View>
-		)
+		);
 	}
 
 	return (

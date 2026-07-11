@@ -84,11 +84,14 @@ export const useCreateTournamentForm = ({
 			try {
 				if (tournamentToEdit) {
 					await handleEditTournament(value);
-				} else {
-					await handleCreateTournament(value);
+					router.back();
+					return;
 				}
 
-				router.back();
+				await handleCreateTournament(value);
+				router.navigate({
+					pathname: '/player/select-players',
+				});
 			} catch (err) {
 				console.error('[submitCreateTournamentForm] error: ', err);
 			}

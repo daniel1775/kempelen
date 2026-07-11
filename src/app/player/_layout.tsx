@@ -23,6 +23,13 @@ export default function PlayerLayout() {
 					headerShown: true,
 				}}
 			/>
+			<Stack.Screen
+				name='select-players'
+				options={{
+					header: () => <Header />,
+					headerShown: true,
+				}}
+			/>
 		</Stack>
 	);
 }
