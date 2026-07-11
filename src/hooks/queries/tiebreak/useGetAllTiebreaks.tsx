@@ -9,6 +9,7 @@ export const useGetAllTiebreaks = () => {
 			const response = await fetchAllTiebreaks();
 			return response;
 		},
+		staleTime: 1000 * 60 * 60 * 24,
 	});
 
 	return { allTiebreaksData: data, isLoading, error };
