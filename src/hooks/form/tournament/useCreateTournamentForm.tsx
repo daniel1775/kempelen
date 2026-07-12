@@ -25,7 +25,7 @@ export const useCreateTournamentForm = ({
 	const { allTiebreaksData } = useGetAllTiebreaks();
 
 	const formInitialValues: TypeTournamentToCreate = {
-		title: tournamentToEdit?.name || '',
+		name: tournamentToEdit?.name || '',
 		roundsNumber: tournamentToEdit?.roundsNumber || 5,
 		tiebreaks: tournamentToEdit?.tiebreaks || allTiebreaksData || [],
 		scoreByes: tournamentToEdit?.scoreByes || '',
@@ -62,7 +62,7 @@ export const useCreateTournamentForm = ({
 		}
 
 		const tournamentPayload: TypeTournamentToCreate = {
-			title: formTournament.title,
+			name: formTournament.name,
 			roundsNumber: Number(formTournament.roundsNumber),
 			tiebreaks: formTournament.tiebreaks,
 			scoreByes: formTournament.scoreByes,

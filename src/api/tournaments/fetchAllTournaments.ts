@@ -23,17 +23,20 @@ export const fetchAllTournaments = async () => {
 		const allTournaments = querySnapshot.docs.map((doc: any) => {
 			const docData = doc.data();
 
-			return {
+			const response: TypeTournament = {
 				id: doc.id,
 				deviceId: docData?.device_id,
-				title: docData?.title,
+				name: docData?.name,
 				roundsNumber: docData?.rounds_number,
-				tiebreak: docData?.tiebreak,
+				tiebreaks: docData?.tiebreak,
 				scoreByes: docData?.score_byes,
 				description: docData?.description,
 				image: docData?.image,
 				status: docData?.status,
+				rounds: docData?.rounds,
 			};
+
+			return response;
 		});
 
 		return allTournaments as TypeTournament[];

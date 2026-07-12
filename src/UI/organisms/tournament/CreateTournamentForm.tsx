@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from '@tanstack/react-form';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
@@ -65,10 +65,10 @@ const CreateTournamentForm = ({
 				/>
 			)}
 			<FormTextField
-				name='title'
-				label={`${t('title')}: `}
+				name='name'
+				label={`${t('name')}: `}
 				form={form}
-				noEmptyErrorMsg={t('tournamentNeedsATitle')}
+				noEmptyErrorMsg={t('tournamentNeedsAName')}
 			/>
 			<FormNumberField
 				name='roundsNumber'

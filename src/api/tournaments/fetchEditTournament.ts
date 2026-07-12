@@ -11,8 +11,8 @@ export const fetchEditTournament = async (
 		const tournamentRef = doc(db, 'tournaments', tournamentId);
 
 		const dataToUpdate: any = {};
-		if (tournamentToEdit.title !== undefined)
-			dataToUpdate.title = tournamentToEdit.title;
+		if (tournamentToEdit.name !== undefined)
+			dataToUpdate.name = tournamentToEdit.name;
 		if (tournamentToEdit.roundsNumber !== undefined)
 			dataToUpdate.rounds_number = tournamentToEdit.roundsNumber;
 		if (tournamentToEdit.tiebreaks !== undefined)

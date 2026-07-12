@@ -17,7 +17,7 @@ export type TypeTournament = {
 };
 
 export type TypeTournamentToCreate = {
-	title: string;
+	name: string;
 	roundsNumber: number;
 	tiebreaks: TypeTiebreak[];
 	scoreByes: string;
