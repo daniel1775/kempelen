@@ -43,7 +43,7 @@ const TournamentCard = ({
 						color='#ABA7A7'
 					/>
 				</View>
-				<TextBase customStyles='text-light-gray text-[15px]'>
+				<TextBase customStyles='text-light-gray text-[14px]'>
 					{description || t('description')}
 				</TextBase>
 			</View>

@@ -30,7 +30,7 @@
 	"tiebreaks": "Tiebreaks",
 	"scoreByes": "Score byes",
 	"image": "Image",
-	"tournamentNeedsATitle": "Tournament needs a title",
+	"tournamentNeedsAName": "Tournament needs a name",
 	"roundsMustBeNumeric": "Rounds must be numeric",
 	"title": "Title",
 	"edit": "Edit",

@@ -30,7 +30,7 @@
 	"tiebreak": "Desempates",
 	"scoreByes": "Puntuación de bye",
 	"image": "Imagen",
-	"tournamentNeedsATitle": "El torneo necesita un título",
+	"tournamentNeedsAName": "El torneo necesita un nombre",
 	"roundsMustBeNumeric": "Las rondas deben ser numéricas",
 	"title": "Título",
 	"edit": "Editar",
