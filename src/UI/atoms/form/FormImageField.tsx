@@ -6,7 +6,7 @@ import GarbageIcon from '@/assets/svg/GarbageIcon';
 
 type TypeFormImageField = {
 	form: any;
-	name: any;
+	name: string;
 	label: string;
 	pickImage: () => void;
 	resolveImageUri: (currentImageUrl: string) => string;

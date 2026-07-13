@@ -11,13 +11,10 @@ import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
-import TiebreakSortableList from '@/UI/organisms/tiebreak/TiebreakSortableList';
-import TiebreakList from '@/UI/organisms/tiebreak/TiebreakList';
 import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
 import FormPlayersField from '@/UI/atoms/form/FormPlayersField';
 
 import type { TypeTournament } from '@/src/types/tournament';
-import type { TypeTiebreak } from '@/src/types/tiebreak';
 
 type TypeCreateTournamentFormProps = {
 	tournamentToEdit?: TypeTournament | null;
@@ -26,9 +23,7 @@ type TypeCreateTournamentFormProps = {
 const CreateTournamentForm = ({
 	tournamentToEdit,
 }: TypeCreateTournamentFormProps) => {
-	const [showTiebreaks, setShowTiebreaks] = useState(false);
 	const [showPlayers, setShowPlayers] = useState(false);
-	const [showInfo, setShowInfo] = useState(false);
 
 	const { t } = useTranslation();
 	const form = useCreateTournamentForm({
@@ -48,24 +43,8 @@ const CreateTournamentForm = ({
 		form.reset();
 	};
 
-	const onCancelTiebreaks = () => {
-		setShowTiebreaks(false);
-	};
-
-	const onSaveTiebreaks = (tiebreaksToUpdate: TypeTiebreak[]) => {
-		form.setFieldValue('tiebreaks', tiebreaksToUpdate);
-		setShowTiebreaks(false);
-	};
-
 	return (
 		<View className='gap-10 px-4 items-start pb-16'>
-			{userTiebreaks && userTiebreaks.length > 0 && showTiebreaks && (
-				<TiebreakSortableList
-					allTiebreaks={userTiebreaks}
-					onCancel={onCancelTiebreaks}
-					onSave={onSaveTiebreaks}
-				/>
-			)}
 			<FormTextField
 				name='name'
 				label={`${t('name')}: `}
@@ -79,12 +58,9 @@ const CreateTournamentForm = ({
 				noNumberErrorMsg={t('roundsMustBeNumeric')}
 			/>
 			<FormTiebreakField
-				onEditPress={() => setShowTiebreaks(true)}
-				onInfoPress={() => setShowInfo(true)}
+				userTiebreaks={userTiebreaks}
+				form={form}
 			/>
-			{userTiebreaks && userTiebreaks.length > 0 && (
-				<TiebreakList allTiebreaks={userTiebreaks} />
-			)}
 			<FormTextField
 				name='scoreByes'
 				label={`${t('scoreByes')}: `}

@@ -5,7 +5,7 @@ import CustomTextInput from '../input/CustomTextInput';
 
 type TypeFormTextField = {
 	form: any;
-	name: any;
+	name: string;
 	label: string;
 	noEmptyErrorMsg?: string;
 };
