@@ -14,6 +14,7 @@ import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import TiebreakSortableList from '@/UI/organisms/tiebreak/TiebreakSortableList';
 import TiebreakList from '@/UI/organisms/tiebreak/TiebreakList';
 import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
+import FormPlayersField from '@/UI/atoms/form/FormPlayersField';
 
 import type { TypeTournament } from '@/src/types/tournament';
 import type { TypeTiebreak } from '@/src/types/tiebreak';
@@ -26,6 +27,7 @@ const CreateTournamentForm = ({
 	tournamentToEdit,
 }: TypeCreateTournamentFormProps) => {
 	const [showTiebreaks, setShowTiebreaks] = useState(false);
+	const [showPlayers, setShowPlayers] = useState(false);
 	const [showInfo, setShowInfo] = useState(false);
 
 	const { t } = useTranslation();
@@ -46,11 +48,11 @@ const CreateTournamentForm = ({
 		form.reset();
 	};
 
-	const onCancel = () => {
+	const onCancelTiebreaks = () => {
 		setShowTiebreaks(false);
 	};
 
-	const onSave = (tiebreaksToUpdate: TypeTiebreak[]) => {
+	const onSaveTiebreaks = (tiebreaksToUpdate: TypeTiebreak[]) => {
 		form.setFieldValue('tiebreaks', tiebreaksToUpdate);
 		setShowTiebreaks(false);
 	};
@@ -60,8 +62,8 @@ const CreateTournamentForm = ({
 			{userTiebreaks && userTiebreaks.length > 0 && showTiebreaks && (
 				<TiebreakSortableList
 					allTiebreaks={userTiebreaks}
-					onCancel={onCancel}
-					onSave={onSave}
+					onCancel={onCancelTiebreaks}
+					onSave={onSaveTiebreaks}
 				/>
 			)}
 			<FormTextField
@@ -88,6 +90,7 @@ const CreateTournamentForm = ({
 				label={`${t('scoreByes')}: `}
 				form={form}
 			/>
+			<FormPlayersField onEditPress={() => {}} />
 			<FormTextField
 				name='description'
 				label={`${t('description')}: `}
@@ -100,16 +103,17 @@ const CreateTournamentForm = ({
 				pickImage={pickImage}
 				resolveImageUri={resolveImageUri}
 			/>
+
 			<View className='flex-row w-full justify-center gap-8'>
-				<CustomButton
-					text={t('save')}
-					onPress={() => {
-						form.handleSubmit();
-					}}
-				/>
 				<CustomButton
 					text={t('clean')}
 					onPress={handleCleanAllFields}
+				/>
+				<CustomButton
+					text={!!tournamentToEdit ? t('update') : t('save')}
+					onPress={() => {
+						form.handleSubmit();
+					}}
 				/>
 			</View>
 		</View>
