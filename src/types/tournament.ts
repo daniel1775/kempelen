@@ -14,6 +14,7 @@ export type TypeTournament = {
 	image: string;
 	status: 'playing' | 'finished' | 'not-started';
 	rounds: TypeRound[];
+	players: Array<{ player_id: string }>;
 };
 
 export type TypeTournamentToCreate = {

@@ -66,7 +66,7 @@ const CreateTournamentForm = ({
 				label={`${t('scoreByes')}: `}
 				form={form}
 			/>
-			<FormPlayersField onEditPress={() => {}} />
+			<FormPlayersField form={form} />
 			<FormTextField
 				name='description'
 				label={`${t('description')}: `}

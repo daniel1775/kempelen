@@ -34,6 +34,7 @@ export const fetchAllTournaments = async () => {
 				image: docData?.image,
 				status: docData?.status,
 				rounds: docData?.rounds,
+				players: docData?.players,
 			};
 
 			return response;

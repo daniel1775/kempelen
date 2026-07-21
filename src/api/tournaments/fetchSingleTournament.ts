@@ -32,6 +32,7 @@ export const fetchSingleTournament = async ({
 			image: unformattedTournament?.image ?? '',
 			status: unformattedTournament?.status,
 			rounds: [],
+			players: unformattedTournament?.players,
 		};
 
 		return singleTournament;

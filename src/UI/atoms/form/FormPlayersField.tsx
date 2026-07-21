@@ -5,10 +5,10 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import TextBase from '@/UI/atoms/text/TextBase';
 
 type TypeFormPlayersFieldProps = {
-	onEditPress: () => void;
+	form: any;
 };
 
-const FormPlayersField = ({ onEditPress }: TypeFormPlayersFieldProps) => {
+const FormPlayersField = ({ form }: TypeFormPlayersFieldProps) => {
 	const { t } = useTranslation();
 
 	return (
@@ -16,7 +16,7 @@ const FormPlayersField = ({ onEditPress }: TypeFormPlayersFieldProps) => {
 			<TextBase customStyles={'text-light-gray text-[16px] mr-4'}>
 				{`${t('players')}: `}
 			</TextBase>
-			<Pressable onPress={onEditPress}>
+			<Pressable onPress={() => {}}>
 				<MaterialIcons
 					name='edit'
 					size={24}
