@@ -12,7 +12,6 @@ import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
-import FormPlayersField from '@/UI/atoms/form/FormPlayersField';
 
 import type { TypeTournament } from '@/src/types/tournament';
 
@@ -66,7 +65,6 @@ const CreateTournamentForm = ({
 				label={`${t('scoreByes')}: `}
 				form={form}
 			/>
-			<FormPlayersField form={form} />
 			<FormTextField
 				name='description'
 				label={`${t('description')}: `}
@@ -86,7 +84,7 @@ const CreateTournamentForm = ({
 					onPress={handleCleanAllFields}
 				/>
 				<CustomButton
-					text={!!tournamentToEdit ? t('update') : t('save')}
+					text={t('next')}
 					onPress={() => {
 						form.handleSubmit();
 					}}
