@@ -1,7 +1,6 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from '@tanstack/react-form';
-import { useState } from 'react';
 
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
@@ -22,9 +21,8 @@ type TypeCreateTournamentFormProps = {
 const CreateTournamentForm = ({
 	tournamentToEdit,
 }: TypeCreateTournamentFormProps) => {
-	const [showPlayers, setShowPlayers] = useState(false);
-
 	const { t } = useTranslation();
+
 	const form = useCreateTournamentForm({
 		tournamentToEdit,
 	});
@@ -86,7 +84,7 @@ const CreateTournamentForm = ({
 				<CustomButton
 					text={t('next')}
 					onPress={() => {
-						form.handleSubmit();
+						// form.handleSubmit();
 					}}
 				/>
 			</View>
