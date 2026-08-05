@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useLocalSearchParams } from 'expo-router';
@@ -6,6 +7,10 @@ import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSin
 
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
+import TabBar, { TabBarItem } from '@/src/UI/molecules/tab-bar/TabBar';
+
+import SettingsIcon from '@/assets/svg/Settings';
+import PlayerIcon from '@/assets/svg/Player';
 
 import type { TypeCreateTournamentParams } from '@/src/types/navigation';
 
@@ -15,13 +20,36 @@ export default function CreateTournament() {
 
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
 
+	const [activeTab, setActiveTab] = useState<string>('settings');
+
+	const tabItems: TabBarItem[] = [
+		{
+			key: 'settings',
+			label: 'SETTINGS',
+			icon: (props) => <SettingsIcon {...props} />,
+		},
+		{
+			key: 'players',
+			label: 'PLAYERS',
+			icon: (props) => <PlayerIcon {...props} />,
+		},
+	];
+
+	// title={tournamentId ? t('editTournament') : t('initialSettings')}
+
 	return (
-		<ScreenLayout
-			title={tournamentId ? t('editTournament') : t('initialSettings')}
-		>
+		<ScreenLayout>
+			<View className='mt-8 mb-6 flex-row justify-center'>
+				<TabBar
+					items={tabItems}
+					activeKey={activeTab}
+					onChange={setActiveTab}
+				/>
+			</View>
 			<ScrollView>
-				<View className='mt-16' />
-				<CreateTournamentForm tournamentToEdit={singleTournamentData} />
+				{activeTab === 'settings' && (
+					<CreateTournamentForm tournamentToEdit={singleTournamentData} />
+				)}
 			</ScrollView>
 		</ScreenLayout>
 	);
