@@ -18,7 +18,7 @@ import {
 import { useReactNavigationDevTools } from '@rozenite/react-navigation-plugin';
 import { useNavigationContainerRef, usePathname } from 'expo-router';
 
-import { HIDE_NAV_BAR_ROUTES } from '@/src/constants/hideNavbarRouter';
+import { HIDE_NAV_BAR_ROUTES } from '@/src/constants/hideNavbarRoutes';
 
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
