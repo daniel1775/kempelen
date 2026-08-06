@@ -25,21 +25,19 @@ export default function CreateTournament() {
 	const tabItems: TabBarItem[] = [
 		{
 			key: 'settings',
-			label: 'SETTINGS',
+			label: t('settings'),
 			icon: (props) => <SettingsIcon {...props} />,
 		},
 		{
 			key: 'players',
-			label: 'PLAYERS',
+			label: t('players'),
 			icon: (props) => <PlayerIcon {...props} />,
 		},
 	];
 
-	// title={tournamentId ? t('editTournament') : t('initialSettings')}
-
 	return (
 		<ScreenLayout>
-			<View className='mt-8 mb-6 flex-row justify-center'>
+			<View className='mt-8 mb-10 flex-row justify-center'>
 				<TabBar
 					items={tabItems}
 					activeKey={activeTab}

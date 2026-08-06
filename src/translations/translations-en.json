@@ -49,5 +49,6 @@
 	"areYouSureDeleteTournament": "Are you sure you want to delete this tournament?",
 	"cancel": "Cancel",
 	"noPlayersAvailable": "No players available",
-	"noPlayersFound": "No players found"
+	"noPlayersFound": "No players found",
+	"settings": "Settings"
 }
