@@ -1,24 +1,20 @@
 import React, { ReactNode } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
-export type TabBarItem = {
-	key: string;
-	label: string;
-	icon?: (props: { color: string; width: number; height: number }) => ReactNode;
-};
+import type { TypeTabBarItem } from '@/types/tournament';
 
-export type TabBarProps = {
-	items: TabBarItem[];
+export type TypeTabBarProps = {
+	items: TypeTabBarItem[];
 	activeKey: string;
 	onChange: (key: string) => void;
 };
 
-const TabBar = ({ items, activeKey, onChange }: TabBarProps) => {
+const TabBar = ({ items, activeKey, onChange }: TypeTabBarProps) => {
 	return (
 		<View className='flex-row items-center self-start rounded-full border border-neutral-gray bg-gray p-1'>
 			{items.map((item, index) => {
 				const isActive = item.key === activeKey;
-				const color = isActive ? '#D9D9D9' : '#ABA7A7'; // light or light-gray
+				const color = isActive ? '#D9D9D9' : '#ABA7A7';
 
 				return (
 					<React.Fragment key={item.key}>

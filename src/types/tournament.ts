@@ -2,6 +2,7 @@ import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTo
 
 import type { TypeTiebreak } from '@/types/tiebreak';
 import type { TypeRound } from '@/types/rounds';
+import type { ReactNode } from 'react';
 
 export type TypeTournament = {
 	id: string;
@@ -24,6 +25,12 @@ export type TypeTournamentToCreate = {
 	scoreByes: string;
 	description: string;
 	image?: string;
+};
+
+export type TypeTabBarItem = {
+	key: string;
+	label: string;
+	icon?: (props: { color: string; width: number; height: number }) => ReactNode;
 };
 
 export type TypeUseCreateTournamentForm = ReturnType<

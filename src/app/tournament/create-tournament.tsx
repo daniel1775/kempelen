@@ -7,12 +7,14 @@ import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSin
 
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
-import TabBar, { TabBarItem } from '@/src/UI/molecules/tab-bar/TabBar';
+import TabBar from '@/src/UI/molecules/tab-bar/TabBar';
+import AddPlayers from '@/src/UI/organisms/tournament/AddPlayers';
 
 import SettingsIcon from '@/assets/svg/Settings';
 import PlayerIcon from '@/assets/svg/Player';
 
 import type { TypeCreateTournamentParams } from '@/src/types/navigation';
+import type { TypeTabBarItem } from '@/src/types/tournament';
 
 export default function CreateTournament() {
 	const { t } = useTranslation();
@@ -22,7 +24,7 @@ export default function CreateTournament() {
 
 	const [activeTab, setActiveTab] = useState<string>('settings');
 
-	const tabItems: TabBarItem[] = [
+	const tabItems: TypeTabBarItem[] = [
 		{
 			key: 'settings',
 			label: t('settings'),
@@ -48,6 +50,7 @@ export default function CreateTournament() {
 				{activeTab === 'settings' && (
 					<CreateTournamentForm tournamentToEdit={singleTournamentData} />
 				)}
+				{activeTab === 'players' && <AddPlayers />}
 			</ScrollView>
 		</ScreenLayout>
 	);
