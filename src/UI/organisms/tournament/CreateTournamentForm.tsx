@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from '@tanstack/react-form';
 
@@ -41,54 +41,56 @@ const CreateTournamentForm = ({
 	};
 
 	return (
-		<View className='gap-10 px-4 items-start pb-16'>
-			<FormTextField
-				name='name'
-				label={`${t('name')}: `}
-				form={form}
-				noEmptyErrorMsg={t('tournamentNeedsAName')}
-			/>
-			<FormNumberField
-				name='roundsNumber'
-				label={`${t('rounds')}: `}
-				form={form}
-				noNumberErrorMsg={t('roundsMustBeNumeric')}
-			/>
-			<FormTiebreakField
-				userTiebreaks={userTiebreaks}
-				form={form}
-			/>
-			<FormTextField
-				name='scoreByes'
-				label={`${t('scoreByes')}: `}
-				form={form}
-			/>
-			<FormTextField
-				name='description'
-				label={`${t('description')}: `}
-				form={form}
-			/>
-			<FormImageField
-				name='image'
-				label={`${t('image')}: `}
-				form={form}
-				pickImage={pickImage}
-				resolveImageUri={resolveImageUri}
-			/>
+		<ScrollView>
+			<View className='gap-10 px-4 items-start pb-16 flex-1 h-full'>
+				<FormTextField
+					name='name'
+					label={`${t('name')}: `}
+					form={form}
+					noEmptyErrorMsg={t('tournamentNeedsAName')}
+				/>
+				<FormNumberField
+					name='roundsNumber'
+					label={`${t('rounds')}: `}
+					form={form}
+					noNumberErrorMsg={t('roundsMustBeNumeric')}
+				/>
+				<FormTiebreakField
+					userTiebreaks={userTiebreaks}
+					form={form}
+				/>
+				<FormTextField
+					name='scoreByes'
+					label={`${t('scoreByes')}: `}
+					form={form}
+				/>
+				<FormTextField
+					name='description'
+					label={`${t('description')}: `}
+					form={form}
+				/>
+				<FormImageField
+					name='image'
+					label={`${t('image')}: `}
+					form={form}
+					pickImage={pickImage}
+					resolveImageUri={resolveImageUri}
+				/>
 
-			<View className='flex-row w-full justify-center gap-8'>
-				<CustomButton
-					text={t('clean')}
-					onPress={handleCleanAllFields}
-				/>
-				<CustomButton
-					text={t('next')}
-					onPress={() => {
-						// form.handleSubmit();
-					}}
-				/>
+				<View className='flex-row w-full justify-center gap-8'>
+					<CustomButton
+						text={t('clean')}
+						onPress={handleCleanAllFields}
+					/>
+					<CustomButton
+						text={t('next')}
+						onPress={() => {
+							// form.handleSubmit();
+						}}
+					/>
+				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 };
 

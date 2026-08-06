@@ -46,12 +46,10 @@ export default function CreateTournament() {
 					onChange={setActiveTab}
 				/>
 			</View>
-			<ScrollView>
-				{activeTab === 'settings' && (
-					<CreateTournamentForm tournamentToEdit={singleTournamentData} />
-				)}
-				{activeTab === 'players' && <AddPlayers />}
-			</ScrollView>
+			{activeTab === 'settings' && (
+				<CreateTournamentForm tournamentToEdit={singleTournamentData} />
+			)}
+			{activeTab === 'players' && <AddPlayers />}
 		</ScreenLayout>
 	);
 }
