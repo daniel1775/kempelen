@@ -11,9 +11,12 @@ import { initReactI18next } from 'react-i18next';
 import { Dimensions, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getAuth, signInAnonymously } from '@react-native-firebase/auth';
-import { useNetworkActivityDevTools, withOnBootNetworkActivityRecording } from '@rozenite/network-activity-plugin';
+import {
+	useNetworkActivityDevTools,
+	withOnBootNetworkActivityRecording,
+} from '@rozenite/network-activity-plugin';
 import { useReactNavigationDevTools } from '@rozenite/react-navigation-plugin';
-import { useNavigationContainerRef } from 'expo-router';
+import { useNavigationContainerRef, usePathname } from 'expo-router';
 
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
@@ -28,6 +31,8 @@ const iconsMeasures = {
 	width: 25,
 	height: 25,
 };
+
+const HIDE_TAB_BAR_ROUTES = ['/tournament/create-tournament'];
 
 const queryClient = new QueryClient();
 
@@ -53,6 +58,7 @@ if (__DEV__) {
 
 export default function Layout() {
 	const insets = useSafeAreaInsets();
+	const pathname = usePathname();
 	const calculated = Math.max(
 		MIN_HEIGHT,
 		Math.round(screenHeight * BASE_RATIO),
@@ -60,6 +66,8 @@ export default function Layout() {
 	const tabHeight = calculated + insets.bottom;
 
 	const navigationRef = useNavigationContainerRef();
+
+	const isTabBarHidden = HIDE_TAB_BAR_ROUTES.includes(pathname);
 
 	// Rozenite plugins
 	withOnBootNetworkActivityRecording();
@@ -86,8 +94,12 @@ export default function Layout() {
 				{/* TabSlot is where the nested tab screens will be rendered */}
 				<TabSlot />
 				<TabList
-					className='flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange'
-					style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
+					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange ${isTabBarHidden ? 'hidden' : ''}`}
+					style={
+						isTabBarHidden
+							? { display: 'none' }
+							: { height: tabHeight, paddingBottom: insets.bottom - 10 }
+					}
 				>
 					<TabTrigger
 						name='index'
