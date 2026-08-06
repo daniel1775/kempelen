@@ -18,6 +18,8 @@ import {
 import { useReactNavigationDevTools } from '@rozenite/react-navigation-plugin';
 import { useNavigationContainerRef, usePathname } from 'expo-router';
 
+import { HIDE_NAV_BAR_ROUTES } from '@/src/constants/hideNavbarRouter';
+
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
 import translationsEs from '@/src/translations/translations-es.json';
@@ -31,8 +33,6 @@ const iconsMeasures = {
 	width: 25,
 	height: 25,
 };
-
-const HIDE_TAB_BAR_ROUTES = ['/tournament/create-tournament'];
 
 const queryClient = new QueryClient();
 
@@ -67,7 +67,7 @@ export default function Layout() {
 
 	const navigationRef = useNavigationContainerRef();
 
-	const isTabBarHidden = HIDE_TAB_BAR_ROUTES.includes(pathname);
+	const isNavbarHidden = HIDE_NAV_BAR_ROUTES.includes(pathname);
 
 	// Rozenite plugins
 	withOnBootNetworkActivityRecording();
@@ -94,9 +94,9 @@ export default function Layout() {
 				{/* TabSlot is where the nested tab screens will be rendered */}
 				<TabSlot />
 				<TabList
-					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange ${isTabBarHidden ? 'hidden' : ''}`}
+					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange ${isNavbarHidden ? 'hidden' : ''}`}
 					style={
-						isTabBarHidden
+						isNavbarHidden
 							? { display: 'none' }
 							: { height: tabHeight, paddingBottom: insets.bottom - 10 }
 					}
