@@ -1,6 +1,7 @@
 import { TextInput, View, Platform } from 'react-native';
 
 import SearchIcon from '@/assets/svg/Search';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 type TypeSearchInputProps = {
 	value: string;
@@ -19,7 +20,7 @@ const SearchInput = ({
 
 	return (
 		<View
-			className={`flex flex-row border-b border-orange w-full ${isIOS ? 'pb-3' : ''} ${containerStyle}`}
+			className={`flex flex-row border border-1 border-[#585858ff] rounded-lg px-4 py-3 w-full ${isIOS ? 'pb-3' : ''} ${containerStyle}`}
 		>
 			<View className='justify-center'>
 				<SearchIcon />
@@ -32,6 +33,11 @@ const SearchInput = ({
 					setValue(text);
 				}}
 				value={value}
+			/>
+			<AntDesign
+				name='close'
+				size={18}
+				color={'#F9AC52'}
 			/>
 		</View>
 	);
