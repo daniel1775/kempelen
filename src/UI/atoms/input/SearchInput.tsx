@@ -34,11 +34,16 @@ const SearchInput = ({
 				}}
 				value={value}
 			/>
-			<AntDesign
-				name='close'
-				size={18}
-				color={'#F9AC52'}
-			/>
+			{value && (
+				<AntDesign
+					name='close'
+					size={18}
+					color={'#F9AC52'}
+					onPress={() => {
+						setValue('');
+					}}
+				/>
+			)}
 		</View>
 	);
 };
