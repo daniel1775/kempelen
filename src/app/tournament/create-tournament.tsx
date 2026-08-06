@@ -29,11 +29,13 @@ export default function CreateTournament() {
 			key: 'settings',
 			label: t('settings'),
 			icon: (props) => <SettingsIcon {...props} />,
+			isDisabled: true,
 		},
 		{
 			key: 'players',
 			label: t('players'),
 			icon: (props) => <PlayerIcon {...props} />,
+			isDisabled: true,
 		},
 	];
 

@@ -31,6 +31,7 @@ export type TypeTabBarItem = {
 	key: string;
 	label: string;
 	icon?: (props: { color: string; width: number; height: number }) => ReactNode;
+	isDisabled?: boolean;
 };
 
 export type TypeUseCreateTournamentForm = ReturnType<

@@ -95,11 +95,7 @@ export default function Layout() {
 				<TabSlot />
 				<TabList
 					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange ${isNavbarHidden ? 'hidden' : ''}`}
-					style={
-						isNavbarHidden
-							? { display: 'none' }
-							: { height: tabHeight, paddingBottom: insets.bottom - 10 }
-					}
+					style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
 				>
 					<TabTrigger
 						name='index'

@@ -19,11 +19,15 @@ const TabBar = ({ items, activeKey, onChange }: TypeTabBarProps) => {
 				return (
 					<React.Fragment key={item.key}>
 						<Pressable
-							onPress={() => onChange(item.key)}
+							onPress={() => {
+								if (item.isDisabled) return;
+								onChange(item.key);
+							}}
 							className={`flex-row items-center px-4 py-2 rounded-full ${
 								isActive ? 'bg-neutral-gray' : ''
 							}`}
 							testID={`tab-bar-item-${item.key}`}
+							disabled={item.isDisabled}
 						>
 							{item.icon && (
 								<View className='mr-2'>
