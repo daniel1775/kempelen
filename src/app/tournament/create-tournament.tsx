@@ -40,8 +40,8 @@ export default function CreateTournament() {
 	];
 
 	return (
-		<ScreenLayout>
-			<View className='mt-8 mb-10 flex-row justify-center'>
+		<ScreenLayout isHeaderShown>
+			<View className='mb-10 flex-row justify-center'>
 				<TabBar
 					items={tabItems}
 					activeKey={activeTab}

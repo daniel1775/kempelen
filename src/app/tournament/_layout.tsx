@@ -2,32 +2,27 @@ import { Stack } from 'expo-router';
 
 import { useGetAllTiebreaks } from '@/src/hooks/queries/tiebreak/useGetAllTiebreaks';
 
-import Header from '@/src/UI/layouts/Header';
-
 export default function TournamentLayout() {
 	useGetAllTiebreaks();
 
 	return (
-		<Stack screenOptions={{}}>
+		<Stack>
 			<Stack.Screen
 				name='index'
 				options={{
-					header: () => <Header isEmpty />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
 				name='single-tournament'
 				options={{
-					header: () => <Header />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
 				name='create-tournament'
 				options={{
-					header: () => <Header />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 		</Stack>

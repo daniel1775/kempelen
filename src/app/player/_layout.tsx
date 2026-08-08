@@ -1,7 +1,5 @@
 import { Stack } from 'expo-router';
 
-import Header from '@/src/UI/layouts/Header';
-
 export default function PlayerLayout() {
 	return (
 		<Stack
@@ -12,22 +10,19 @@ export default function PlayerLayout() {
 			<Stack.Screen
 				name='index'
 				options={{
-					header: () => <Header isEmpty />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
 				name='create-player'
 				options={{
-					header: () => <Header />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
 				name='select-players'
 				options={{
-					header: () => <Header />,
-					headerShown: true,
+					headerShown: false,
 				}}
 			/>
 		</Stack>

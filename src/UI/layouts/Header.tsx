@@ -3,11 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from 'expo-router';
 
-type TypeHeaderProps = {
-	isEmpty?: boolean;
-};
-
-const Header = ({ isEmpty }: TypeHeaderProps) => {
+const Header = () => {
 	const insets = useSafeAreaInsets();
 	const navigation = useNavigation();
 
@@ -22,17 +18,13 @@ const Header = ({ isEmpty }: TypeHeaderProps) => {
 				paddingTop: insets.top + 10,
 			}}
 		>
-			{!isEmpty ? (
-				<Pressable onPress={navigateBack}>
-					<Ionicons
-						name='chevron-back'
-						size={30}
-						color='orange'
-					/>
-				</Pressable>
-			) : (
-				<View className='w-full h-[30]' />
-			)}
+			<Pressable onPress={navigateBack}>
+				<Ionicons
+					name='chevron-back'
+					size={30}
+					color='orange'
+				/>
+			</Pressable>
 		</View>
 	);
 };
