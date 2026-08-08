@@ -49,9 +49,21 @@ export default function CreateTournament() {
 				/>
 			</View>
 			{activeTab === 'settings' && (
-				<CreateTournamentForm tournamentToEdit={singleTournamentData} />
+				<CreateTournamentForm
+					onSubmit={() => {
+						setActiveTab('players');
+					}}
+					tournamentToEdit={singleTournamentData}
+				/>
 			)}
-			{activeTab === 'players' && <AddPlayers />}
+			{activeTab === 'players' && (
+				<AddPlayers
+					onBack={() => {
+						setActiveTab('settings');
+					}}
+					onSubmit={() => {}}
+				/>
+			)}
 		</ScreenLayout>
 	);
 }

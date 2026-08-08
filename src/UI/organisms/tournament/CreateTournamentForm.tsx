@@ -15,10 +15,12 @@ import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
 import type { TypeTournament } from '@/src/types/tournament';
 
 type TypeCreateTournamentFormProps = {
+	onSubmit: () => void;
 	tournamentToEdit?: TypeTournament | null;
 };
 
 const CreateTournamentForm = ({
+	onSubmit,
 	tournamentToEdit,
 }: TypeCreateTournamentFormProps) => {
 	const { t } = useTranslation();
@@ -76,7 +78,6 @@ const CreateTournamentForm = ({
 					pickImage={pickImage}
 					resolveImageUri={resolveImageUri}
 				/>
-
 				<View className='flex-row w-full justify-center gap-8'>
 					<CustomButton
 						text={t('clean')}
@@ -85,7 +86,7 @@ const CreateTournamentForm = ({
 					<CustomButton
 						text={t('next')}
 						onPress={() => {
-							// form.handleSubmit();
+							onSubmit();
 						}}
 					/>
 				</View>
