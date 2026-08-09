@@ -30,20 +30,31 @@ const AddPlayers = ({ onSubmit, onBack }: TypeAddPlayersProps) => {
 			/>
 			{playersData.length < 1 ? (
 				<View className='flex items-center mt-16 flex-1'>
-					<TextBase>{t('noPlayersFound')}</TextBase>
+					<TextBase>{t('noPlayersAdded')}</TextBase>
 				</View>
 			) : (
 				<View></View>
 			)}
-			<View className='flex-row w-full justify-center gap-8'>
+			<View className='flex-row w-full justify-between gap-8'>
 				<CustomButton
 					text={t('back')}
 					onPress={onBack}
+					variant='primary-sm'
 				/>
-				<CustomButton
-					text={t('finish')}
-					onPress={onSubmit}
-				/>
+				<View className='flex-row gap-4'>
+					<CustomButton
+						text={t('add')}
+						onPress={onSubmit}
+						variant='primary-sm'
+					/>
+					{playersData.length > 1 && (
+						<CustomButton
+							text={t('done')}
+							onPress={onSubmit}
+							variant='secondary-sm'
+						/>
+					)}
+				</View>
 			</View>
 		</View>
 	);

@@ -78,16 +78,18 @@ const CreateTournamentForm = ({
 					pickImage={pickImage}
 					resolveImageUri={resolveImageUri}
 				/>
-				<View className='flex-row w-full justify-center gap-8'>
+				<View className='flex-row w-full justify-between gap-8'>
 					<CustomButton
 						text={t('clean')}
 						onPress={handleCleanAllFields}
+						variant='primary-sm'
 					/>
 					<CustomButton
 						text={t('next')}
 						onPress={() => {
 							onSubmit();
 						}}
+						variant='primary-sm'
 					/>
 				</View>
 			</View>
