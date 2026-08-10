@@ -20,7 +20,7 @@ const SearchInput = ({
 
 	return (
 		<View
-			className={`flex flex-row border border-1 border-[#585858ff] rounded-lg px-4 py-3 w-full ${isIOS ? 'pb-3' : ''} ${containerStyle}`}
+			className={`flex flex-row border border-1 border-[#585858ff] rounded-lg px-4 w-full ${isIOS ? 'py-3' : ''} ${containerStyle}`}
 		>
 			<View className='justify-center'>
 				<SearchIcon />
