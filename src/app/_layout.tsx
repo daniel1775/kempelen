@@ -18,8 +18,6 @@ import {
 import { useReactNavigationDevTools } from '@rozenite/react-navigation-plugin';
 import { useNavigationContainerRef, usePathname } from 'expo-router';
 
-import { HIDE_NAV_BAR_ROUTES } from '@/src/constants/hideNavbarRoutes';
-
 import KempelenIcon from '@/assets/svg/Kempelen';
 import translationsEn from '@/src/translations/translations-en.json';
 import translationsEs from '@/src/translations/translations-es.json';
@@ -58,7 +56,6 @@ if (__DEV__) {
 
 export default function Layout() {
 	const insets = useSafeAreaInsets();
-	const pathname = usePathname();
 	const calculated = Math.max(
 		MIN_HEIGHT,
 		Math.round(screenHeight * BASE_RATIO),
@@ -66,8 +63,6 @@ export default function Layout() {
 	const tabHeight = calculated + insets.bottom;
 
 	const navigationRef = useNavigationContainerRef();
-
-	const isNavbarHidden = HIDE_NAV_BAR_ROUTES.includes(pathname);
 
 	// Rozenite plugins
 	withOnBootNetworkActivityRecording();
@@ -94,7 +89,7 @@ export default function Layout() {
 				{/* TabSlot is where the nested tab screens will be rendered */}
 				<TabSlot />
 				<TabList
-					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange ${isNavbarHidden ? 'hidden' : ''}`}
+					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange`}
 					style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
 				>
 					<TabTrigger
