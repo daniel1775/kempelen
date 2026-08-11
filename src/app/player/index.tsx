@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -8,11 +8,15 @@ import SearchInput from '@/src/UI/atoms/input/SearchInput';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import ListPlayers from '@/src/UI/organisms/player/ListPlayers';
 
+import type { TypeListPlayersParams } from '@/src/types/navigation';
+
 export default function Player() {
 	const router = useRouter();
 	const { t } = useTranslation();
 
 	const [searchText, setSearchText] = useState('');
+
+	const { tournamentId } = useLocalSearchParams<TypeListPlayersParams>();
 
 	return (
 		<ScreenLayout title={t('players')}>
@@ -26,9 +30,7 @@ export default function Player() {
 			<View className='absolute z-20 bottom-6 right-6'>
 				<CustomButton
 					variant='add'
-					onPress={() => {
-						router.navigate('/player/create-player');
-					}}
+					onPress={() => {}}
 				/>
 			</View>
 		</ScreenLayout>

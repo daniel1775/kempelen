@@ -1,9 +1,10 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
-import TabBar, { TabBarItem } from '../TabBar';
+import TabBar from '../TabBar';
+import type { TypeTabBarItem } from '@/types/tournament';
 
-const MOCK_ITEMS: TabBarItem[] = [
+const MOCK_ITEMS: TypeTabBarItem[] = [
 	{ key: 'settings', label: 'SETTINGS' },
 	{ key: 'players', label: 'PLAYERS' },
 	{ key: 'rounds', label: 'ROUNDS' },

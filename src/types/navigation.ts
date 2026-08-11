@@ -5,3 +5,7 @@ export type TypeSingleTournamentParams = {
 export type TypeCreateTournamentParams = {
 	tournamentId: string;
 };
+
+export type TypeListPlayersParams = {
+	tournamentId: string;
+};

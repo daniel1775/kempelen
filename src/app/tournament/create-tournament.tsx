@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
 
@@ -17,12 +17,13 @@ import type { TypeCreateTournamentParams } from '@/src/types/navigation';
 import type { TypeTabBarItem } from '@/src/types/tournament';
 
 export default function CreateTournament() {
+	const [activeTab, setActiveTab] = useState<string>('settings');
+
 	const { t } = useTranslation();
 	const { tournamentId } = useLocalSearchParams<TypeCreateTournamentParams>();
+	const router = useRouter();
 
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
-
-	const [activeTab, setActiveTab] = useState<string>('settings');
 
 	const tabItems: TypeTabBarItem[] = [
 		{
@@ -61,7 +62,15 @@ export default function CreateTournament() {
 					onBack={() => {
 						setActiveTab('settings');
 					}}
-					onSubmit={() => {}}
+					onAddPlayers={() => {
+						router.navigate({
+							pathname: '/player',
+							params: {
+								tournamentId,
+							},
+						});
+					}}
+					onDone={() => {}}
 				/>
 			)}
 		</ScreenLayout>
