@@ -8,16 +8,25 @@ import SearchInput from '@/src/UI/atoms/input/SearchInput';
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import ListPlayers from '@/src/UI/organisms/player/ListPlayers';
 
-export default function Player() {
+export default function SelectPlayers() {
 	const router = useRouter();
 	const { t } = useTranslation();
+	const { tournamentId } = useLocalSearchParams();
 
 	const [searchText, setSearchText] = useState('');
+
+	const handleBack = () => {
+		router.navigate({
+			pathname: '/tournament/create-tournament',
+			params: { tournamentId },
+		});
+	};
 
 	return (
 		<ScreenLayout
 			title={t('selectPlayers')}
 			isHeaderShown
+			onBack={handleBack}
 		>
 			<SearchInput
 				value={searchText}

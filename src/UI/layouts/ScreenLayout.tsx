@@ -7,19 +7,21 @@ type TypeScreenLayoutProps = {
 	children: React.ReactNode;
 	title?: string;
 	isHeaderShown?: boolean;
+	onBack?: () => void;
 };
 
 const ScreenLayout = ({
 	children,
 	title,
 	isHeaderShown = false,
+	onBack,
 }: TypeScreenLayoutProps) => {
 	const insets = useSafeAreaInsets();
 
 	return (
 		<View className='bg-gray flex-1 px-6'>
 			{isHeaderShown ? (
-				<Header />
+				<Header onBack={onBack} />
 			) : (
 				<View
 					className='w-full'

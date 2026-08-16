@@ -1,14 +1,22 @@
 import { Pressable, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from 'expo-router';
+import { useRouter } from 'expo-router';
 
-const Header = () => {
+type TypeHeaderProps = {
+	onBack?: () => void;
+};
+
+const Header = ({ onBack }: TypeHeaderProps) => {
 	const insets = useSafeAreaInsets();
-	const navigation = useNavigation();
+	const router = useRouter();
 
 	const navigateBack = () => {
-		navigation.goBack();
+		if (onBack) {
+			onBack();
+		} else {
+			router.back();
+		}
 	};
 
 	return (
