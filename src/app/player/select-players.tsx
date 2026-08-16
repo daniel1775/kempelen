@@ -15,7 +15,10 @@ export default function Player() {
 	const [searchText, setSearchText] = useState('');
 
 	return (
-		<ScreenLayout title={t('selectPlayers')}>
+		<ScreenLayout
+			title={t('selectPlayers')}
+			isHeaderShown
+		>
 			<SearchInput
 				value={searchText}
 				setValue={setSearchText}

@@ -1,7 +1,7 @@
 import '@/src/global.css';
 import 'react-native-reanimated';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FloatingDevTools } from '@buoy-gg/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
@@ -55,12 +55,24 @@ if (__DEV__) {
 }
 
 export default function Layout() {
+	const [hideTabBar, setHideTabBar] = useState(false);
+
 	const insets = useSafeAreaInsets();
 	const calculated = Math.max(
 		MIN_HEIGHT,
 		Math.round(screenHeight * BASE_RATIO),
 	);
 	const tabHeight = calculated + insets.bottom;
+
+	const pathname = usePathname();
+
+	useEffect(() => {
+		if (pathname.includes('/select-players')) {
+			setHideTabBar(true);
+		} else {
+			setHideTabBar(false);
+		}
+	}, [pathname]);
 
 	const navigationRef = useNavigationContainerRef();
 
@@ -90,7 +102,11 @@ export default function Layout() {
 				<TabSlot />
 				<TabList
 					className={`flex flex-row items-center bg-neutral-gray px-5 border-t-2 pt-2 border-t-light-orange`}
-					style={{ height: tabHeight, paddingBottom: insets.bottom - 10 }}
+					style={{
+						height: tabHeight,
+						paddingBottom: insets.bottom - 10,
+						display: hideTabBar ? 'none' : 'flex',
+					}}
 				>
 					<TabTrigger
 						name='index'

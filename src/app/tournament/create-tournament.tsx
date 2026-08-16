@@ -64,9 +64,10 @@ export default function CreateTournament() {
 					}}
 					onAddPlayers={() => {
 						router.navigate({
-							pathname: '/player',
+							pathname: '/player/select-players',
 							params: {
 								tournamentId,
+								isFromTournament: 1,
 							},
 						});
 					}}

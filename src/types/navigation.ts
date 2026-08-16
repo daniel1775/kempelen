@@ -7,5 +7,5 @@ export type TypeCreateTournamentParams = {
 };
 
 export type TypeListPlayersParams = {
-	tournamentId: string;
+	tournamentId?: string;
 };
