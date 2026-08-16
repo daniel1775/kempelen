@@ -1,5 +1,4 @@
 import { useForm } from '@tanstack/react-form';
-import { useRouter } from 'expo-router';
 
 import { useCreateTournament } from '@/src/hooks/queries/tournament/useCreateTournament';
 import { useEditTournament } from '@/src/hooks/queries/tournament/useEditTournament';
@@ -18,8 +17,6 @@ type TypeCreateTournamentFormProps = {
 export const useCreateTournamentForm = ({
 	tournamentToEdit,
 }: TypeCreateTournamentFormProps) => {
-	const router = useRouter();
-
 	const { mutateAsync: createTournament } = useCreateTournament();
 	const { mutateAsync: editTournament } = useEditTournament();
 	const { allTiebreaksData } = useGetAllTiebreaks();
@@ -84,14 +81,10 @@ export const useCreateTournamentForm = ({
 			try {
 				if (tournamentToEdit) {
 					await handleEditTournament(value);
-					router.back();
 					return;
 				}
 
 				await handleCreateTournament(value);
-				router.navigate({
-					pathname: '/player/select-players',
-				});
 			} catch (err) {
 				console.error('[submitCreateTournamentForm] error: ', err);
 			}

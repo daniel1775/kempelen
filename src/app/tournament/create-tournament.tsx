@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
+import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
@@ -23,7 +24,12 @@ export default function CreateTournament() {
 	const { tournamentId } = useLocalSearchParams<TypeCreateTournamentParams>();
 	const router = useRouter();
 
+	const isTournamentToEdit = Boolean(tournamentId);
+
 	const { singleTournamentData } = useGetSingleTournament(tournamentId);
+	const form = useCreateTournamentForm({
+		tournamentToEdit: singleTournamentData,
+	});
 
 	const tabItems: TypeTabBarItem[] = [
 		{
@@ -52,9 +58,13 @@ export default function CreateTournament() {
 			{activeTab === 'settings' && (
 				<CreateTournamentForm
 					onSubmit={() => {
-						setActiveTab('players');
+						if (isTournamentToEdit) {
+							setActiveTab('players');
+						} else {
+							form.handleSubmit();
+						}
 					}}
-					tournamentToEdit={singleTournamentData}
+					form={form}
 				/>
 			)}
 			{activeTab === 'players' && (

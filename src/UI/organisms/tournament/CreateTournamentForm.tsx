@@ -2,7 +2,6 @@ import { ScrollView, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from '@tanstack/react-form';
 
-import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
@@ -12,22 +11,18 @@ import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
 import FormTiebreakField from '@/UI/atoms/form/FormTiebreakField';
 
-import type { TypeTournament } from '@/src/types/tournament';
+import type { TypeUseCreateTournamentForm } from '@/src/types/tournament';
 
 type TypeCreateTournamentFormProps = {
 	onSubmit: () => void;
-	tournamentToEdit?: TypeTournament | null;
+	form: TypeUseCreateTournamentForm;
 };
 
 const CreateTournamentForm = ({
 	onSubmit,
-	tournamentToEdit,
+	form,
 }: TypeCreateTournamentFormProps) => {
 	const { t } = useTranslation();
-
-	const form = useCreateTournamentForm({
-		tournamentToEdit,
-	});
 
 	const userTiebreaks = useSelector(
 		form.store,
@@ -37,10 +32,6 @@ const CreateTournamentForm = ({
 	const { pickImage } = usePickImage((uri) => {
 		form.setFieldValue('image', uri);
 	});
-
-	const handleCleanAllFields = () => {
-		form.reset();
-	};
 
 	return (
 		<ScrollView>
@@ -78,17 +69,10 @@ const CreateTournamentForm = ({
 					pickImage={pickImage}
 					resolveImageUri={resolveImageUri}
 				/>
-				<View className='flex-row w-full justify-between gap-8'>
-					<CustomButton
-						text={t('clean')}
-						onPress={handleCleanAllFields}
-						variant='primary-sm'
-					/>
+				<View className='flex-row w-full justify-end gap-8 mt-8'>
 					<CustomButton
 						text={t('next')}
-						onPress={() => {
-							onSubmit();
-						}}
+						onPress={onSubmit}
 						variant='primary-sm'
 					/>
 				</View>
