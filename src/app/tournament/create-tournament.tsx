@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import { useGetSingleTournament } from '@/src/hooks/queries/tournament/useGetSingleTournament';
 import { useCreateTournamentForm } from '@/src/hooks/form/tournament/useCreateTournamentForm';
+import { validateFormFields } from '@/src/utils/form/validateFormFields';
 
 import ScreenLayout from '@/src/UI/layouts/ScreenLayout';
 import CreateTournamentForm from '@/src/UI/organisms/tournament/CreateTournamentForm';
@@ -31,14 +32,14 @@ export default function CreateTournament() {
 		tournamentToEdit: singleTournamentData,
 	});
 
-	const validateTabChange = () => {
-		const name = form.getFieldValue('name');
-		const roundsNumber = form.getFieldValue('roundsNumber');
-		const scoreByes = form.getFieldValue('scoreByes');
-		const tiebreaks = form.getFieldValue('tiebreaks');
-
-		if (!name) {
-			form.validateField('name', 'submit');
+	const onChangeTab = (tabValue: string) => {
+		if (!isTournamentToEdit) {
+			const isValid = validateFormFields(form);
+			if (isValid) {
+				setActiveTab(tabValue);
+			}
+		} else {
+			setActiveTab(tabValue);
 		}
 	};
 
@@ -61,10 +62,7 @@ export default function CreateTournament() {
 				<TabBar
 					items={tabItems}
 					activeKey={activeTab}
-					onChange={(value) => {
-						// setActiveTab(value);
-						validateTabChange();
-					}}
+					onChange={onChangeTab}
 				/>
 			</View>
 			{activeTab === 'settings' && (

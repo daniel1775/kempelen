@@ -5,7 +5,6 @@ import { useSelector } from '@tanstack/react-form';
 import { usePickImage } from '@/src/hooks/form/player/usePickImage';
 import { resolveImageUri } from '@/src/utils/image/resolveImageUri';
 
-import FormNumberField from '@/src/UI/atoms/form/FormNumberField';
 import FormTextField from '@/src/UI/atoms/form/FormTextField';
 import FormImageField from '@/src/UI/atoms/form/FormImageField';
 import CustomButton from '@/UI/atoms/buttons/CustomButton';
@@ -42,11 +41,11 @@ const CreateTournamentForm = ({
 					form={form}
 					noEmptyErrorMsg={t('tournamentNeedsAName')}
 				/>
-				<FormNumberField
+				<FormTextField
 					name='roundsNumber'
 					label={`${t('rounds')}: `}
 					form={form}
-					noNumberErrorMsg={t('roundsMustBeNumeric')}
+					noEmptyErrorMsg='rounds needs a value'
 				/>
 				<FormTiebreakField
 					userTiebreaks={userTiebreaks}
@@ -56,6 +55,7 @@ const CreateTournamentForm = ({
 					name='scoreByes'
 					label={`${t('scoreByes')}: `}
 					form={form}
+					noEmptyErrorMsg='score byes needs a value'
 				/>
 				<FormTextField
 					name='description'
