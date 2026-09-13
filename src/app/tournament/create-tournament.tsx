@@ -31,18 +31,27 @@ export default function CreateTournament() {
 		tournamentToEdit: singleTournamentData,
 	});
 
+	const validateTabChange = () => {
+		const name = form.getFieldValue('name');
+		const roundsNumber = form.getFieldValue('roundsNumber');
+		const scoreByes = form.getFieldValue('scoreByes');
+		const tiebreaks = form.getFieldValue('tiebreaks');
+
+		if (!name) {
+			form.validateField('name', 'submit');
+		}
+	};
+
 	const tabItems: TypeTabBarItem[] = [
 		{
 			key: 'settings',
 			label: t('settings'),
 			icon: (props) => <SettingsIcon {...props} />,
-			isDisabled: true,
 		},
 		{
 			key: 'players',
 			label: t('players'),
 			icon: (props) => <PlayerIcon {...props} />,
-			isDisabled: true,
 		},
 	];
 
@@ -52,17 +61,22 @@ export default function CreateTournament() {
 				<TabBar
 					items={tabItems}
 					activeKey={activeTab}
-					onChange={setActiveTab}
+					onChange={(value) => {
+						// setActiveTab(value);
+						validateTabChange();
+					}}
 				/>
 			</View>
 			{activeTab === 'settings' && (
 				<CreateTournamentForm
 					onSubmit={() => {
-						if (isTournamentToEdit) {
+						setActiveTab('players');
+
+						/* if (isTournamentToEdit) {
 							setActiveTab('players');
 						} else {
 							form.handleSubmit();
-						}
+						} */
 					}}
 					form={form}
 				/>
