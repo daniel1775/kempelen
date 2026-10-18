@@ -1,20 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { fetchCreatePlayer } from '@/src/api/players/fetchCreatePlayer';
+import { postCreatePlayer } from '@/src/api-v2/players/postCreatePlayer';
 
 import type { TypePlayerToCreate } from '@/src/types/player';
 
 export const useCreatePlayer = () => {
-	const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-	const mutation = useMutation({
-		mutationFn: async (playerToCreate: TypePlayerToCreate) => {
-			return fetchCreatePlayer(playerToCreate);
-		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['allPlayers'] });
-		},
-	});
+    const mutation = useMutation({
+        mutationFn: async (playerToCreate: TypePlayerToCreate) => {
+            return postCreatePlayer(playerToCreate);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['allPlayers'] });
+        },
+    });
 
-	return mutation;
+    return mutation;
 };
