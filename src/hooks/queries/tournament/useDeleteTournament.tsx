@@ -1,19 +1,19 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { fetchDeleteTournament } from '@/src/api/tournaments/fetchDeleteTournament';
+import { fetchDeleteTournament } from "@/src/api-legacy/tournaments/fetchDeleteTournament";
 
 export const useDeleteTournament = () => {
-	const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-	const mutation = useMutation({
-		mutationFn: async (tournamentId: string) => {
-			return fetchDeleteTournament({ tournamentId });
-		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['allTournaments'] });
-			queryClient.invalidateQueries({ queryKey: ['singleTournament'] });
-		},
-	});
+    const mutation = useMutation({
+        mutationFn: async (tournamentId: string) => {
+            return fetchDeleteTournament({ tournamentId });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["allTournaments"] });
+            queryClient.invalidateQueries({ queryKey: ["singleTournament"] });
+        },
+    });
 
-	return mutation;
+    return mutation;
 };

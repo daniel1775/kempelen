@@ -1,20 +1,20 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { fetchCreateTournament } from '@/src/api/tournaments/fetchCreateTournament';
+import { fetchCreateTournament } from "@/src/api-legacy/tournaments/fetchCreateTournament";
 
-import type { TypeTournamentToCreate } from '@/src/types/tournament';
+import type { TypeTournamentToCreate } from "@/src/types/tournament";
 
 export const useCreateTournament = () => {
-	const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-	const mutation = useMutation({
-		mutationFn: async (tournamentToCreate: TypeTournamentToCreate) => {
-			return fetchCreateTournament(tournamentToCreate);
-		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['allTournaments'] });
-		},
-	});
+    const mutation = useMutation({
+        mutationFn: async (tournamentToCreate: TypeTournamentToCreate) => {
+            return fetchCreateTournament(tournamentToCreate);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["allTournaments"] });
+        },
+    });
 
-	return mutation;
+    return mutation;
 };

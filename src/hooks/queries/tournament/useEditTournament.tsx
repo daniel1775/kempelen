@@ -1,28 +1,28 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { fetchEditTournament } from '@/src/api/tournaments/fetchEditTournament';
+import { fetchEditTournament } from "@/src/api-legacy/tournaments/fetchEditTournament";
 
-import type { TypeTournamentToCreate } from '@/src/types/tournament';
+import type { TypeTournamentToCreate } from "@/src/types/tournament";
 
 type TypeMutationFetchEditTournament = Partial<TypeTournamentToCreate> & {
-	tournamentId: string;
+    tournamentId: string;
 };
 
 export const useEditTournament = () => {
-	const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-	const mutation = useMutation({
-		mutationFn: async ({
-			tournamentId,
-			...tournamentToEdit
-		}: TypeMutationFetchEditTournament) => {
-			return fetchEditTournament(tournamentId, tournamentToEdit);
-		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['allTournaments'] });
-			queryClient.invalidateQueries({ queryKey: ['singleTournament'] });
-		},
-	});
+    const mutation = useMutation({
+        mutationFn: async ({
+            tournamentId,
+            ...tournamentToEdit
+        }: TypeMutationFetchEditTournament) => {
+            return fetchEditTournament(tournamentId, tournamentToEdit);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["allTournaments"] });
+            queryClient.invalidateQueries({ queryKey: ["singleTournament"] });
+        },
+    });
 
-	return mutation;
+    return mutation;
 };
