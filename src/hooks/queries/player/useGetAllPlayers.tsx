@@ -1,16 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
+import DeviceInfo from 'react-native-device-info';
 
-import { fetchAllPlayers } from '@/api/players/fetchAllPlayers';
+import { getAllPlayers } from '@/src/api-v2/players/getAllPlayers';
 
 export const useGetAllPlayers = () => {
-	const { data, isLoading, error } = useQuery({
-		queryKey: ['allPlayers'],
-		queryFn: async () => {
-			const response = await fetchAllPlayers();
-			return response;
-		},
-		staleTime: 1000 * 60 * 60,
-	});
+    const { data, isLoading, error } = useQuery({
+        queryKey: ['allPlayers'],
+        queryFn: async () => {
+            const deviceId = await DeviceInfo.getUniqueId();
 
-	return { allPlayersData: data, isLoading, error };
+            const response = await getAllPlayers(deviceId);
+            return response;
+        },
+        staleTime: 1000 * 60 * 60,
+    });
+
+    return { allPlayersData: data, isLoading, error };
 };
